@@ -11,7 +11,7 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ["scripts/**", ".github/workflows/sync.yml"]
+    paths: ["scripts/**", "config/**", ".github/workflows/sync.yml"]
 
 concurrency:
   group: sync
@@ -33,13 +33,15 @@ jobs:
         env:
           DR_API_TOKEN: ${{ secrets.DR_API_TOKEN }}
           LEAGUE_IDS: cfb27-5156880
-          FORCE_FULL: ${{ github.event_name == 'push' || inputs.full == true }}
+          FORCE_FULL: ${{ inputs.full == true }}
         run: node scripts/sync.mjs
+      - name: Build Film Room data
+        run: node scripts/build.mjs
       - name: Save changes
         run: |
           git config user.name "film-room-sync"
           git config user.email "film-room-sync@users.noreply.github.com"
-          git add data
+          git add data site
           if git diff --cached --quiet; then
             echo "Nothing new."
           else

@@ -6,6 +6,9 @@ A personal College Football 27 dynasty tracker.
 - **Token:** the Rewired API token lives only in the repository secret `DR_API_TOKEN`. Never put it in a file here; this repository is public.
 - **Run it now:** Actions tab → Sync dynasty → Run workflow. Tick "full" to re-download all 138 rosters.
 
+- **Page:** `site/index.html` reads `site/film-room.json`, which `scripts/build.mjs` makes from `data/` after every sync. The private copy lives in Claude as the "Film Room" page.
+- **Names and colors:** `config/overrides.json` renames generic opponents (FCS East → Hampton). `config/teams.json` holds badge abbreviations and colors.
+
 ## If syncing stops
 
 - `401`: the token was replaced on Rewired. Make a new one under Account → API access and update the `DR_API_TOKEN` secret.
