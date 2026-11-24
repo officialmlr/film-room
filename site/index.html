@@ -109,7 +109,7 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
 {
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const app = document.getElementById("app");
-let D = null, T = {}, U = null, UT = null, db = null, sample = null, stories = {}, pressers = {}, feeds = {}, columns = {}, drafts = {}, suggestions = {};
+let D = null, T = {}, U = null, UT = null, db = null, sample = null, imgLimits = null, stories = {}, pressers = {}, feeds = {}, columns = {}, boards = {}, drafts = {}, suggestions = {};
 
 const PERSONAS = [
   { id: "staff", name: "Film Room Staff", outlet: "Beat writer", ini: "FR", voice: "a straight, professional newspaper beat writer. Clear game story: result first, key performers, the turning point, what is next. No hype." },
@@ -132,6 +132,9 @@ function recruitingAngle() {
   const newCommits = (h.at(-1)?.commits[U] || 0) - (h.at(-2)?.commits[U] || 0);
   if (newCommits > 0) return `${T[U].name} added ${newCommits} commitment(s) this week.`;
   if (now && before && Math.abs(now - before) >= 8) return `${T[U].name}'s class moved from #${before} to #${now} this week.`;
+  const lb = latestBoard(), pb = prevBoard();
+  const hot = (lb?.entries || []).find((e) => { const p = pb?.entries?.find((x) => x.name === e.name); return (e.spot && e.spot <= 3 && (!p || !p.spot || p.spot > 3)) || /commit|battle/i.test(e.stage || ""); });
+  if (hot) return `On the coach's board, ${hot.name}${hot.pos ? " (" + hot.pos + ")" : ""} is ${hot.stage || "being recruited"}${hot.spot ? ", with " + T[U].name + " No. " + hot.spot + " on his list" : ""}.`;
   return Math.random() < 0.2 ? "No big recruiting news; a single light recruiting question is fine." : "";
 }
 const STAGES = ["Top 10", "Top 5", "Top 3", "Battle", "Soft commit", "Hard commit", "Signed"];
@@ -470,6 +473,71 @@ function classesTable() {
   document.getElementById("classes").innerHTML = rows.length ? rows.map((c) => `<div class="brow" style="grid-template-columns:30px minmax(0,1fr) 80px;${c.t === U ? "box-shadow:inset 3px 0 0 var(--team);padding-left:6px" : ""}"><span class="num muted">${c.r}</span><div><div style="font-size:14px;font-weight:600">${esc(c.s)} <span class="note">${c.n} commits</span></div><div class="bar"><i class="${c.t === U ? "" : "o"}" style="width:${((c.pts || 0) / max) * 100}%"></i></div></div><span class="note" style="text-align:right">${c.st.map((n, i) => (n ? `${n}×${5 - i}★` : "")).filter(Boolean).join(" ") || "–"}</span></div>`).join("") : '<p class="muted">No classes yet.</p>';
 }
 
+// My board: the recruits the coach is chasing, read from photos of the in-game board or typed in.
+const boardKey = (w) => String(w || "").replace(/[^A-Za-z0-9_-]/g, "-") || "week";
+function boardsSorted() { return Object.values(boards).sort((a, b) => (a.at || 0) - (b.at || 0)); }
+function latestBoard() { return boardsSorted().at(-1) || null; }
+function prevBoard() { return boardsSorted().at(-2) || null; }
+function boardLines(bd) { return (bd?.entries || []).map((e) => `${e.name}${e.pos ? " (" + e.pos + ")" : ""}${e.stars ? ", " + e.stars + "-star" : ""}${e.rank ? ", No. " + e.rank : ""}${e.stage ? ", stage: " + e.stage : ""}${e.spot ? ", " + T[U].name + " is No. " + e.spot + " on his list" : ""}${e.interest ? ", interest: " + e.interest : ""}${e.schools ? ", also on his list: " + e.schools : ""}${e.note ? ", note: " + e.note : ""}`).join("\n"); }
+function matchRecruit(name) { const n = String(name || "").toLowerCase().replace(/[^a-z]/g, ""); return D.recruits.find((r) => r.n.toLowerCase().replace(/[^a-z]/g, "") === n) || null; }
+const inputStyle = "min-height:44px;font:16px Inter,sans-serif;padding:0 10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink)";
+let boardWeek = null;
+function boardSection() {
+  boardWeek ||= D.league.stage || "Week";
+  const bd = boards[boardKey(boardWeek)] || latestBoard();
+  const prev = bd ? boardsSorted().filter((x) => (x.at || 0) < (bd.at || 0)).at(-1) : null;
+  const moved = (e) => { const p = prev?.entries?.find((x) => x.name === e.name); if (!p) return prev ? "new" : ""; if (p.spot && e.spot && p.spot !== e.spot) return p.spot > e.spot ? `up to No. ${e.spot}` : `down to No. ${e.spot}`; if (p.stage !== e.stage && e.stage) return `now ${e.stage}`; return ""; };
+  const canPhoto = !!(sample && imgLimits);
+  return `<section class="card" aria-label="My board"><div class="hd"><h2>My board</h2><span class="note">${bd ? "Showing " + esc(bd.week) + " · " + (bd.entries?.length || 0) + " recruits" : "Not set up yet"}</span></div>
+    <p class="muted" style="margin-top:0">The sync can't see your recruiting board, so add it here: photograph the board screen on your TV, or type recruits in. The recruiting column and the press room use it.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:12px">
+      <label class="note">In-game week<br><input id="boardWeek" value="${esc(boardWeek)}" style="${inputStyle};width:140px"></label>
+      ${canPhoto ? `<label class="btn solid" style="display:inline-flex;align-items:center;position:relative">Read board photos<input id="boardPhotos" type="file" accept="${esc((imgLimits.mediaTypes || ["image/jpeg", "image/png"]).join(","))}" multiple style="position:absolute;inset:0;opacity:0;cursor:pointer"></label>` : `<span class="note">${sample ? "Photo reading isn't available in this view." : "Photo reading works when Film Room is opened as your Claude page."}</span>`}
+    </div>
+    <p class="note" id="status-board"></p>
+    ${bd?.entries?.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Recruit</th><th>Stage</th><th class="n">Your spot</th><th>Interest</th><th>Change</th><th></th></tr></thead><tbody>${bd.entries.map((e, i) => `<tr><td><b>${esc(e.name)}</b><div class="note">${[e.pos, e.stars ? e.stars + "★" : "", e.rank ? "No. " + e.rank : "", e.schools ? "vs " + e.schools : ""].filter(Boolean).map(esc).join(" · ")}${e.note ? " · " + esc(e.note) : ""}</div></td><td>${esc(e.stage || "")}</td><td class="n">${e.spot ?? ""}</td><td>${esc(e.interest || "")}</td><td class="note">${esc(moved(e))}</td><td><button class="btn" style="min-height:36px;padding:0 10px" data-board-del="${i}" aria-label="Remove ${esc(e.name)}">Remove</button></td></tr>`).join("")}</tbody></table></div>` : ""}
+    <details style="margin-top:8px"><summary class="lab">Add a recruit by hand</summary>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;padding:6px 0">
+        <label class="note">Name<br><input id="addName" list="recruitNames" style="${inputStyle}"></label>
+        <label class="note">Stage<br><select id="addStage"><option></option>${STAGES.map((x) => `<option>${x}</option>`).join("")}</select></label>
+        <label class="note">Your spot<br><input id="addSpot" inputmode="numeric" style="${inputStyle};width:80px"></label>
+        <label class="note">Note<br><input id="addNote" placeholder="in top 3 with Pitt" style="${inputStyle}"></label>
+        <button class="btn" data-board-add="1">Add</button></div>
+      <datalist id="recruitNames">${D.recruits.map((r) => `<option value="${esc(r.n)}">`).join("")}</datalist></details>
+  </section>`;
+}
+async function saveBoard(entries) {
+  const key = boardKey(boardWeek);
+  boards[key] = { week: boardWeek, entries, at: boards[key]?.at || Date.now() };
+  const ok = await saveDoc("boards/" + key, boards[key]);
+  route();
+  if (!ok && db) document.getElementById("status-board").textContent = "Shown here, but it could not be saved.";
+  return ok;
+}
+async function readBoard(files) {
+  const st = document.getElementById("status-board");
+  const list = [...files].slice(0, imgLimits?.maxCount || 4);
+  st.textContent = `Reading ${list.length} photo${list.length > 1 ? "s" : ""}… this can take up to a minute.`;
+  const prompt = `These are photos of the recruiting board screen from a College Football 27 dynasty, taken off a TV. The school is ${T[U].name}. Read every recruit row you can see clearly.
+For each recruit return: name (exactly as shown), pos, stars (number), rank (national rank number if shown), stage (the recruit's stage as shown, such as Top 10, Top 5, Top 3, Battle, Committed), spot (${T[U].name}'s place on that recruit's list if shown, as a number), interest (the interest level as shown, short), schools (other schools shown on his list, comma separated), note (anything else important that is shown, short).
+Use null for anything not visible. Never guess a name you cannot read; count those in "unreadable". If the same recruit appears in more than one photo, list him once.
+Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|null,"rank":number|null,"stage":string|null,"spot":number|null,"interest":string|null,"schools":string|null,"note":string|null}],"unreadable":number}`;
+  try {
+    const res = await sample.json(prompt, { images: list, modelTier: "default", cache: false });
+    const found = (res?.entries || []).filter((e) => e?.name).map((e) => {
+      const m = matchRecruit(e.name);
+      return { name: String(e.name), pos: e.pos ? String(e.pos) : m?.pos || null, stars: Number(e.stars) || m?.s || null, rank: Number(e.rank) || m?.r || null, stage: e.stage ? String(e.stage) : null, spot: Number(e.spot) || null, interest: e.interest ? String(e.interest) : null, schools: e.schools ? String(e.schools) : null, note: e.note ? String(e.note) : null, id: m?.id || null };
+    });
+    if (!found.length) throw { message: "No recruits could be read. Try a sharper, straight-on photo." };
+    const key = boardKey(boardWeek), cur = boards[key]?.entries || [];
+    const merged = [...cur.filter((c) => !found.some((f) => f.name.toLowerCase() === c.name.toLowerCase())), ...found];
+    await saveBoard(merged);
+    document.getElementById("status-board").textContent = `Read ${found.length} recruit${found.length > 1 ? "s" : ""}${res.unreadable ? `; ${res.unreadable} row(s) were too blurry` : ""}. Check the list and remove anything wrong.`;
+  } catch (e) {
+    st.textContent = e?.code === "image_rejected" ? "That photo couldn't be used. Try a JPEG or PNG under 20 MB." : e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error");
+  }
+}
+
 let recFilter = "All";
 function recruitingPage() {
   const mine = D.classes.find((c) => c.t === U) || { r: "–", n: 0, pts: 0, st: [0, 0, 0, 0, 0] };
@@ -485,6 +553,7 @@ function recruitingPage() {
     </section>
     <section class="card" style="flex:1 1 300px"><h2 style="margin-bottom:10px">Your commits</h2>${myCommits.length ? myCommits.map((c) => `<div style="padding:8px 0;border-top:1px solid var(--rule)"><b>${esc(c.n)}</b> <span class="muted">${esc(c.pos)} · ${"★".repeat(c.s)}</span><div class="note">No. ${c.r} nationally · ${esc(c.from)} · ${esc(STAGES[c.stage] || "")}${c.since ? " since " + esc(c.since) : ""}</div></div>`).join("") : '<p class="muted">No commitments yet. They show up here the week after a recruit commits.</p>'}
       <div class="lab" style="margin-top:14px">Where the ${D.recruits.length ? "nation's" : ""} recruits stand</div>${D.stageCounts.map((n, i) => (n ? `<div class="brow" style="grid-template-columns:100px minmax(0,1fr) 50px"><span style="font-size:13px">${STAGES[i]}</span><div class="bar"><i class="o" style="width:${pct(n, Math.max(...D.stageCounts))}%"></i></div><span class="num">${n}</span></div>` : "")).join("")}</section></div>
+  ${boardSection()}
   <section class="card story"><div class="hd"><div><div class="lab">${esc(RECRUITER.name)} · ${esc(RECRUITER.outlet)} · ${esc(D.recruitingWeek || "")}</div></div></div>
     ${col ? `<h3>${esc(col.headline)}</h3>${col.dek ? `<p class="dek">${esc(col.dek)}</p>` : ""}${String(col.body).split(/\n+/).map((x) => `<p>${esc(x)}</p>`).join("")}` : `<p class="muted">${sample ? "No column yet this week." : "The column can be written when Film Room is opened as your Claude page."}</p>`}
     ${sample ? `<button class="btn ${col ? "" : "solid"}" data-column="1">${col ? "Regenerate column" : "Write this week's column"}</button>` : ""}<p class="note" id="status-column"></p></section>
@@ -516,9 +585,9 @@ Team record ${T[U].rec}. Coach ${D.coach?.name || ""}.
 National top 10 classes: ${top}.
 Recruit pool status counts: ${D.stageCounts.map((n, i) => STAGES[i] + " " + n).join(", ")}.
 Notable commitments:
-${notable || "none yet"}`;
+${notable || "none yet"}${latestBoard() ? `\n${T[U].name}'S OWN RECRUITING BOARD (${latestBoard().week}, from the coach's board; the column may report this chase):\n${boardLines(latestBoard())}${prevBoard() ? `\nPrevious board (${prevBoard().week}):\n${boardLines(prevBoard())}` : ""}` : ""}`;
   try {
-    const res = await sample.json(prompt, { modelTier: "default" });
+    const res = await sample.json(prompt, { modelTier: "default", cache: false });
     if (!res?.headline || !res?.body) throw { message: "The column came back empty." };
     const doc = { week: D.recruitingWeek, headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now() };
     columns[D.recruitingWeek] = doc;
@@ -555,7 +624,7 @@ Return JSON only: {"posts":[{"name": string, "handle": string starting with @, "
 FACTS
 ${factsFor(b)}${quotesFor(gameId)}`;
   try {
-    const res = await sample.json(prompt, { modelTier: "default" });
+    const res = await sample.json(prompt, { modelTier: "default", cache: false });
     const posts = (res?.posts || []).filter((p) => p?.text).slice(0, 14).map((p) => ({ name: String(p.name || "Fan"), handle: String(p.handle || ""), kind: String(p.kind || ""), color: String(p.color || ""), text: String(p.text), replyTo: p.replyTo ? String(p.replyTo) : null, likes: Number.isFinite(+p.likes) ? Math.max(0, Math.round(+p.likes)) : null }));
     if (!posts.length) throw { message: "The feed came back empty." };
     feeds[gameId] = { gameId, posts, at: Date.now() };
@@ -590,7 +659,7 @@ Return JSON only: {"questions":[{"who": reporter name, "role": reporter role, "q
 FACTS
 ${factsFor(b)}`;
   try {
-    const res = await sample.json(prompt, { modelTier: "default" });
+    const res = await sample.json(prompt, { modelTier: "default", cache: false });
     const qa = (res?.questions || []).filter((q) => q?.q).slice(0, 8).map((q) => ({ who: String(q.who || "Reporter"), role: String(q.role || ""), q: String(q.q), a: "" }));
     if (!qa.length) throw { message: "No questions came back." };
     pressers[gameId] = { gameId, qa, done: false, at: Date.now() };
@@ -607,7 +676,7 @@ async function suggest(gameId, i) {
     const res = await sample.json(`You help a video game dynasty player answer a postgame press conference question as ${T[U].name}'s head coach. Offer 3 different short answers (1 to 3 sentences each): one measured, one fiery, one deflecting with humor. Use only the facts given. No em dashes. Return JSON only: {"answers":[string,string,string]}.
 QUESTION from ${q.who}: ${q.q}
 FACTS
-${factsFor(b)}`, { modelTier: "quick" });
+${factsFor(b)}`, { modelTier: "quick", cache: false });
     suggestions[gameId + "-" + i] = (res?.answers || []).map(String).slice(0, 3);
     st.textContent = "";
     route();
@@ -660,7 +729,7 @@ Return JSON only: {"headline": string (under 12 words), "dek": string (one sente
 FACTS
 ${factsFor(b)}${quotesFor(gameId)}`;
   try {
-    const res = await sample.json(prompt, { modelTier: "default" });
+    const res = await sample.json(prompt, { modelTier: "default", cache: false });
     if (!res?.headline || !res?.body) throw { message: "The story came back empty." };
     const key = gameId + "-" + personaId, old = stories[key];
     const doc = { gameId, persona: personaId, headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now(),
@@ -705,6 +774,8 @@ app.addEventListener("click", (e) => {
   const pe = e.target.closest("[data-presser-edit]"); if (pe) { const g = pe.dataset.presserEdit; drafts[g] = pressers[g].qa.map((x) => ({ ...x })); route(); return; }
   const fd = e.target.closest("[data-feed]"); if (fd && sample) { fd.disabled = true; return makeFeed(fd.dataset.feed); }
   const cl = e.target.closest("[data-column]"); if (cl && sample) { cl.disabled = true; return writeColumn(); }
+  const bdl = e.target.closest("[data-board-del]"); if (bdl) { const cur = [...((boards[boardKey(boardWeek)] || latestBoard())?.entries || [])]; cur.splice(+bdl.dataset.boardDel, 1); return saveBoard(cur); }
+  const bad = e.target.closest("[data-board-add]"); if (bad) { const name = document.getElementById("addName").value.trim(); if (!name) return; const m = matchRecruit(name); const cur = [...(boards[boardKey(boardWeek)]?.entries || [])]; cur.push({ name, pos: m?.pos || null, stars: m?.s || null, rank: m?.r || null, stage: document.getElementById("addStage").value || null, spot: +document.getElementById("addSpot").value || null, interest: null, schools: null, note: document.getElementById("addNote").value.trim() || null, id: m?.id || null }); return saveBoard(cur); }
   const u = e.target.closest("[data-undo]"); if (u) return undo(u.dataset.undo, u.dataset.persona);
   const p = e.target.closest("[data-poll]"); if (p) { pollKind = p.dataset.poll; document.querySelectorAll("[data-poll]").forEach((b) => b.setAttribute("aria-pressed", b === p)); poll(); }
 });
@@ -713,6 +784,8 @@ app.addEventListener("change", (e) => {
   if (e.target.id === "posSel") { rosterFilter = e.target.value; rosterTable(); }
   if (e.target.id === "confSel") { conf = e.target.value; standings(); }
   if (e.target.id === "recSel") { recFilter = e.target.value; recruitTable(); }
+  if (e.target.id === "boardWeek") { boardWeek = e.target.value.trim() || boardWeek; route(); }
+  if (e.target.id === "boardPhotos" && e.target.files?.length && sample) readBoard(e.target.files);
 });
 app.addEventListener("input", (e) => {
   const t = e.target.closest("[data-ans]"); if (!t) return;
@@ -727,7 +800,7 @@ fetch("film-room.json").then((r) => r.json()).then((d) => {
 
 // Optional powers when opened as a Claude page: Claude writes stories, the database keeps them.
 if (window.claude?.use) {
-  claude.use("sample").then((s) => { sample = s; route(); });
+  claude.use("sample").then(async (s) => { sample = s; if (s?.limits) { try { imgLimits = (await s.limits())?.images || null; } catch { imgLimits = null; } } route(); });
   claude.use("db").then((d) => {
     db = d; if (!db) return;
     const timer = setTimeout(() => {}, 10000);
@@ -736,7 +809,8 @@ if (window.claude?.use) {
       load("stories", (v) => { if (v.gameId) stories[v.gameId + "-" + v.persona] = v; }),
       load("pressers", (v) => { if (v.gameId) pressers[v.gameId] = v; }),
       load("feed", (v) => { if (v.gameId) feeds[v.gameId] = v; }),
-      load("columns", (v) => { if (v.week) columns[v.week] = v; })
+      load("columns", (v) => { if (v.week) columns[v.week] = v; }),
+      load("boards", (v) => { if (v.week) boards[boardKey(v.week)] = v; })
     ]).then(() => { clearTimeout(timer); if (!document.activeElement?.matches?.("textarea")) route(); });
   });
 }
