@@ -119,10 +119,21 @@ const PERSONAS = [
 
 const RECRUITER = { name: "Dana Ruiz", outlet: "The Recruiting Trail", voice: "Dana Ruiz, a well-sourced recruiting reporter. Tracks commitments, class rankings and momentum week to week; measured, specific, never gossipy." };
 const PRESS = [
-  { who: "Film Room Staff", role: "beat writer", focus: "the game itself: key plays implied by the stats, players who stood out, mistakes, what changes next week" },
-  { who: "Dana Ruiz", role: "recruiting reporter", focus: "how results affect recruiting, young players who played, class momentum" },
-  { who: "Marcus Hale", role: "national columnist", focus: "the big picture: conference race, rankings, expectations, the coach's job" }
+  { who: "Film Room Staff", role: "beat writer", focus: "the game itself: players who stood out, mistakes, adjustments, what changes next week" },
+  { who: "Marcus Hale", role: "national columnist", focus: "the big picture: conference race, rankings, expectations, the coach's job" },
+  { who: "Tasha Greene", role: "local TV sports anchor", focus: "simple, direct questions fans want answered; emotion of the game" },
+  { who: "Kevin Doyle", role: "student newspaper reporter", focus: "a young player, team culture, the student section, an offbeat angle" },
+  { who: "Ray Castillo", role: "talk radio host", focus: "pointed, slightly provocative questions about play-calling, effort or the quarterback" },
+  { who: "Dana Ruiz", role: "recruiting reporter", focus: "recruiting momentum and young players; only when there is a real recruiting angle" }
 ];
+// A recruiting question only when something happened on that front, or now and then.
+function recruitingAngle() {
+  const h = D.classHistory, now = h.at(-1)?.ranks[U], before = h.at(-2)?.ranks[U];
+  const newCommits = (h.at(-1)?.commits[U] || 0) - (h.at(-2)?.commits[U] || 0);
+  if (newCommits > 0) return `${T[U].name} added ${newCommits} commitment(s) this week.`;
+  if (now && before && Math.abs(now - before) >= 8) return `${T[U].name}'s class moved from #${before} to #${now} this week.`;
+  return Math.random() < 0.2 ? "No big recruiting news; a single light recruiting question is fine." : "";
+}
 const STAGES = ["Top 10", "Top 5", "Top 3", "Battle", "Soft commit", "Hard commit", "Signed"];
 async function saveDoc(path, doc) { if (!db) return false; try { await db.doc(path).set(doc); return true; } catch (e) { return false; } }
 function quotesFor(gameId) {
@@ -521,29 +532,31 @@ function feedBlock(gameId, limit) {
   const f = feeds[gameId];
   const posts = (f?.posts || []).slice(0, limit || 99);
   const btn = sample && !limit ? `<button class="btn ${f ? "" : "solid"}" data-feed="${esc(gameId)}">${f ? "Refresh the reaction" : "Generate the reaction"}</button>` : "";
-  return `${posts.length ? posts.map((p) => `<div style="display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--rule)"><span class="badge" style="width:36px;height:36px;--c:${esc(/^#[0-9a-fA-F]{6}$/.test(p.color || "") ? p.color : "#5E5A52")}" aria-hidden="true">${esc((p.name || "?").slice(0, 2).toUpperCase())}</span><div style="flex:1"><div style="font-size:14px"><b>${esc(p.name)}</b> <span class="muted">${esc(p.handle)}</span></div><div style="margin-top:2px">${esc(p.text)}</div><div class="note">${esc(p.kind || "")}</div></div></div>`).join("") : `<p class="muted">${sample ? "No reaction yet." : "The feed can be generated when Film Room is opened as your Claude page."}</p>`}${btn}<p class="note" id="status-feed-${esc(gameId)}"></p>`;
+  return `${posts.length ? posts.map((p) => `<div style="display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--rule);${p.replyTo ? "margin-left:22px;border-left:2px solid var(--rule);padding-left:10px" : ""}"><span class="badge" style="width:36px;height:36px;--c:${esc(/^#[0-9a-fA-F]{6}$/.test(p.color || "") ? p.color : "#5E5A52")}" aria-hidden="true">${esc((p.name || "?").slice(0, 2).toUpperCase())}</span><div style="flex:1"><div style="font-size:14px"><b>${esc(p.name)}</b> <span class="muted">${esc(p.handle)}</span></div>${p.replyTo ? `<div class="note">Replying to ${esc(p.replyTo)}</div>` : ""}<div style="margin-top:2px">${esc(p.text)}</div><div class="note">${esc(p.kind || "")}${p.likes != null ? " · " + Number(p.likes).toLocaleString() + " likes" : ""}</div></div></div>`).join("") : `<p class="muted">${sample ? "No reaction yet." : "The feed can be generated when Film Room is opened as your Claude page."}</p>`}${btn}<p class="note" id="status-feed-${esc(gameId)}"></p>`;
 }
 async function makeFeed(gameId) {
   const b = D.boxes.find((x) => x.id === gameId);
   const st = document.getElementById("status-feed-" + gameId);
   st.textContent = "Checking the timeline…";
   const me = T[U], [us, them] = teamSide(b), opp = T[b[them === "home" ? "h" : "a"]] || {};
-  const prompt = `Invent a social media reaction feed for "Film Room", a site about one person's College Football 27 video game dynasty, after this game.
-Write 8 short posts (each under 220 characters) from these invented accounts, in any order, one to two posts each:
-- a die-hard ${me.name} fan account
-- a fan account for ${opp.name || "the opponent"}
-- a national hot-take analyst
-- a stats account that posts one precise number from the facts
-- a recruiting insider
-- a casual meme-style fan (jokes, no profanity)
-Rules: every account is fictional, with an invented display name and @handle. No post is written as, or quotes, a real player or real coach; players may be mentioned by name only for what they did in the facts. The coach's only words are the press conference answers below, if any, and may be quoted exactly. Use only the facts given; no invented injuries, plays, quotes or numbers. No emoji. At most one hashtag per post.
-Return JSON only: {"posts":[{"name": string, "handle": string starting with @, "kind": one of "Fan","Rival fan","Analyst","Stats","Recruiting","Meme", "color": a hex color like #1A2B3C, "text": string}]}.
+  const won = b[us === "home" ? "hs" : "as"] > b[us === "home" ? "as" : "hs"];
+  const prompt = `Invent the social media timeline after this game for "Film Room", a site about one person's College Football 27 video game dynasty. It should read like real college football Twitter: opinions, not a stat recap.
+Write 11 posts. Mix these voices (all fictional, invented display names and @handles):
+- 3 or 4 ${me.name} fans who disagree with each other: ${won ? "one euphoric overreaction (\"we're making the playoff\"), one skeptic who thinks the win hid problems, one who wants a specific player to get more touches" : "one doom-poster ready to fire everyone, one defender telling people to calm down, one who blames a specific unit or the play-calling"}
+- 2 ${opp.name || "opponent"} fans: ${won ? "salty excuses or grudging respect" : "trolling and gloating"}
+- 1 national hot-take analyst with a bold, arguable claim
+- 1 stats account (the only post that leads with a number)
+- 1 recruiting insider (one post at most, a take, not a report)
+- 1 or 2 meme or joke posts
+- At least 3 posts are REPLIES to an earlier post in the list, arguing or piling on (set "replyTo" to that post's @handle).
+Tone rules: takes, emotion, banter and arguments; at most 3 posts may mention a number. Mild trash talk is fine; no profanity, slurs or personal attacks on real people. Every account is fictional. No post is written as, or quotes, a real player or real coach; players may be named only for what they did in the facts. The coach's only words are the press conference answers below, if any, and fans may react to them. Use only the facts given: no invented injuries, plays or numbers. No emoji. At most one hashtag per post. Each post under 220 characters.
+Return JSON only: {"posts":[{"name": string, "handle": string starting with @, "kind": one of "Fan","Rival fan","Analyst","Stats","Recruiting","Meme", "replyTo": @handle or null, "likes": number, "color": hex like #1A2B3C, "text": string}]}.
 
 FACTS
 ${factsFor(b)}${quotesFor(gameId)}`;
   try {
-    const res = await sample.json(prompt, { modelTier: "quick" });
-    const posts = (res?.posts || []).filter((p) => p?.text).slice(0, 10).map((p) => ({ name: String(p.name || "Fan"), handle: String(p.handle || ""), kind: String(p.kind || ""), color: String(p.color || ""), text: String(p.text) }));
+    const res = await sample.json(prompt, { modelTier: "default" });
+    const posts = (res?.posts || []).filter((p) => p?.text).slice(0, 14).map((p) => ({ name: String(p.name || "Fan"), handle: String(p.handle || ""), kind: String(p.kind || ""), color: String(p.color || ""), text: String(p.text), replyTo: p.replyTo ? String(p.replyTo) : null, likes: Number.isFinite(+p.likes) ? Math.max(0, Math.round(+p.likes)) : null }));
     if (!posts.length) throw { message: "The feed came back empty." };
     feeds[gameId] = { gameId, posts, at: Date.now() };
     await saveDoc("feed/" + gameId, feeds[gameId]);
@@ -566,9 +579,12 @@ async function startPresser(gameId) {
   const b = D.boxes.find((x) => x.id === gameId);
   const st = document.getElementById("status-presser-" + gameId);
   st.textContent = "Reporters are taking their seats…";
+  const angle = recruitingAngle();
   const prompt = `Postgame press conference for "Film Room", a site about one person's College Football 27 video game dynasty. The person playing is ${T[U].name}'s head coach, ${D.coach?.name || "the coach"}.
-Write 6 questions, two from each reporter, that a real press room would ask after this game. Each question must be grounded in a specific fact below (a number, a player, a quarter, the record, what is next). Mix tough and fair. One sentence each, under 35 words. Do not invent injuries, plays, quotes or facts.
-Reporters: ${PRESS.map((r) => `${r.who} (${r.role}; asks about ${r.focus})`).join("; ")}.
+Write 5 or 6 questions the way a real press room goes: the beat writer usually opens, then three or four other reporters from the list below get a turn, chosen to fit this game. Not everyone asks every week. Order them like a real presser: the result first, then specifics, then what is next.
+Each question is grounded in a specific fact below (a number, a player, a quarter, the record, the next opponent). Mix tough and fair; at least one should be uncomfortable after a loss. One sentence each, under 35 words. Do not invent injuries, plays, quotes or facts.
+${angle ? "Recruiting angle this week: " + angle + " Dana Ruiz may ask ONE question about it." : "There is no recruiting news this week: do NOT include Dana Ruiz or any recruiting question."}
+Reporters available: ${PRESS.map((r) => `${r.who} (${r.role}; asks about ${r.focus})`).join("; ")}.
 Return JSON only: {"questions":[{"who": reporter name, "role": reporter role, "q": string}]}.
 
 FACTS
