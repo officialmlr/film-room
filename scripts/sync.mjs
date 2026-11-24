@@ -103,6 +103,7 @@ async function syncSeason(league, seasonArg) {
     }
   }
   console.log(`${league} ${season}: ${games} box scores, ${teamIds.length} schools, ${changed.length} files changed`);
+  changed.season = season;
   return changed;
 }
 
@@ -130,7 +131,13 @@ async function main() {
     const real = (summary?.data?.seasons || []).map((s) => (typeof s === "object" ? s.season ?? s.year : s)).filter(Boolean);
     // Back-fill any season we have never saved.
     for (const s of real) if (!(await readJson(join(DATA, league, String(s), "schedule.json")))) seasons.add(s);
-    for (const s of seasons) total += (await syncSeason(league, s)).length;
+    const done = new Set();
+    for (const s of seasons) {
+      if (done.has(String(s))) continue;
+      const changed = await syncSeason(league, s);
+      done.add(String(changed.season));
+      total += changed.length;
+    }
   }
   console.log(`Done: ${requests} requests, ${total} files changed.`);
 }
