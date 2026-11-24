@@ -99,7 +99,7 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
     <div class="kpis"><div class="kpi"><span id="kRecLab">Record</span><b id="kRec">–</b></div><div class="kpi"><span>Now</span><b id="kStage">–</b></div></div>
   </div>
   <nav class="tabs" aria-label="Sections">
-    <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#roster">Roster</a><a href="#league">League</a><a href="#newsroom">Newsroom</a>
+    <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#roster">Roster</a><a href="#recruiting">Recruiting</a><a href="#league">League</a><a href="#newsroom">Newsroom</a>
   </nav>
 </div></header>
 <main class="wrap" id="app" aria-live="polite"><div class="empty">Loading…</div></main>
@@ -109,13 +109,27 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
 {
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const app = document.getElementById("app");
-let D = null, T = {}, U = null, UT = null, db = null, sample = null, stories = {};
+let D = null, T = {}, U = null, UT = null, db = null, sample = null, stories = {}, pressers = {}, feeds = {}, columns = {}, drafts = {}, suggestions = {};
 
 const PERSONAS = [
   { id: "staff", name: "Film Room Staff", outlet: "Beat writer", ini: "FR", voice: "a straight, professional newspaper beat writer. Clear game story: result first, key performers, the turning point, what is next. No hype." },
   { id: "shell", name: "Sully", outlet: "The Shell (fan blog)", ini: "SL", voice: "Sully, a lifelong, grumpy, old-school fan blogger for this school. Opinionated, funny, short paragraphs, loves the run game and defense, suspicious of the coaching staff, but every claim must still match the numbers." },
   { id: "steph", name: "Stat Sheet Steph", outlet: "By the Numbers (blog)", ini: "SS", voice: "Steph, an analytics blogger. Leads with one surprising number, explains what the stats say about the team, uses rates and comparisons computed only from the numbers given." }
 ];
+
+const RECRUITER = { name: "Dana Ruiz", outlet: "The Recruiting Trail", voice: "Dana Ruiz, a well-sourced recruiting reporter. Tracks commitments, class rankings and momentum week to week; measured, specific, never gossipy." };
+const PRESS = [
+  { who: "Film Room Staff", role: "beat writer", focus: "the game itself: key plays implied by the stats, players who stood out, mistakes, what changes next week" },
+  { who: "Dana Ruiz", role: "recruiting reporter", focus: "how results affect recruiting, young players who played, class momentum" },
+  { who: "Marcus Hale", role: "national columnist", focus: "the big picture: conference race, rankings, expectations, the coach's job" }
+];
+const STAGES = ["Top 10", "Top 5", "Top 3", "Battle", "Soft commit", "Hard commit", "Signed"];
+async function saveDoc(path, doc) { if (!db) return false; try { await db.doc(path).set(doc); return true; } catch (e) { return false; } }
+function quotesFor(gameId) {
+  const p = pressers[gameId];
+  const qa = (p?.qa || []).filter((x) => x.a && x.a.trim());
+  return qa.length ? `\nPOSTGAME PRESS CONFERENCE (the coach's real words; you may quote them exactly, and only these):\n${qa.map((x) => `Q (${x.who}): ${x.q}\nCoach ${D.coach?.name || ""}: ${x.a}`).join("\n")}` : "";
+}
 
 const badge = (id, size = 34) => {
   const t = T[id] || { abbr: "?", color: null };
@@ -323,7 +337,13 @@ function home() {
   const next = games.find((g) => !g.final);
   return `${scheduleStrip(games)}
   <div class="row"><div class="main" style="display:flex;flex-direction:column;gap:24px">${last ? lastGameCard(last) : `<section class="card"><h2>No games yet</h2></section>`}<div class="row"><div style="flex:1 1 300px">${quarterChart(games)}</div><div style="flex:1 1 300px">${yardsChart(games)}</div></div>${leadersCard()}</div>
-  <aside class="side">${nextGameCard(next)}${snapshot(games)}${trenches()}${topPoll()}</aside></div>`;
+  <aside class="side">${nextGameCard(next)}${last && feeds[last.id] ? `<section class="card"><div class="hd"><h2>The feed</h2><a class="lab" href="#game-${esc(last.id)}">All posts</a></div>${feedBlock(last.id, 4)}</section>` : ""}${recruitMini()}${snapshot(games)}${trenches()}${topPoll()}</aside></div>`;
+}
+function recruitMini() {
+  const mine = D.classes.find((c) => c.t === U);
+  if (!mine) return "";
+  const hist = D.classHistory.filter((h) => h.ranks[U]), prev = hist.at(-2)?.ranks[U], mv = prev ? prev - mine.r : 0;
+  return `<section class="card"><div class="hd"><h2>Recruiting</h2><a class="lab" href="#recruiting">Recruiting page</a></div><div style="display:flex;gap:20px;align-items:flex-end"><div class="stat"><b style="font-size:40px">#${mine.r}</b><span>Class rank${mv ? ` (${mv > 0 ? "up " + mv : "down " + -mv})` : ""}</span></div><div class="stat"><b>${mine.n}</b><span>Commits</span></div></div>${columns[D.recruitingWeek] ? `<p style="margin:12px 0 0;font-family:Fraunces,serif;font-weight:700">${esc(columns[D.recruitingWeek].headline)}</p>` : ""}</section>`;
 }
 
 function boxTables(b, team, title) {
@@ -365,7 +385,8 @@ function game(id) {
         <div class="score" style="flex:1 1 320px"><div style="text-align:center">${badge(b.a, 46)}<div class="big">${b.as}</div><div style="font-weight:600">${esc(b.an)}</div></div><span style="font-family:Fraunces,serif;font-size:22px">at</span><div style="text-align:center">${badge(b.h, 46)}<div class="big">${b.hs}</div><div style="font-weight:600">${esc(b.hn)}</div></div></div>
         <div style="flex:1 1 300px;background:var(--card);color:var(--ink);border-radius:10px;padding:6px 10px">${quarterTable(b)}</div>
       </div></section>
-    <div class="row"><section class="card main" aria-label="Stories"><div class="hd"><h2>The newsroom</h2></div>${storyBlock(b.id, false)}</section><div class="side">${teamCompare(b)}</div></div>
+    <div class="row"><div class="main" style="display:flex;flex-direction:column;gap:24px"><section class="card" aria-label="Press conference"><div class="hd"><h2>Press conference</h2>${pressers[b.id]?.done ? '<span class="note">The writers can quote you</span>' : ""}</div>${presserBlock(b.id)}</section><section class="card main" aria-label="Stories"><div class="hd"><h2>The newsroom</h2></div>${storyBlock(b.id, false)}</section></div>
+      <div class="side">${teamCompare(b)}<section class="card" aria-label="Social feed"><div class="hd"><h2>The feed</h2></div>${feedBlock(b.id)}</section></div></div>
     <div class="row">${boxTables(b, b.aRaw, b.an)}${boxTables(b, b.hRaw, b.hn)}</div>`;
 }
 
@@ -421,8 +442,7 @@ function leaguePage() {
   const confs = [...new Set(D.teams.filter((t) => !t.fcs).map((t) => t.conf))].sort();
   return `<div class="row"><section class="card" style="flex:1 1 440px"><div class="hd"><h2>Standings</h2><select id="confSel" aria-label="Conference">${confs.map((c) => `<option ${c === conf ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div><div id="standings"></div></section>
     <section class="card" style="flex:1 1 360px"><div class="hd"><h2>Top 25</h2><div class="personas" role="group" aria-label="Poll" style="margin:0"><button data-poll="media" aria-pressed="${pollKind === "media"}">Media</button><button data-poll="coaches" aria-pressed="${pollKind === "coaches"}">Coaches</button></div></div><div id="poll"></div></section></div>
-    <div class="row"><section class="card" style="flex:1 1 440px"><div class="hd"><h2>Recruiting class rankings</h2><span class="note">Stars of committed recruits</span></div><div id="classes"></div></section>
-    <section class="card" style="flex:1 1 360px"><div class="hd"><h2>Top recruits</h2></div><div class="scroll" style="max-height:520px;overflow-y:auto"><table><thead><tr><th class="n">#</th><th>Recruit</th><th>Pos</th><th class="n">★</th></tr></thead><tbody>${D.recruits.slice(0, 100).map((r) => `<tr><td class="n">${r.r}</td><td><b>${esc(r.n)}</b><div class="note">${esc(r.from)}${r.arch ? " · " + esc(r.arch) : ""}</div></td><td>${esc(r.pos)}</td><td class="n">${r.s}</td></tr>`).join("")}</tbody></table></div></section></div>`;
+`;
 }
 function standings() {
   const ts = D.teams.filter((t) => t.conf === conf).sort((a, b) => (b.cw - b.cl) - (a.cw - a.cl) || (b.w - b.l) - (a.w - a.l) || (b.ovr || 0) - (a.ovr || 0));
@@ -439,10 +459,158 @@ function classesTable() {
   document.getElementById("classes").innerHTML = rows.length ? rows.map((c) => `<div class="brow" style="grid-template-columns:30px minmax(0,1fr) 80px;${c.t === U ? "box-shadow:inset 3px 0 0 var(--team);padding-left:6px" : ""}"><span class="num muted">${c.r}</span><div><div style="font-size:14px;font-weight:600">${esc(c.s)} <span class="note">${c.n} commits</span></div><div class="bar"><i class="${c.t === U ? "" : "o"}" style="width:${((c.pts || 0) / max) * 100}%"></i></div></div><span class="note" style="text-align:right">${c.st.map((n, i) => (n ? `${n}×${5 - i}★` : "")).filter(Boolean).join(" ") || "–"}</span></div>`).join("") : '<p class="muted">No classes yet.</p>';
 }
 
+let recFilter = "All";
+function recruitingPage() {
+  const mine = D.classes.find((c) => c.t === U) || { r: "–", n: 0, pts: 0, st: [0, 0, 0, 0, 0] };
+  const hist = D.classHistory.filter((h) => h.ranks[U]);
+  const worst = Math.max(...hist.map((h) => h.ranks[U]), 1);
+  const myCommits = D.commits.filter((c) => c.t === U);
+  const recent = [...D.commits].sort((a, b) => a.r - b.r).slice(0, 12);
+  const col = columns[D.recruitingWeek];
+  return `<div class="row"><section class="card" style="flex:1 1 320px"><div class="lab">${esc(T[U].name)} · Class of ${D.league.season + 1}</div>
+      <div style="display:flex;gap:24px;align-items:flex-end;margin:8px 0 14px;flex-wrap:wrap"><div class="stat"><b style="font-size:54px">#${esc(mine.r)}</b><span>National class rank (${esc(D.classesWeek || "")})</span></div><div class="stat"><b>${mine.n}</b><span>Commits</span></div><div class="stat"><b>${Math.round(mine.pts || 0)}</b><span>Class points</span></div></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${mine.st.map((n, i) => `<span class="tag">${5 - i}★ · ${n}</span>`).join("")}</div>
+      ${hist.length > 1 ? `<div class="lab" style="margin-top:16px">Class rank by week (higher bar is better)</div><div class="cols" style="height:120px">${hist.map((h) => `<div class="col"><span class="v">#${h.ranks[U]}</span><i style="display:block;width:70%;max-width:40px;border-radius:4px 4px 0 0;background:var(--team);height:${Math.max(6, ((worst + 1 - h.ranks[U]) / worst) * 80)}%"></i></div>`).join("")}</div><div class="xl">${hist.map((h) => `<span>${esc(h.label.replace("Week ", "Wk "))}</span>`).join("")}</div>` : ""}
+    </section>
+    <section class="card" style="flex:1 1 300px"><h2 style="margin-bottom:10px">Your commits</h2>${myCommits.length ? myCommits.map((c) => `<div style="padding:8px 0;border-top:1px solid var(--rule)"><b>${esc(c.n)}</b> <span class="muted">${esc(c.pos)} · ${"★".repeat(c.s)}</span><div class="note">No. ${c.r} nationally · ${esc(c.from)} · ${esc(STAGES[c.stage] || "")}${c.since ? " since " + esc(c.since) : ""}</div></div>`).join("") : '<p class="muted">No commitments yet. They show up here the week after a recruit commits.</p>'}
+      <div class="lab" style="margin-top:14px">Where the ${D.recruits.length ? "nation's" : ""} recruits stand</div>${D.stageCounts.map((n, i) => (n ? `<div class="brow" style="grid-template-columns:100px minmax(0,1fr) 50px"><span style="font-size:13px">${STAGES[i]}</span><div class="bar"><i class="o" style="width:${pct(n, Math.max(...D.stageCounts))}%"></i></div><span class="num">${n}</span></div>` : "")).join("")}</section></div>
+  <section class="card story"><div class="hd"><div><div class="lab">${esc(RECRUITER.name)} · ${esc(RECRUITER.outlet)} · ${esc(D.recruitingWeek || "")}</div></div></div>
+    ${col ? `<h3>${esc(col.headline)}</h3>${col.dek ? `<p class="dek">${esc(col.dek)}</p>` : ""}${String(col.body).split(/\n+/).map((x) => `<p>${esc(x)}</p>`).join("")}` : `<p class="muted">${sample ? "No column yet this week." : "The column can be written when Film Room is opened as your Claude page."}</p>`}
+    ${sample ? `<button class="btn ${col ? "" : "solid"}" data-column="1">${col ? "Regenerate column" : "Write this week's column"}</button>` : ""}<p class="note" id="status-column"></p></section>
+  <div class="row"><section class="card" style="flex:1 1 440px"><div class="hd"><h2>Class rankings</h2><span class="note">${esc(D.classesWeek || "")} · stars of committed recruits</span></div><div id="classes"></div></section>
+    <section class="card" style="flex:1 1 360px"><div class="hd"><h2>Latest commitments</h2><span class="note">Nationwide, by recruit rank</span></div>${recent.length ? recent.map((c) => `<div style="display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--rule)">${badge(c.t, 26)}<div style="flex:1"><b style="font-size:14px">${esc(c.n)}</b> <span class="note">${esc(c.pos)} · ${"★".repeat(c.s)} · No. ${c.r}</span><div class="note">${esc(c.sch)} · ${esc(STAGES[c.stage])}</div></div></div>`).join("") : '<p class="muted">None yet.</p>'}</section></div>
+  <section class="card"><div class="hd"><h2>Top recruits</h2><label class="note">Position <select id="recSel">${["All", ...new Set(D.recruits.map((r) => r.pos))].map((p) => `<option ${p === recFilter ? "selected" : ""}>${esc(p)}</option>`).join("")}</select></label></div><div id="recruitTable"></div></section>`;
+}
+function recruitTable() {
+  const rs = D.recruits.filter((r) => recFilter === "All" || r.pos === recFilter);
+  document.getElementById("recruitTable").innerHTML = `<div class="scroll" style="max-height:640px;overflow-y:auto"><table class="stack"><thead><tr><th class="n">Rank</th><th>Recruit</th><th>Pos</th><th class="n">Stars</th><th>Status</th></tr></thead><tbody>${rs.map((r) => `<tr><td class="n">${r.r}</td><td><b>${esc(r.n)}</b><div class="note">${esc(r.from)}${r.arch ? " · " + esc(r.arch) : ""}</div></td><td>${esc(r.pos)}</td><td class="n">${r.s}</td><td>${r.sch ? `<span style="display:inline-flex;gap:6px;align-items:center">${badge(r.t, 22)}${esc(STAGES[r.stage])}</span>` : `<span class="note">${esc(STAGES[r.stage] ?? "")}</span>`}</td></tr>`).join("")}</tbody></table></div>`;
+}
+async function writeColumn() {
+  const st = document.getElementById("status-column");
+  st.textContent = "Dana Ruiz is working the phones…";
+  const mine = D.classes.find((c) => c.t === U);
+  const hist = D.classHistory.map((h) => `${h.label}: ${T[U].name} #${h.ranks[U]}`).join("; ");
+  const prev = D.classHistory.at(-2);
+  const top = D.classes.slice(0, 10).map((c) => `#${c.r} ${c.s} (${c.n} commits, ${Math.round(c.pts || 0)} pts${prev?.ranks[c.t] ? ", was #" + prev.ranks[c.t] : ""})`).join("; ");
+  const notable = [...D.commits].sort((a, b) => a.r - b.r).slice(0, 15).map((c) => `No. ${c.r} ${c.n}, ${c.s}-star ${c.pos} from ${c.from}: ${STAGES[c.stage]} to ${c.sch}${c.since ? " (" + c.since + ")" : ""}`).join("\n");
+  const myc = D.commits.filter((c) => c.t === U).map((c) => `${c.n}, ${c.s}-star ${c.pos}, No. ${c.r}`).join("; ") || "none yet";
+  const prompt = `You write for "Film Room", a newspaper-style site about one person's College Football 27 video game dynasty. Write as ${RECRUITER.voice}
+Write this week's recruiting column. Focus on ${T[U].name}'s class, then the national picture. Use ONLY the facts below; do not invent recruits, visits, quotes, offers or rankings. No em dashes, no hashtags, no emoji. 170 to 260 words, 3 to 5 short paragraphs.
+Return JSON only: {"headline": string (under 12 words), "dek": string, "body": string (paragraphs separated by blank lines)}.
+
+FACTS (${D.recruitingWeek}, ${D.league.season} season, recruiting the class of ${D.league.season + 1})
+${T[U].name}: class rank #${mine?.r ?? "unranked"}, ${mine?.n || 0} commits, ${Math.round(mine?.pts || 0)} points. Rank history: ${hist}.
+${T[U].name} commits: ${myc}.
+Team record ${T[U].rec}. Coach ${D.coach?.name || ""}.
+National top 10 classes: ${top}.
+Recruit pool status counts: ${D.stageCounts.map((n, i) => STAGES[i] + " " + n).join(", ")}.
+Notable commitments:
+${notable || "none yet"}`;
+  try {
+    const res = await sample.json(prompt, { modelTier: "default" });
+    if (!res?.headline || !res?.body) throw { message: "The column came back empty." };
+    const doc = { week: D.recruitingWeek, headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now() };
+    columns[D.recruitingWeek] = doc;
+    await saveDoc("columns/" + D.recruitingWeek.replace(/[^A-Za-z0-9_-]/g, "-"), doc);
+    route();
+  } catch (e) { st.textContent = e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error"); }
+}
+
+// Social feed: invented accounts react to a game. Never posts by real players or coaches.
+function feedBlock(gameId, limit) {
+  const f = feeds[gameId];
+  const posts = (f?.posts || []).slice(0, limit || 99);
+  const btn = sample && !limit ? `<button class="btn ${f ? "" : "solid"}" data-feed="${esc(gameId)}">${f ? "Refresh the reaction" : "Generate the reaction"}</button>` : "";
+  return `${posts.length ? posts.map((p) => `<div style="display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--rule)"><span class="badge" style="width:36px;height:36px;--c:${esc(/^#[0-9a-fA-F]{6}$/.test(p.color || "") ? p.color : "#5E5A52")}" aria-hidden="true">${esc((p.name || "?").slice(0, 2).toUpperCase())}</span><div style="flex:1"><div style="font-size:14px"><b>${esc(p.name)}</b> <span class="muted">${esc(p.handle)}</span></div><div style="margin-top:2px">${esc(p.text)}</div><div class="note">${esc(p.kind || "")}</div></div></div>`).join("") : `<p class="muted">${sample ? "No reaction yet." : "The feed can be generated when Film Room is opened as your Claude page."}</p>`}${btn}<p class="note" id="status-feed-${esc(gameId)}"></p>`;
+}
+async function makeFeed(gameId) {
+  const b = D.boxes.find((x) => x.id === gameId);
+  const st = document.getElementById("status-feed-" + gameId);
+  st.textContent = "Checking the timeline…";
+  const me = T[U], [us, them] = teamSide(b), opp = T[b[them === "home" ? "h" : "a"]] || {};
+  const prompt = `Invent a social media reaction feed for "Film Room", a site about one person's College Football 27 video game dynasty, after this game.
+Write 8 short posts (each under 220 characters) from these invented accounts, in any order, one to two posts each:
+- a die-hard ${me.name} fan account
+- a fan account for ${opp.name || "the opponent"}
+- a national hot-take analyst
+- a stats account that posts one precise number from the facts
+- a recruiting insider
+- a casual meme-style fan (jokes, no profanity)
+Rules: every account is fictional, with an invented display name and @handle. No post is written as, or quotes, a real player or real coach; players may be mentioned by name only for what they did in the facts. The coach's only words are the press conference answers below, if any, and may be quoted exactly. Use only the facts given; no invented injuries, plays, quotes or numbers. No emoji. At most one hashtag per post.
+Return JSON only: {"posts":[{"name": string, "handle": string starting with @, "kind": one of "Fan","Rival fan","Analyst","Stats","Recruiting","Meme", "color": a hex color like #1A2B3C, "text": string}]}.
+
+FACTS
+${factsFor(b)}${quotesFor(gameId)}`;
+  try {
+    const res = await sample.json(prompt, { modelTier: "quick" });
+    const posts = (res?.posts || []).filter((p) => p?.text).slice(0, 10).map((p) => ({ name: String(p.name || "Fan"), handle: String(p.handle || ""), kind: String(p.kind || ""), color: String(p.color || ""), text: String(p.text) }));
+    if (!posts.length) throw { message: "The feed came back empty." };
+    feeds[gameId] = { gameId, posts, at: Date.now() };
+    await saveDoc("feed/" + gameId, feeds[gameId]);
+    route();
+  } catch (e) { st.textContent = e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error"); }
+}
+
+// Press conference: reporters ask, the coach (the person playing) answers in his own words.
+function presserBlock(gameId) {
+  const p = pressers[gameId];
+  if (!p) return `<p class="muted" style="margin-top:0">Reporters will ask questions built from this game's stats. You answer in your own words, and the stories and the feed can quote you.</p>${sample ? `<button class="btn solid" data-presser="${esc(gameId)}">Start the press conference</button>` : '<p class="note">Available when Film Room is opened as your Claude page.</p>'}<p class="note" id="status-presser-${esc(gameId)}"></p>`;
+  if (p.done && !drafts[gameId]) return `${p.qa.map((x) => `<div style="padding:10px 0;border-top:1px solid var(--rule)"><div class="lab">${esc(x.who)}, ${esc(x.role)}</div><p style="margin:4px 0;font-weight:600">${esc(x.q)}</p><p style="margin:0;font-family:Fraunces,Georgia,serif;font-size:17px">${x.a ? "“" + esc(x.a) + "”" : '<span class="muted">No comment.</span>'}</p></div>`).join("")}<button class="btn" data-presser-edit="${esc(gameId)}">Edit my answers</button>`;
+  const qa = drafts[gameId] || p.qa;
+  return `${qa.map((x, i) => `<div style="padding:12px 0;border-top:1px solid var(--rule)"><div class="lab">${esc(x.who)}, ${esc(x.role)}</div><p style="margin:4px 0 8px;font-weight:600">${esc(x.q)}</p>
+      <label class="note" for="ans-${esc(gameId)}-${i}">Your answer</label><textarea id="ans-${esc(gameId)}-${i}" data-ans="${esc(gameId)}" data-i="${i}" rows="3" style="width:100%;font:16px/1.5 Inter,sans-serif;padding:10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink)">${esc(x.a || "")}</textarea>
+      <div class="personas" style="margin:6px 0 0">${(suggestions[gameId + "-" + i] || []).map((s, k) => `<button data-fill="${esc(gameId)}" data-i="${i}" data-k="${k}">${esc(s.length > 60 ? s.slice(0, 57) + "…" : s)}</button>`).join("")}<button data-suggest="${esc(gameId)}" data-i="${i}">Suggest answers</button></div></div>`).join("")}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn solid" data-presser-save="${esc(gameId)}">Finish and save</button><button class="btn" data-presser="${esc(gameId)}">New questions</button></div><p class="note" id="status-presser-${esc(gameId)}"></p>`;
+}
+async function startPresser(gameId) {
+  const b = D.boxes.find((x) => x.id === gameId);
+  const st = document.getElementById("status-presser-" + gameId);
+  st.textContent = "Reporters are taking their seats…";
+  const prompt = `Postgame press conference for "Film Room", a site about one person's College Football 27 video game dynasty. The person playing is ${T[U].name}'s head coach, ${D.coach?.name || "the coach"}.
+Write 6 questions, two from each reporter, that a real press room would ask after this game. Each question must be grounded in a specific fact below (a number, a player, a quarter, the record, what is next). Mix tough and fair. One sentence each, under 35 words. Do not invent injuries, plays, quotes or facts.
+Reporters: ${PRESS.map((r) => `${r.who} (${r.role}; asks about ${r.focus})`).join("; ")}.
+Return JSON only: {"questions":[{"who": reporter name, "role": reporter role, "q": string}]}.
+
+FACTS
+${factsFor(b)}`;
+  try {
+    const res = await sample.json(prompt, { modelTier: "default" });
+    const qa = (res?.questions || []).filter((q) => q?.q).slice(0, 8).map((q) => ({ who: String(q.who || "Reporter"), role: String(q.role || ""), q: String(q.q), a: "" }));
+    if (!qa.length) throw { message: "No questions came back." };
+    pressers[gameId] = { gameId, qa, done: false, at: Date.now() };
+    drafts[gameId] = qa.map((x) => ({ ...x }));
+    await saveDoc("pressers/" + gameId, pressers[gameId]);
+    route();
+  } catch (e) { st.textContent = e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error"); }
+}
+async function suggest(gameId, i) {
+  const b = D.boxes.find((x) => x.id === gameId), q = (drafts[gameId] || pressers[gameId].qa)[i];
+  const st = document.getElementById("status-presser-" + gameId);
+  st.textContent = "Thinking of answers…";
+  try {
+    const res = await sample.json(`You help a video game dynasty player answer a postgame press conference question as ${T[U].name}'s head coach. Offer 3 different short answers (1 to 3 sentences each): one measured, one fiery, one deflecting with humor. Use only the facts given. No em dashes. Return JSON only: {"answers":[string,string,string]}.
+QUESTION from ${q.who}: ${q.q}
+FACTS
+${factsFor(b)}`, { modelTier: "quick" });
+    suggestions[gameId + "-" + i] = (res?.answers || []).map(String).slice(0, 3);
+    st.textContent = "";
+    route();
+  } catch (e) { st.textContent = "No suggestions right now: " + (e?.message || ""); }
+}
+async function savePresser(gameId) {
+  const qa = drafts[gameId] || pressers[gameId].qa;
+  pressers[gameId] = { gameId, qa, done: true, at: Date.now() };
+  delete drafts[gameId];
+  const ok = await saveDoc("pressers/" + gameId, pressers[gameId]);
+  route();
+  if (!ok && db) document.getElementById("status-presser-" + gameId).textContent = "Saved on this screen, but not to the page's storage.";
+}
+
 function newsroom() {
   const done = myGames().filter((g) => g.final && g.box).reverse();
-  return `<section class="card"><div class="hd"><h2>The newsroom</h2><span class="note">${sample ? "Open a game to write or regenerate its stories." : ""}</span></div>
-    ${done.map((g) => `<div style="border-top:2px solid var(--ink);padding-top:12px;margin-top:12px"><div class="hd"><span style="display:inline-flex;gap:10px;align-items:center">${badge(g.opp, 30)}<b>${esc(g.week)}: ${g.home ? "vs" : "at"} ${nm(g.opp, g.oppName)}, ${g.us > g.them ? "W" : "L"} ${g.us}–${g.them}</b></span><a class="lab" href="#game-${esc(g.id)}">Open game</a></div>${storyBlock(g.id, true)}</div>`).join("") || '<p class="muted">No games yet.</p>'}</section>`;
+  const col = columns[D.recruitingWeek];
+  return `${col ? `<section class="card story"><div class="lab">${esc(RECRUITER.name)} · ${esc(RECRUITER.outlet)} · ${esc(col.week)}</div><h3>${esc(col.headline)}</h3><p class="dek">${esc(col.dek)}</p><a class="lab" href="#recruiting">Read the column</a></section>` : ""}<section class="card"><div class="hd"><h2>The newsroom</h2><span class="note">${sample ? "Open a game for its press conference, stories and feed." : ""}</span></div>
+    ${done.map((g) => `<div style="border-top:2px solid var(--ink);padding-top:12px;margin-top:12px"><div class="hd"><span style="display:inline-flex;gap:10px;align-items:center">${badge(g.opp, 30)}<b>${esc(g.week)}: ${g.home ? "vs" : "at"} ${nm(g.opp, g.oppName)}, ${g.us > g.them ? "W" : "L"} ${g.us}–${g.them}</b></span><a class="lab" href="#game-${esc(g.id)}">Open game</a></div>${pressers[g.id]?.done ? `<p class="note" style="margin:0 0 6px">Press conference on file · ${pressers[g.id].qa.filter((x) => x.a).length} answers</p>` : ""}${storyBlock(g.id, true)}${feeds[g.id] ? `<div style="margin-top:8px">${feedBlock(g.id, 2)}</div>` : ""}</div>`).join("") || '<p class="muted">No games yet.</p>'}</section>`;
 }
 
 // Story writing through Claude, saved in this page's database.
@@ -469,12 +637,12 @@ async function write(gameId, personaId) {
   document.querySelectorAll(`[data-write="${gameId}"]`).forEach((x) => (x.disabled = true));
   st.textContent = `${p.name} is writing…`;
   const prompt = `You write for "Film Room", a newspaper-style site about one person's College Football 27 video game dynasty. Write as ${p.voice}
-Cover this game from ${T[U].name}'s point of view. Use ONLY the facts below. Do not invent any statistic, quote, injury, play-by-play detail, crowd detail, weather or player not listed. Rates or totals you state must be computed from these numbers. Refer to the schools by the names given.
+Cover this game from ${T[U].name}'s point of view. Use ONLY the facts below. Do not invent any statistic, quote (other than the coach's press conference words given below, if any), injury, play-by-play detail, crowd detail, weather or player not listed. Rates or totals you state must be computed from these numbers. Refer to the schools by the names given.
 Length: 170 to 260 words in 3 to 5 short paragraphs. No em dashes. No hashtags or emoji.
 Return JSON only: {"headline": string (under 12 words), "dek": string (one sentence), "body": string (paragraphs separated by blank lines)}.
 
 FACTS
-${factsFor(b)}`;
+${factsFor(b)}${quotesFor(gameId)}`;
   try {
     const res = await sample.json(prompt, { modelTier: "default" });
     if (!res?.headline || !res?.body) throw { message: "The story came back empty." };
@@ -506,13 +674,21 @@ function route() {
   if (h.startsWith("game-")) app.innerHTML = game(h.slice(5));
   else if (h === "schedule") { app.innerHTML = schedulePage(); board(+document.getElementById("wkSel").value); }
   else if (h === "roster") { app.innerHTML = rosterPage(); rosterTable(); }
-  else if (h === "league") { app.innerHTML = leaguePage(); standings(); poll(); classesTable(); }
+  else if (h === "league") { app.innerHTML = leaguePage(); standings(); poll(); }
+  else if (h === "recruiting") { app.innerHTML = recruitingPage(); classesTable(); recruitTable(); }
   else if (h === "newsroom") app.innerHTML = newsroom();
   else app.innerHTML = home();
 }
 
 app.addEventListener("click", (e) => {
   const w = e.target.closest("[data-write]"); if (w && sample) return write(w.dataset.write, w.dataset.persona);
+  const pr = e.target.closest("[data-presser]"); if (pr && sample) { pr.disabled = true; return startPresser(pr.dataset.presser); }
+  const sg = e.target.closest("[data-suggest]"); if (sg && sample) { sg.disabled = true; return suggest(sg.dataset.suggest, +sg.dataset.i); }
+  const fl = e.target.closest("[data-fill]"); if (fl) { const g = fl.dataset.fill, i = +fl.dataset.i; drafts[g] ||= pressers[g].qa.map((x) => ({ ...x })); drafts[g][i].a = suggestions[g + "-" + i][+fl.dataset.k]; route(); return; }
+  const ps = e.target.closest("[data-presser-save]"); if (ps) { ps.disabled = true; return savePresser(ps.dataset.presserSave); }
+  const pe = e.target.closest("[data-presser-edit]"); if (pe) { const g = pe.dataset.presserEdit; drafts[g] = pressers[g].qa.map((x) => ({ ...x })); route(); return; }
+  const fd = e.target.closest("[data-feed]"); if (fd && sample) { fd.disabled = true; return makeFeed(fd.dataset.feed); }
+  const cl = e.target.closest("[data-column]"); if (cl && sample) { cl.disabled = true; return writeColumn(); }
   const u = e.target.closest("[data-undo]"); if (u) return undo(u.dataset.undo, u.dataset.persona);
   const p = e.target.closest("[data-poll]"); if (p) { pollKind = p.dataset.poll; document.querySelectorAll("[data-poll]").forEach((b) => b.setAttribute("aria-pressed", b === p)); poll(); }
 });
@@ -520,6 +696,11 @@ app.addEventListener("change", (e) => {
   if (e.target.id === "wkSel") board(+e.target.value);
   if (e.target.id === "posSel") { rosterFilter = e.target.value; rosterTable(); }
   if (e.target.id === "confSel") { conf = e.target.value; standings(); }
+  if (e.target.id === "recSel") { recFilter = e.target.value; recruitTable(); }
+});
+app.addEventListener("input", (e) => {
+  const t = e.target.closest("[data-ans]"); if (!t) return;
+  const g = t.dataset.ans; drafts[g] ||= pressers[g].qa.map((x) => ({ ...x })); drafts[g][+t.dataset.i].a = t.value;
 });
 window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
 
@@ -534,12 +715,13 @@ if (window.claude?.use) {
   claude.use("db").then((d) => {
     db = d; if (!db) return;
     const timer = setTimeout(() => {}, 10000);
-    db.collection("stories").get().then((snap) => {
-      clearTimeout(timer);
-      const docs = snap?.docs || snap || [];
-      for (const doc of docs) { const v = typeof doc.data === "function" ? doc.data() : doc; if (v?.gameId) stories[v.gameId + "-" + v.persona] = v; }
-      route();
-    }).catch(() => clearTimeout(timer));
+    const load = (name, put) => db.collection(name).get().then((snap) => { for (const doc of snap?.docs || []) { const v = doc.data(); if (v) put(v); } }).catch(() => {});
+    Promise.all([
+      load("stories", (v) => { if (v.gameId) stories[v.gameId + "-" + v.persona] = v; }),
+      load("pressers", (v) => { if (v.gameId) pressers[v.gameId] = v; }),
+      load("feed", (v) => { if (v.gameId) feeds[v.gameId] = v; }),
+      load("columns", (v) => { if (v.week) columns[v.week] = v; })
+    ]).then(() => { clearTimeout(timer); if (!document.activeElement?.matches?.("textarea")) route(); });
   });
 }
 }

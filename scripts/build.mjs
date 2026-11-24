@@ -110,8 +110,24 @@ const caps = recruiting?.captures || [];
 const latestClasses = caps.filter((c) => c.dataset === "top_classes" && c.classes?.length).at(-1);
 const pool = caps.filter((c) => c.dataset === "all_recruits" && c.recruits?.length).at(-1);
 const classes = (latestClasses?.classes || []).map((c) => ({ t: c.teamId, s: c.school, r: c.rank, n: c.commits, pts: c.points, st: [c.five, c.four, c.three, c.two, c.one] }));
-const recruits = (pool?.recruits || []).filter((r) => r.rank).sort((a, b) => a.rank - b.rank).slice(0, 150)
-  .map((r) => ({ r: r.rank, n: r.name, s: r.stars, pos: r.position, from: [r.hometown, r.state].filter(Boolean).join(", "), arch: r.archetype }));
+const classesWeek = latestClasses?.stage?.label || null;
+// Week-by-week class rank for every school (rank only, to keep it small).
+const classHistory = caps.filter((c) => c.dataset === "top_classes" && c.classes?.length)
+  .map((c) => ({ label: c.stage?.label, ranks: Object.fromEntries(c.classes.map((x) => [x.teamId, x.rank])), commits: Object.fromEntries(c.classes.filter((x) => x.commits).map((x) => [x.teamId, x.commits])) }));
+// Latest status for each recruit: 0 top 10, 1 top 5, 2 top 3, 3 battle, 4 soft commit, 5 hard commit, 6 signed.
+const statusCap = caps.filter((c) => c.dataset === "recruit_status" && c.status?.length).at(-1);
+const statusById = Object.fromEntries((statusCap?.status || []).map((s) => [s.recruitId, s]));
+const teamByName = Object.fromEntries(schedule.teams.map((t) => [t.name, t.teamId]));
+const slimRecruit = (r) => {
+  const st = statusById[r.recruitId];
+  return { id: r.recruitId, r: r.rank, n: r.name, s: r.stars, pos: r.position, from: [r.hometown, r.state].filter(Boolean).join(", "), arch: r.archetype,
+    ht: r.height, wt: r.weight, stage: st?.stage ?? null, sch: st?.school?.name || null, t: st?.school?.name ? teamByName[st.school.name] || null : null, since: st?.committedSince || null };
+};
+const allRecruits = (pool?.recruits || []).filter((r) => r.rank).sort((a, b) => a.rank - b.rank);
+const recruits = allRecruits.slice(0, 150).map(slimRecruit);
+const commits = allRecruits.filter((r) => statusById[r.recruitId]?.school).map(slimRecruit);
+const stageCounts = [0, 1, 2, 3, 4, 5, 6].map((k) => (statusCap?.status || []).filter((s) => s.stage === k).length);
+const recruitingWeek = statusCap?.stage?.label || classesWeek;
 
 // Rosters: the user school in full; top players for everyone else.
 const RATE_KEYS = ["PSPD", "PACC", "PAGI", "PSTR", "PAWR", "PTHP", "PTHA", "PTUP", "PCAR", "PBCV", "PBTK", "PCTH", "PRRS", "PRRM", "PRRD", "PPBK", "PRBK", "PTAK", "PBSG", "PLPU", "PLPR", "PLMC", "PLZC", "PKPR", "PKAC"];
@@ -139,7 +155,7 @@ const out = {
   league: { id: LEAGUE, name: league?.data?.name, season: Number(season), stage: league?.data?.stage?.label || schedule.currentStage?.label, lastCapture: league?.data?.lastCaptureAt },
   user: userTeam ? userTeam.teamId : null,
   coach: coaches?.active?.find((c) => c.role === "HC" && c.userControlled) || null,
-  teams, weeks, boxes, polls, classes, recruits, rosters, topPlayers,
+  teams, weeks, boxes, polls, classes, classesWeek, classHistory, recruits, commits, stageCounts, recruitingWeek, rosters, topPlayers,
   awards: (awards?.winners || []).map((w) => ({ a: w.award, w: w.winner, s: w.school, t: w.teamId, pos: w.position }))
 };
 await mkdir("site", { recursive: true });
