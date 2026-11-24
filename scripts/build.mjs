@@ -135,7 +135,7 @@ for (const t of schedule.teams) {
 }
 
 const out = {
-  builtAt: Date.now(),
+  builtAt: Math.max(schedule.capturedAt || 0, schedule.teamsCapturedAt || 0, ...boxes.map(() => 0)) || null,
   league: { id: LEAGUE, name: league?.data?.name, season: Number(season), stage: league?.data?.stage?.label || schedule.currentStage?.label, lastCapture: league?.data?.lastCaptureAt },
   user: userTeam ? userTeam.teamId : null,
   coach: coaches?.active?.find((c) => c.role === "HC" && c.userControlled) || null,

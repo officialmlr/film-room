@@ -162,7 +162,7 @@ function header() {
   document.getElementById("kRec").textContent = t.rec || "0-0";
   document.getElementById("kStage").textContent = D.league.stage || "";
   const when = D.builtAt ? new Date(D.builtAt).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "";
-  document.getElementById("foot").textContent = `Data from your Dynasty Rewired sync, updated ${when}. No team logos; badges use school colors.`;
+  document.getElementById("foot").textContent = `Data from your Dynasty Rewired sync, last captured ${when}. No team logos; badges use school colors.`;
 }
 
 function scheduleStrip(games) {
