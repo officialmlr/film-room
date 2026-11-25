@@ -478,7 +478,7 @@ const boardKey = (w) => String(w || "").replace(/[^A-Za-z0-9_-]/g, "-") || "week
 function boardsSorted() { return Object.values(boards).sort((a, b) => (a.at || 0) - (b.at || 0)); }
 function latestBoard() { return boardsSorted().at(-1) || null; }
 function prevBoard() { return boardsSorted().at(-2) || null; }
-function boardLines(bd) { return (bd?.entries || []).map((e) => `${e.name}${e.pos ? " (" + e.pos + ")" : ""}${e.stars ? ", " + e.stars + "-star" : ""}${e.rank ? ", No. " + e.rank : ""}${e.stage ? ", stage: " + e.stage : ""}${e.spot ? ", " + T[U].name + " is No. " + e.spot + " on his list" : ""}${e.interest ? ", interest: " + e.interest : ""}${e.schools ? ", also on his list: " + e.schools : ""}${e.note ? ", note: " + e.note : ""}`).join("\n"); }
+function boardLines(bd) { return (bd?.entries || []).map((e) => `${e.name}${e.pos ? " (" + e.pos + ")" : ""}${e.stars ? ", " + e.stars + "-star" : ""}${e.rank ? ", No. " + e.rank : ""}${e.stage ? ", stage: " + e.stage : ""}${e.spot ? ", " + T[U].name + " is No. " + e.spot + " on his list" : ""}${e.trend && e.trend !== "same" ? " (" + e.trend + " this week)" : ""}${e.interest ? ", interest: " + e.interest : ""}${e.schools ? ", also on his list: " + e.schools : ""}${e.note ? ", note: " + e.note : ""}`).join("\n"); }
 function matchRecruit(name) { const n = String(name || "").toLowerCase().replace(/[^a-z]/g, ""); return D.recruits.find((r) => r.n.toLowerCase().replace(/[^a-z]/g, "") === n) || null; }
 const inputStyle = "min-height:44px;font:16px Inter,sans-serif;padding:0 10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink)";
 let boardWeek = null;
@@ -494,8 +494,12 @@ function boardSection() {
       <label class="note">In-game week<br><input id="boardWeek" value="${esc(boardWeek)}" style="${inputStyle};width:140px"></label>
       ${canPhoto ? `<label class="btn solid" style="display:inline-flex;align-items:center;position:relative">Read board photos<input id="boardPhotos" type="file" accept="${esc((imgLimits.mediaTypes || ["image/jpeg", "image/png"]).join(","))}" multiple style="position:absolute;inset:0;opacity:0;cursor:pointer"></label>` : `<span class="note">${sample ? "Photo reading isn't available in this view." : "Photo reading works when Film Room is opened as your Claude page."}</span>`}
     </div>
+    <div style="margin-bottom:12px"><label class="note" for="boardNote">What changed this week? Optional. Type or dictate a few lines, like "Moore committed to us. We're battling Pitt for Carter. Davis dropped us."</label>
+      <textarea id="boardNote" rows="3" style="width:100%;font:16px/1.5 Inter,sans-serif;padding:10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink);margin-top:4px">${esc(bd?.noteDraft || "")}</textarea>
+      ${sample ? '<button class="btn" data-board-note="1" style="margin-top:6px">Update board from note</button>' : ""}
+      ${(bd?.notes || []).length ? `<div class="note" style="margin-top:6px">Notes this week: ${bd.notes.map((n) => "“" + esc(n) + "”").join(" · ")}</div>` : ""}</div>
     <p class="note" id="status-board"></p>
-    ${bd?.entries?.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Recruit</th><th>Stage</th><th class="n">Your spot</th><th>Interest</th><th>Change</th><th></th></tr></thead><tbody>${bd.entries.map((e, i) => `<tr><td><b>${esc(e.name)}</b><div class="note">${[e.pos, e.stars ? e.stars + "★" : "", e.rank ? "No. " + e.rank : "", e.schools ? "vs " + e.schools : ""].filter(Boolean).map(esc).join(" · ")}${e.note ? " · " + esc(e.note) : ""}</div></td><td>${esc(e.stage || "")}</td><td class="n">${e.spot ?? ""}</td><td>${esc(e.interest || "")}</td><td class="note">${esc(moved(e))}</td><td><button class="btn" style="min-height:36px;padding:0 10px" data-board-del="${i}" aria-label="Remove ${esc(e.name)}">Remove</button></td></tr>`).join("")}</tbody></table></div>` : ""}
+    ${bd?.entries?.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Recruit</th><th>Stage</th><th class="n">Your spot</th><th>Interest</th><th>Change</th><th></th></tr></thead><tbody>${bd.entries.map((e, i) => `<tr><td><b>${esc(e.name)}</b><div class="note">${[e.pos, e.stars ? e.stars + "★" : "", e.rank ? "No. " + e.rank : "", e.schools ? "vs " + e.schools : ""].filter(Boolean).map(esc).join(" · ")}${e.note ? " · " + esc(e.note) : ""}</div></td><td>${esc(e.stage || "")}</td><td class="n">${e.spot ?? ""}${e.trend === "up" ? " ▲" : e.trend === "down" ? " ▼" : ""}</td><td>${esc(e.interest || "")}</td><td class="note">${esc(moved(e))}</td><td><button class="btn" style="min-height:36px;padding:0 10px" data-board-del="${i}" aria-label="Remove ${esc(e.name)}">Remove</button></td></tr>`).join("")}</tbody></table></div>` : ""}
     <details style="margin-top:8px"><summary class="lab">Add a recruit by hand</summary>
       <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end;padding:6px 0">
         <label class="note">Name<br><input id="addName" list="recruitNames" style="${inputStyle}"></label>
@@ -506,9 +510,10 @@ function boardSection() {
       <datalist id="recruitNames">${D.recruits.map((r) => `<option value="${esc(r.n)}">`).join("")}</datalist></details>
   </section>`;
 }
-async function saveBoard(entries) {
+async function saveBoard(entries, note) {
   const key = boardKey(boardWeek);
-  boards[key] = { week: boardWeek, entries, at: boards[key]?.at || Date.now() };
+  const notes = [...(boards[key]?.notes || []), ...(note ? [note] : [])];
+  boards[key] = { week: boardWeek, entries, notes, at: boards[key]?.at || Date.now() };
   const ok = await saveDoc("boards/" + key, boards[key]);
   route();
   if (!ok && db) document.getElementById("status-board").textContent = "Shown here, but it could not be saved.";
@@ -518,15 +523,15 @@ async function readBoard(files) {
   const st = document.getElementById("status-board");
   const list = [...files].slice(0, imgLimits?.maxCount || 4);
   st.textContent = `Reading ${list.length} photo${list.length > 1 ? "s" : ""}… this can take up to a minute.`;
-  const prompt = `These are photos of the recruiting board screen from a College Football 27 dynasty, taken off a TV. The school is ${T[U].name}. Read every recruit row you can see clearly.
-For each recruit return: name (exactly as shown), pos, stars (number), rank (national rank number if shown), stage (the recruit's stage as shown, such as Top 10, Top 5, Top 3, Battle, Committed), spot (${T[U].name}'s place on that recruit's list if shown, as a number), interest (the interest level as shown, short), schools (other schools shown on his list, comma separated), note (anything else important that is shown, short).
+  const prompt = `These are photos of the recruiting board list screen from a College Football 27 dynasty, taken off a TV. The school is ${T[U].name}. The list shows each recruit on the board, his interest in ${T[U].name}, where ${T[U].name} ranks on his list (1st, 2nd, 3rd...), and an arrow showing whether that went up or down. Read every recruit row you can see clearly.
+For each recruit return: name (exactly as shown), pos, stars (number), rank (national rank number if shown), stage (the recruit's stage if shown, such as Top 10, Top 5, Top 3, Battle, Committed), spot (${T[U].name}'s place on his list as a number: 1st is 1), trend ("up", "down" or "same", from the arrow; null if none shown), interest (the interest level as shown, short), schools (other schools if shown, comma separated), note (anything else important that is shown, short).
 Use null for anything not visible. Never guess a name you cannot read; count those in "unreadable". If the same recruit appears in more than one photo, list him once.
-Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|null,"rank":number|null,"stage":string|null,"spot":number|null,"interest":string|null,"schools":string|null,"note":string|null}],"unreadable":number}`;
+Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|null,"rank":number|null,"stage":string|null,"spot":number|null,"trend":"up"|"down"|"same"|null,"interest":string|null,"schools":string|null,"note":string|null}],"unreadable":number}`;
   try {
     const res = await sample.json(prompt, { images: list, modelTier: "default", cache: false });
     const found = (res?.entries || []).filter((e) => e?.name).map((e) => {
       const m = matchRecruit(e.name);
-      return { name: String(e.name), pos: e.pos ? String(e.pos) : m?.pos || null, stars: Number(e.stars) || m?.s || null, rank: Number(e.rank) || m?.r || null, stage: e.stage ? String(e.stage) : null, spot: Number(e.spot) || null, interest: e.interest ? String(e.interest) : null, schools: e.schools ? String(e.schools) : null, note: e.note ? String(e.note) : null, id: m?.id || null };
+      return { name: String(e.name), pos: e.pos ? String(e.pos) : m?.pos || null, stars: Number(e.stars) || m?.s || null, rank: Number(e.rank) || m?.r || null, stage: e.stage ? String(e.stage) : null, spot: Number(e.spot) || null, trend: ["up", "down", "same"].includes(e.trend) ? e.trend : null, interest: e.interest ? String(e.interest) : null, schools: e.schools ? String(e.schools) : null, note: e.note ? String(e.note) : null, id: m?.id || null };
     });
     if (!found.length) throw { message: "No recruits could be read. Try a sharper, straight-on photo." };
     const key = boardKey(boardWeek), cur = boards[key]?.entries || [];
@@ -536,6 +541,26 @@ Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|nu
   } catch (e) {
     st.textContent = e?.code === "image_rejected" ? "That photo couldn't be used. Try a JPEG or PNG under 20 MB." : e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error");
   }
+}
+
+async function boardFromNote(text) {
+  const st = document.getElementById("status-board");
+  st.textContent = "Updating your board…";
+  const key = boardKey(boardWeek);
+  const cur = boards[key]?.entries || latestBoard()?.entries || [];
+  const prompt = `Update a College Football 27 recruiting board for ${T[U].name} from the coach's note. Change only what the note says; keep every other recruit exactly as is. Add a recruit the note names who is not on the board. Remove one only if the note says he was dropped or left the board. If the note says a recruit committed to ${T[U].name}, set stage "Committed" and spot 1. If he committed elsewhere, set stage "Committed elsewhere" and put the school in note. Put rivals the note names in schools. Do not invent anything the note does not say.
+Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|null,"rank":number|null,"stage":string|null,"spot":number|null,"trend":"up"|"down"|"same"|null,"interest":string|null,"schools":string|null,"note":string|null}]}
+
+CURRENT BOARD (JSON): ${JSON.stringify(cur.map(({ id, ...e }) => e))}
+
+COACH'S NOTE: ${text}`;
+  try {
+    const res = await sample.json(prompt, { modelTier: "default", cache: false });
+    const out = (res?.entries || []).filter((e) => e?.name).map((e) => { const m = matchRecruit(e.name); return { name: String(e.name), pos: e.pos ? String(e.pos) : m?.pos || null, stars: Number(e.stars) || m?.s || null, rank: Number(e.rank) || m?.r || null, stage: e.stage ? String(e.stage) : null, spot: Number(e.spot) || null, trend: ["up", "down", "same"].includes(e.trend) ? e.trend : null, interest: e.interest ? String(e.interest) : null, schools: e.schools ? String(e.schools) : null, note: e.note ? String(e.note) : null, id: m?.id || null }; });
+    if (!out.length && cur.length) throw { message: "The update came back empty, so nothing was changed." };
+    await saveBoard(out, text);
+    document.getElementById("status-board").textContent = "Board updated from your note. Check it over.";
+  } catch (e) { st.textContent = e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error"); }
 }
 
 let recFilter = "All";
@@ -585,7 +610,7 @@ Team record ${T[U].rec}. Coach ${D.coach?.name || ""}.
 National top 10 classes: ${top}.
 Recruit pool status counts: ${D.stageCounts.map((n, i) => STAGES[i] + " " + n).join(", ")}.
 Notable commitments:
-${notable || "none yet"}${latestBoard() ? `\n${T[U].name}'S OWN RECRUITING BOARD (${latestBoard().week}, from the coach's board; the column may report this chase):\n${boardLines(latestBoard())}${prevBoard() ? `\nPrevious board (${prevBoard().week}):\n${boardLines(prevBoard())}` : ""}` : ""}`;
+${notable || "none yet"}${latestBoard() ? `\n${T[U].name}'S OWN RECRUITING BOARD (${latestBoard().week}, from the coach's board; the column may report this chase):\n${boardLines(latestBoard())}${latestBoard().notes?.length ? "\nCoach's notes this week: " + latestBoard().notes.join(" / ") : ""}${prevBoard() ? `\nPrevious board (${prevBoard().week}):\n${boardLines(prevBoard())}` : ""}` : ""}`;
   try {
     const res = await sample.json(prompt, { modelTier: "default", cache: false });
     if (!res?.headline || !res?.body) throw { message: "The column came back empty." };
@@ -774,6 +799,7 @@ app.addEventListener("click", (e) => {
   const pe = e.target.closest("[data-presser-edit]"); if (pe) { const g = pe.dataset.presserEdit; drafts[g] = pressers[g].qa.map((x) => ({ ...x })); route(); return; }
   const fd = e.target.closest("[data-feed]"); if (fd && sample) { fd.disabled = true; return makeFeed(fd.dataset.feed); }
   const cl = e.target.closest("[data-column]"); if (cl && sample) { cl.disabled = true; return writeColumn(); }
+  const bn = e.target.closest("[data-board-note]"); if (bn && sample) { const t = document.getElementById("boardNote").value.trim(); if (!t) return; bn.disabled = true; return boardFromNote(t); }
   const bdl = e.target.closest("[data-board-del]"); if (bdl) { const cur = [...((boards[boardKey(boardWeek)] || latestBoard())?.entries || [])]; cur.splice(+bdl.dataset.boardDel, 1); return saveBoard(cur); }
   const bad = e.target.closest("[data-board-add]"); if (bad) { const name = document.getElementById("addName").value.trim(); if (!name) return; const m = matchRecruit(name); const cur = [...(boards[boardKey(boardWeek)]?.entries || [])]; cur.push({ name, pos: m?.pos || null, stars: m?.s || null, rank: m?.r || null, stage: document.getElementById("addStage").value || null, spot: +document.getElementById("addSpot").value || null, interest: null, schools: null, note: document.getElementById("addNote").value.trim() || null, id: m?.id || null }); return saveBoard(cur); }
   const u = e.target.closest("[data-undo]"); if (u) return undo(u.dataset.undo, u.dataset.persona);
