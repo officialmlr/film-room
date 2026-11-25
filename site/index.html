@@ -145,7 +145,8 @@ async function saveDoc(path, doc) { if (!db) return false; const i = path.indexO
 function quotesFor(gameId) {
   const p = pressers[gameId];
   const qa = (p?.qa || []).filter((x) => x.a && x.a.trim());
-  return qa.length ? `\nPOSTGAME PRESS CONFERENCE (the coach's real words; you may quote them exactly, and only these):\n${qa.map((x) => `Q (${x.who}): ${x.q}\nCoach ${D.coach?.name || ""}: ${x.a}`).join("\n")}` : "";
+  const first = myGames().find((g) => g.final && g.box);
+  return (qa.length ? `\nPOSTGAME PRESS CONFERENCE (the coach's real words; you may quote them exactly, and only these):\n${qa.map((x) => `Q (${x.who}): ${x.q}\nCoach ${D.coach?.name || ""}: ${x.a}`).join("\n")}` : "") + (first && first.id === gameId ? introQuotes() : "");
 }
 
 const badge = (id, size = 34) => {
@@ -353,7 +354,7 @@ function home() {
   const last = [...games].reverse().find((g) => g.final && g.box);
   const next = games.find((g) => !g.final);
   return `${scheduleStrip(games)}
-  <div class="row"><div class="main" style="display:flex;flex-direction:column;gap:24px">${last ? lastGameCard(last) : `<section class="card"><h2>No games yet</h2></section>`}<div class="row"><div style="flex:1 1 300px">${quarterChart(games)}</div><div style="flex:1 1 300px">${yardsChart(games)}</div></div>${leadersCard()}</div>
+  <div class="row"><div class="main" style="display:flex;flex-direction:column;gap:24px">${last ? lastGameCard(last) : `<section class="card" aria-label="Introductory press conference"><div class="hd"><h2>Introductory press conference</h2>${introDoc()?.done ? '<span class="note">The writers can quote you</span>' : ""}</div>${introBlock()}</section>`}<div class="row"><div style="flex:1 1 300px">${quarterChart(games)}</div><div style="flex:1 1 300px">${yardsChart(games)}</div></div>${leadersCard()}</div>
   <aside class="side">${nextGameCard(next)}${last && feeds[last.id] ? `<section class="card"><div class="hd"><h2>The feed</h2><a class="lab" href="#game-${esc(last.id)}">All posts</a></div>${feedBlock(last.id, 4)}</section>` : ""}${recruitMini()}${snapshot(games)}${trenches()}${topPoll()}</aside></div>`;
 }
 function recruitMini() {
@@ -795,10 +796,129 @@ async function savePresser(gameId) {
   if (!ok && db) document.getElementById("status-presser-" + gameId).textContent = "Saved on this screen, but not to the page's storage.";
 }
 
+// Introductory press conference: once per dynasty. A fictional athletic director opens, the coach gives a statement, then reporters ask a few questions.
+const AD_NAMES = ["Elena Marrero", "Curtis Vance", "Andre Bellamy", "Monica Saldana", "Walt Prescott", "Denise Okafor", "Gerald Whitfield", "Renee Castellanos"];
+let introSug = {};
+const introDoc = () => pressers.intro || null;
+function introFacts() {
+  const me = T[U], top = [...(D.rosters[U] || [])].sort((a, b) => b.ovr - a.ovr).slice(0, 8), first = myGames()[0];
+  return `School: ${me.name} (${me.conf}). Team overall ${me.ovr} (offense ${me.off}, defense ${me.def}), program prestige ${me.stars} star(s). Season ${D.league.season}. New head coach: ${D.coach?.name || "the coach"}.
+Top players on the roster: ${top.map((p) => `${p.n} (${p.yr} ${p.pos}, ${p.ovr} overall)`).join("; ")}.${first ? `\nFirst game: ${first.week}, ${first.home ? "home against" : "at"} ${T[first.opp]?.name || first.oppName}.` : ""}
+${pyramidStatus()}${canonBlock()}`;
+}
+function introQuotes() {
+  const p = introDoc(); if (!p?.done) return "";
+  const lines = [p.statement && `Opening statement: ${p.statement}`, ...(p.qa || []).filter((x) => x.a && x.a.trim()).map((x) => `Q (${x.who}): ${x.q}\nCoach: ${x.a}`)].filter(Boolean);
+  return lines.length ? `\nINTRODUCTORY PRESS CONFERENCE (from when the coach was hired, before the season; the coach's real words, quotable exactly; use at most one line from it, and only if it fits):\n${lines.join("\n")}` : "";
+}
+async function saveIntro(p) { pressers.intro = { ...p, gameId: "intro", at: Date.now() }; await saveDoc("pressers/intro", pressers.intro); }
+const introStatus = (t) => { const el = document.getElementById("status-intro"); if (el) el.textContent = t; };
+const introErr = (e) => introStatus(e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error"));
+function introBlock() {
+  const p = introDoc(), coach = D.coach?.name || "the coach", st = '<p class="note" id="status-intro"></p>';
+  const qaBox = (who, role, text) => `<div style="padding:10px 0;border-top:1px solid var(--rule)"><div class="lab">${esc(who)}${role ? ", " + esc(role) : ""}</div><p style="margin:4px 0 0;font-family:Fraunces,Georgia,serif;font-size:17px">${esc(text)}</p></div>`;
+  const area = (attr, i, val, rows, label) => `<label class="note" for="intro-${attr}-${i}">${label}</label><textarea id="intro-${attr}-${i}" data-intro-${attr}="${i}" rows="${rows}" style="width:100%;font:16px/1.5 Inter,sans-serif;padding:10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink)">${esc(val || "")}</textarea>`;
+  const sugs = (key, i) => `<div class="personas" style="margin:6px 0 0">${(introSug[key] || []).map((s, k) => `<button data-intro-fill="${key}" data-k="${k}">${esc(s.length > 60 ? s.slice(0, 57) + "…" : s)}</button>`).join("")}<button data-intro-suggest="${key}">${key === "stmt" ? "Suggest a statement" : "Suggest answers"}</button></div>`;
+  if (!p) return `<p class="muted" style="margin-top:0">The athletic director opens and introduces you. You give an opening statement in your own words, then reporters ask a few questions. Stories and the feed can quote you later.</p>${sample ? '<button class="btn solid" data-intro-start="1">Start the introduction</button>' : '<p class="note">Available when Film Room is opened as your Claude page.</p>'}${st}`;
+  const ad = qaBox(p.ad.name, "Director of Athletics", p.ad.text);
+  if (p.done) {
+    const s = stories["intro-staff"];
+    return `${ad}${p.statement ? qaBox(coach, "Head coach", "“" + p.statement + "”") : ""}${p.qa.map((x) => `<div style="padding:10px 0;border-top:1px solid var(--rule)"><div class="lab">${esc(x.who)}, ${esc(x.role)}</div><p style="margin:4px 0;font-weight:600">${esc(x.q)}</p><p style="margin:0;font-family:Fraunces,Georgia,serif;font-size:17px">${x.a ? "“" + esc(x.a) + "”" : '<span class="muted">No comment.</span>'}</p></div>`).join("")}
+      ${s ? `<article class="story" style="margin-top:18px;border-top:2px solid var(--ink);padding-top:12px"><div class="lab">Film Room Staff · Beat writer</div><h3>${esc(s.headline)}</h3>${s.dek ? `<p class="dek">${esc(s.dek)}</p>` : ""}${String(s.body).split(/\n+/).map((x) => `<p>${esc(x)}</p>`).join("")}</article>` : ""}
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">${sample ? `<button class="btn${s ? "" : " solid"}" data-intro-story="1">${s ? "Rewrite the story" : "Write it up"}</button>` : ""}<button class="btn" data-intro-edit="1">Edit my answers</button></div>${st}`;
+  }
+  if (!p.qa?.length) return `${ad}<div style="padding:12px 0;border-top:1px solid var(--rule)">${area("stmt", 0, p.statement, 5, "Your opening statement")}${sample ? sugs("stmt") : ""}</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">${sample ? '<button class="btn solid" data-intro-qs="1">Open the floor to questions</button><button class="btn" data-intro-start="1">New remarks from the AD</button>' : ""}</div>${st}`;
+  return `${ad}${p.statement ? qaBox(coach, "Head coach", "“" + p.statement + "”") : ""}${p.qa.map((x, i) => `<div style="padding:12px 0;border-top:1px solid var(--rule)"><div class="lab">${esc(x.who)}, ${esc(x.role)}</div><p style="margin:4px 0 8px;font-weight:600">${esc(x.q)}</p>${area("ans", i, x.a, 3, "Your answer")}${sample ? sugs("q" + i) : ""}</div>`).join("")}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn solid" data-intro-save="1">Finish and save</button>${sample ? '<button class="btn" data-intro-qs="1">New questions</button>' : ""}<button class="btn" data-intro-back="1">Change my statement (clears these questions)</button></div>${st}`;
+}
+async function introStart() {
+  introStatus("The athletic director is stepping to the podium…");
+  const adName = introDoc()?.ad?.name || AD_NAMES[Math.floor(Math.random() * AD_NAMES.length)];
+  try {
+    const res = await sample.json(`Introductory press conference for a new head football coach, on "Film Room", a site about one person's College Football 27 video game dynasty. Write the opening remarks of ${adName}, the school's Director of Athletics. ${adName} is a fictional character; do not use or mention any real university administrator.
+The remarks run 90 to 150 words, sound spoken (warm, a little formal), give one or two concrete reasons for this hire drawn from the coach's background below, acknowledge honestly where the program starts, and end by inviting the coach to the podium by name. Do not invent facts, records, donors, facilities or quotes from anyone. No em dashes.
+Return JSON only: {"remarks": string}.
+
+FACTS
+${introFacts()}`, { modelTier: "default", cache: false });
+    if (!res?.remarks) throw { message: "The remarks came back empty." };
+    introSug = {};
+    await saveIntro({ ad: { name: adName, text: String(res.remarks) }, statement: introDoc()?.statement || "", qa: [], done: false });
+    route();
+  } catch (e) { introErr(e); document.querySelectorAll("[data-intro-start]").forEach((b) => (b.disabled = false)); }
+}
+async function introSuggest(key) {
+  const p = introDoc(), coach = D.coach?.name || "the coach";
+  introStatus("Thinking…");
+  try {
+    let res;
+    if (key === "stmt") {
+      res = await sample.json(`Write three different opening statements that ${coach}, the new head coach of ${T[U].name}, could give at his introductory press conference, right after the athletic director's remarks below. First person, spoken, 60 to 120 words each: one heartfelt (coming home), one bold (the vision and the standard), one short and dryly funny. Use only the background and facts given; do not invent records, recruits, staff hires or promises beyond them. No em dashes.
+Return JSON only: {"statements":[string,string,string]}.
+ATHLETIC DIRECTOR'S REMARKS: ${p.ad.text}
+FACTS
+${introFacts()}`, { modelTier: "default", cache: false });
+      introSug.stmt = (res?.statements || []).map(String).slice(0, 3);
+    } else {
+      const q = p.qa[+key.slice(1)];
+      res = await sample.json(`You help a video game dynasty player answer a question at his introductory press conference as ${T[U].name}'s new head coach, ${coach}. Offer 3 different short answers (1 to 3 sentences each): one measured, one fiery, one deflecting with humor. Use only the background and facts given. No em dashes. Return JSON only: {"answers":[string,string,string]}.
+QUESTION from ${q.who}: ${q.q}
+HIS OPENING STATEMENT: ${p.statement || "(none)"}
+FACTS
+${introFacts()}`, { modelTier: "quick", cache: false });
+      introSug[key] = (res?.answers || []).map(String).slice(0, 3);
+    }
+    route();
+  } catch (e) { introErr(e); }
+}
+async function introQuestions() {
+  const p = introDoc();
+  introStatus("Reporters are raising their hands…");
+  try {
+    const res = await sample.json(`Introductory press conference for ${D.coach?.name || "the new coach"}, the new head football coach at ${T[U].name}, on "Film Room", a site about one person's College Football 27 video game dynasty. The athletic director and the coach have just spoken (below).
+Write 4 or 5 questions the way a real introductory presser goes: the beat writer usually opens, then three or four other reporters from the list. Cover a mix of: why this job, his background (only what the canon says), where the program starts, expectations for year one, the promotion/relegation pyramid, a named player from the facts, and the plan for recruiting. Exactly one should be skeptical or uncomfortable. If his statement says something worth following up on, one question may pick it up directly. Dana Ruiz may ask at most one recruiting question. One sentence each, under 35 words. Do not invent facts, injuries, staff, quotes or rumors.
+Reporters available: ${PRESS.map((r) => `${r.who} (${r.role}; usually asks about ${r.focus})`).join("; ")}.
+Return JSON only: {"questions":[{"who": reporter name, "role": reporter role, "q": string}]}.
+
+ATHLETIC DIRECTOR (${p.ad.name}): ${p.ad.text}
+COACH'S OPENING STATEMENT: ${p.statement || "(he chose not to give one)"}
+FACTS
+${introFacts()}`, { modelTier: "default", cache: false });
+    const qa = (res?.questions || []).filter((q) => q?.q).slice(0, 6).map((q) => ({ who: String(q.who || "Reporter"), role: String(q.role || ""), q: String(q.q), a: "" }));
+    if (!qa.length) throw { message: "No questions came back." };
+    Object.keys(introSug).filter((k) => k !== "stmt").forEach((k) => delete introSug[k]);
+    await saveIntro({ ...p, qa, done: false });
+    route();
+  } catch (e) { introErr(e); document.querySelectorAll("[data-intro-qs]").forEach((b) => (b.disabled = false)); }
+}
+async function introStory() {
+  const p = introDoc(), old = stories["intro-staff"];
+  introStatus("Film Room Staff is writing…");
+  const recent = recentBy("staff", "intro").map((x) => `- "${x.headline}"`).join("\n");
+  try {
+    const res = await sample.json(`You write for "Film Room", a newspaper-style site about one person's College Football 27 video game dynasty. Write as ${PERSONAS[0].voice}
+Write the news story on the introductory press conference below. You may quote the athletic director's remarks and the coach's words exactly as given, and nothing else. Do not invent any other quote, fact, record, crowd detail or person. Lead with the most newsworthy thing he said, not with a description of the room.
+Length: 200 to 280 words in 4 to 6 short paragraphs. No em dashes. No hashtags or emoji.${recent ? `\nDo not reuse these recent headline patterns:\n${recent}` : ""}
+Return JSON only: {"headline": string (under 12 words), "dek": string (one sentence), "body": string (paragraphs separated by blank lines)}.
+
+ATHLETIC DIRECTOR (${p.ad.name}): ${p.ad.text}
+COACH'S OPENING STATEMENT: ${p.statement || "(none)"}
+${p.qa.filter((x) => x.a && x.a.trim()).map((x) => `Q (${x.who}, ${x.role}): ${x.q}\nCoach: ${x.a}`).join("\n")}
+FACTS
+${introFacts()}`, { modelTier: "default", cache: false });
+    if (!res?.headline || !res?.body) throw { message: "The story came back empty." };
+    const doc = { gameId: "intro", persona: "staff", headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now(), prev: old ? { headline: old.headline, dek: old.dek, body: old.body, at: old.at } : null };
+    stories["intro-staff"] = doc;
+    await saveDoc("stories/intro-staff", doc);
+    route();
+  } catch (e) { introErr(e); document.querySelectorAll("[data-intro-story]").forEach((b) => (b.disabled = false)); }
+}
+
 function newsroom() {
   const done = myGames().filter((g) => g.final && g.box).reverse();
   const col = columns[D.recruitingWeek];
-  return `${col ? `<section class="card story"><div class="lab">${esc(RECRUITER.name)} · ${esc(RECRUITER.outlet)} · ${esc(col.week)}</div><h3>${esc(col.headline)}</h3><p class="dek">${esc(col.dek)}</p><a class="lab" href="#recruiting">Read the column</a></section>` : ""}<section class="card"><div class="hd"><h2>The newsroom</h2><span class="note">${sample ? "Open a game for its press conference, stories and feed." : ""}</span></div>
+  return `${col ? `<section class="card story"><div class="lab">${esc(RECRUITER.name)} · ${esc(RECRUITER.outlet)} · ${esc(col.week)}</div><h3>${esc(col.headline)}</h3><p class="dek">${esc(col.dek)}</p><a class="lab" href="#recruiting">Read the column</a></section>` : ""}${myGames().some((g) => g.final && g.box) ? `<section class="card" aria-label="Introductory press conference"><div class="hd"><h2>Introductory press conference</h2></div>${introBlock()}</section>` : ""}<section class="card"><div class="hd"><h2>The newsroom</h2><span class="note">${sample ? "Open a game for its press conference, stories and feed." : ""}</span></div>
     ${done.map((g) => `<div style="border-top:2px solid var(--ink);padding-top:12px;margin-top:12px"><div class="hd"><span style="display:inline-flex;gap:10px;align-items:center">${badge(g.opp, 30)}<b>${esc(g.week)}: ${g.home ? "vs" : "at"} ${nm(g.opp, g.oppName)}, ${g.us > g.them ? "W" : "L"} ${g.us}–${g.them}</b></span><a class="lab" href="#game-${esc(g.id)}">Open game</a></div>${pressers[g.id]?.done ? `<p class="note" style="margin:0 0 6px">Press conference on file · ${pressers[g.id].qa.filter((x) => x.a).length} answers</p>` : ""}${storyBlock(g.id, true)}${feeds[g.id] ? `<div style="margin-top:8px">${feedBlock(g.id, 2)}</div>` : ""}</div>`).join("") || '<p class="muted">No games yet.</p>'}</section>`;
 }
 
@@ -956,6 +1076,14 @@ app.addEventListener("click", (e) => {
   const fl = e.target.closest("[data-fill]"); if (fl) { const g = fl.dataset.fill, i = +fl.dataset.i; drafts[g] ||= pressers[g].qa.map((x) => ({ ...x })); drafts[g][i].a = suggestions[g + "-" + i][+fl.dataset.k]; route(); return; }
   const ps = e.target.closest("[data-presser-save]"); if (ps) { ps.disabled = true; return savePresser(ps.dataset.presserSave); }
   const pe = e.target.closest("[data-presser-edit]"); if (pe) { const g = pe.dataset.presserEdit; drafts[g] = pressers[g].qa.map((x) => ({ ...x })); route(); return; }
+  if (e.target.closest("[data-intro-start]") && sample) { e.target.closest("button").disabled = true; return introStart(); }
+  const isg = e.target.closest("[data-intro-suggest]"); if (isg && sample) { isg.disabled = true; return introSuggest(isg.dataset.introSuggest); }
+  const ifl = e.target.closest("[data-intro-fill]"); if (ifl) { const k = ifl.dataset.introFill, v = introSug[k][+ifl.dataset.k], p = introDoc(); if (k === "stmt") p.statement = v; else p.qa[+k.slice(1)].a = v; route(); return; }
+  if (e.target.closest("[data-intro-qs]") && sample) { e.target.closest("button").disabled = true; return saveIntro(introDoc()).then(introQuestions); }
+  if (e.target.closest("[data-intro-save]")) { e.target.closest("button").disabled = true; return saveIntro({ ...introDoc(), done: true }).then(route); }
+  if (e.target.closest("[data-intro-edit]")) { pressers.intro.done = false; route(); return; }
+  if (e.target.closest("[data-intro-back]")) { const p = introDoc(); return saveIntro({ ...p, qa: [], done: false }).then(route); }
+  if (e.target.closest("[data-intro-story]") && sample) { e.target.closest("button").disabled = true; return introStory(); }
   const fd = e.target.closest("[data-feed]"); if (fd && sample) { fd.disabled = true; return makeFeed(fd.dataset.feed); }
   const cl = e.target.closest("[data-column]"); if (cl && sample) { cl.disabled = true; return writeColumn(); }
   const bn = e.target.closest("[data-board-note]"); if (bn && sample) { const t = document.getElementById("boardNote").value.trim(); if (!t) return; bn.disabled = true; return boardFromNote(t); }
@@ -975,6 +1103,7 @@ app.addEventListener("click", (e) => {
   const p = e.target.closest("[data-poll]"); if (p) { pollKind = p.dataset.poll; document.querySelectorAll("[data-poll]").forEach((b) => b.setAttribute("aria-pressed", b === p)); poll(); }
 });
 app.addEventListener("change", (e) => {
+  if (e.target.closest("[data-intro-stmt],[data-intro-ans]") && introDoc()) saveIntro(introDoc());
   if (e.target.id === "wkSel") board(+e.target.value);
   if (e.target.id === "posSel") { rosterFilter = e.target.value; rosterTable(); }
   if (e.target.id === "confSel") { conf = e.target.value; standings(); }
@@ -983,6 +1112,8 @@ app.addEventListener("change", (e) => {
   if (e.target.id === "boardPhotos" && e.target.files?.length && sample) readBoard(e.target.files);
 });
 app.addEventListener("input", (e) => {
+  const is = e.target.closest("[data-intro-stmt]"); if (is && introDoc()) { introDoc().statement = is.value; return; }
+  const ia = e.target.closest("[data-intro-ans]"); if (ia && introDoc()) { introDoc().qa[+ia.dataset.introAns].a = ia.value; return; }
   const t = e.target.closest("[data-ans]"); if (!t) return;
   const g = t.dataset.ans; drafts[g] ||= pressers[g].qa.map((x) => ({ ...x })); drafts[g][+t.dataset.i].a = t.value;
 });
