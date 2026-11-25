@@ -8,8 +8,8 @@
   "dataset": "coaches",
   "data": {
     "state": "available",
-    "capturedAt": 1795578739201,
-    "capturedStage": "2026 · Week 5",
+    "capturedAt": 1795579517708,
+    "capturedStage": "2026 · Week 6",
     "active": [
       {
         "name": "Michael Rothenberg",
@@ -29,9 +29,9 @@
           "stage": "Wk 3"
         },
         "lastSeen": {
-          "at": 1795578739201,
+          "at": 1795579517708,
           "year": 2026,
-          "stage": "Week 5"
+          "stage": "Week 6"
         },
         "departed": null,
         "schools": [
@@ -44,9 +44,9 @@
               "stage": "Wk 3"
             },
             "lastSeen": {
-              "at": 1795578739201,
+              "at": 1795579517708,
               "year": 2026,
-              "stage": "Week 5"
+              "stage": "Week 6"
             }
           }
         ]
@@ -97,63 +97,63 @@
           "rank": 10
         },
         {
-          "teamId": "832438274",
+          "teamId": "832438333",
           "rank": 11
         },
         {
-          "teamId": "832438408",
+          "teamId": "832438337",
           "rank": 12
         },
         {
-          "teamId": "832438333",
+          "teamId": "832438375",
           "rank": 13
         },
         {
-          "teamId": "832438377",
+          "teamId": "832438384",
           "rank": 14
         },
         {
-          "teamId": "832438337",
+          "teamId": "832438312",
           "rank": 15
         },
         {
-          "teamId": "832438375",
+          "teamId": "832438288",
           "rank": 16
         },
         {
-          "teamId": "832438384",
+          "teamId": "832438383",
           "rank": 17
         },
         {
-          "teamId": "832438312",
+          "teamId": "832438408",
           "rank": 18
         },
         {
-          "teamId": "832438288",
+          "teamId": "832438317",
           "rank": 19
         },
         {
-          "teamId": "832438383",
+          "teamId": "832438363",
           "rank": 20
         },
         {
-          "teamId": "832438299",
+          "teamId": "832438344",
           "rank": 21
         },
         {
-          "teamId": "832438317",
+          "teamId": "832438274",
           "rank": 22
         },
         {
-          "teamId": "832438363",
+          "teamId": "832438292",
           "rank": 23
         },
         {
-          "teamId": "832438344",
+          "teamId": "832438377",
           "rank": 24
         },
         {
-          "teamId": "832438281",
+          "teamId": "832438284",
           "rank": 25
         }
       ]
