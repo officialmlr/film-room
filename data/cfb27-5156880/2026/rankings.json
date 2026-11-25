@@ -9,11 +9,11 @@
   "data": {
     "reviewRequired": false,
     "currentStage": {
-      "key": "[\"hub\",2026,0,1,6,7]",
-      "label": "Week 6",
+      "key": "[\"hub\",2026,0,1,7,8]",
+      "label": "Week 7",
       "year": 2026,
       "phase": "season",
-      "week": 6
+      "week": 7
     },
     "weeks": [
       {
@@ -2750,6 +2750,555 @@
             "rows": [],
             "receivingVotes": null,
             "votesCapturedAt": 1795579516627
+          }
+        ]
+      },
+      {
+        "stage": {
+          "key": "[\"summary\",2026,\"season\",8,null,null]",
+          "label": "Week 7",
+          "year": 2026,
+          "phase": "season",
+          "week": 8
+        },
+        "polls": [
+          {
+            "poll": "media",
+            "state": "available",
+            "capturedAt": 1795579858897,
+            "rows": [
+              {
+                "rank": 1,
+                "record": "6-0",
+                "school": "Ohio State",
+                "teamId": "832438359",
+                "previousRank": 2,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 2,
+                "record": "7-0",
+                "school": "Indiana",
+                "teamId": "832438319",
+                "previousRank": 3,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 3,
+                "record": "5-1",
+                "school": "Notre Dame",
+                "teamId": "832438357",
+                "previousRank": 5,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 4,
+                "record": "6-0",
+                "school": "USC",
+                "teamId": "832438398",
+                "previousRank": 6,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 5,
+                "record": "4-1",
+                "school": "Oregon",
+                "teamId": "832438364",
+                "previousRank": 7,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 6,
+                "record": "5-0",
+                "school": "Texas Tech",
+                "teamId": "832438387",
+                "previousRank": 8,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 7,
+                "record": "5-1",
+                "school": "Texas A&M",
+                "teamId": "832438385",
+                "previousRank": 1,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 8,
+                "record": "5-0",
+                "school": "Utah",
+                "teamId": "832438400",
+                "previousRank": 10,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 9,
+                "record": "5-1",
+                "school": "LSU",
+                "teamId": "832438333",
+                "previousRank": 11,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 10,
+                "record": "3-2",
+                "school": "Texas",
+                "teamId": "832438384",
+                "previousRank": 14,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 11,
+                "record": "5-1",
+                "school": "Miami",
+                "teamId": "832438337",
+                "previousRank": 12,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 12,
+                "record": "5-1",
+                "school": "Michigan",
+                "teamId": "832438339",
+                "previousRank": 4,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 13,
+                "record": "4-2",
+                "school": "Georgia",
+                "teamId": "832438312",
+                "previousRank": 15,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 14,
+                "record": "4-1",
+                "school": "BYU",
+                "teamId": "832438288",
+                "previousRank": 16,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 15,
+                "record": "5-1",
+                "school": "Tennessee",
+                "teamId": "832438383",
+                "previousRank": 17,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 16,
+                "record": "6-1",
+                "school": "Washington",
+                "teamId": "832438408",
+                "previousRank": 18,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 17,
+                "record": "5-1",
+                "school": "Missouri",
+                "teamId": "832438344",
+                "previousRank": 21,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 18,
+                "record": "5-1",
+                "school": "Houston",
+                "teamId": "832438317",
+                "previousRank": 19,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 19,
+                "record": "5-2",
+                "school": "SMU",
+                "teamId": "832438375",
+                "previousRank": 13,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 20,
+                "record": "3-2",
+                "school": "Ole Miss",
+                "teamId": "832438363",
+                "previousRank": 20,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 21,
+                "record": "3-2",
+                "school": "Oklahoma",
+                "teamId": "832438360",
+                "previousRank": 9,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 22,
+                "record": "5-0",
+                "school": "Cincinnati",
+                "teamId": "832438292",
+                "previousRank": 23,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 23,
+                "record": "6-0",
+                "school": "Boise State",
+                "teamId": "832438284",
+                "previousRank": 25,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 24,
+                "record": "4-1",
+                "school": "Oklahoma State",
+                "teamId": "832438361",
+                "previousRank": null,
+                "previousState": "unranked",
+                "userControlled": false
+              },
+              {
+                "rank": 25,
+                "record": "6-0",
+                "school": "Pittsburgh",
+                "teamId": "832438367",
+                "previousRank": null,
+                "previousState": "unranked",
+                "userControlled": false
+              }
+            ],
+            "receivingVotes": [
+              {
+                "votes": 234,
+                "school": "Mississippi State"
+              },
+              {
+                "votes": 223,
+                "school": "Nebraska"
+              },
+              {
+                "votes": 203,
+                "school": "Duke"
+              },
+              {
+                "votes": 104,
+                "school": "James Madison"
+              },
+              {
+                "votes": 80,
+                "school": "Auburn"
+              },
+              {
+                "votes": 73,
+                "school": "UTSA"
+              },
+              {
+                "votes": 63,
+                "school": "Navy"
+              },
+              {
+                "votes": 35,
+                "school": "Clemson"
+              },
+              {
+                "votes": 13,
+                "school": "UCLA"
+              },
+              {
+                "votes": 10,
+                "school": "South Carolina"
+              }
+            ],
+            "votesCapturedAt": 1795579858897
+          },
+          {
+            "poll": "coaches",
+            "state": "available",
+            "capturedAt": 1795579858944,
+            "rows": [
+              {
+                "rank": 1,
+                "record": "6-0",
+                "school": "Ohio State",
+                "teamId": "832438359",
+                "previousRank": 3,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 2,
+                "record": "7-0",
+                "school": "Indiana",
+                "teamId": "832438319",
+                "previousRank": 4,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 3,
+                "record": "5-0",
+                "school": "Texas Tech",
+                "teamId": "832438387",
+                "previousRank": 5,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 4,
+                "record": "5-1",
+                "school": "Notre Dame",
+                "teamId": "832438357",
+                "previousRank": 6,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 5,
+                "record": "4-1",
+                "school": "Oregon",
+                "teamId": "832438364",
+                "previousRank": 7,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 6,
+                "record": "6-0",
+                "school": "USC",
+                "teamId": "832438398",
+                "previousRank": 8,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 7,
+                "record": "5-0",
+                "school": "Utah",
+                "teamId": "832438400",
+                "previousRank": 10,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 8,
+                "record": "5-1",
+                "school": "Miami",
+                "teamId": "832438337",
+                "previousRank": 11,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 9,
+                "record": "5-1",
+                "school": "Texas A&M",
+                "teamId": "832438385",
+                "previousRank": 1,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 10,
+                "record": "5-1",
+                "school": "LSU",
+                "teamId": "832438333",
+                "previousRank": 12,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 11,
+                "record": "3-2",
+                "school": "Texas",
+                "teamId": "832438384",
+                "previousRank": 15,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 12,
+                "record": "5-1",
+                "school": "Michigan",
+                "teamId": "832438339",
+                "previousRank": 2,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 13,
+                "record": "6-1",
+                "school": "Washington",
+                "teamId": "832438408",
+                "previousRank": 14,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 14,
+                "record": "4-2",
+                "school": "Georgia",
+                "teamId": "832438312",
+                "previousRank": 16,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 15,
+                "record": "3-2",
+                "school": "Ole Miss",
+                "teamId": "832438363",
+                "previousRank": 17,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 16,
+                "record": "5-1",
+                "school": "Tennessee",
+                "teamId": "832438383",
+                "previousRank": 18,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 17,
+                "record": "5-0",
+                "school": "Cincinnati",
+                "teamId": "832438292",
+                "previousRank": 19,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 18,
+                "record": "5-1",
+                "school": "Houston",
+                "teamId": "832438317",
+                "previousRank": 20,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 19,
+                "record": "5-2",
+                "school": "SMU",
+                "teamId": "832438375",
+                "previousRank": 13,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 20,
+                "record": "4-1",
+                "school": "BYU",
+                "teamId": "832438288",
+                "previousRank": 21,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 21,
+                "record": "3-2",
+                "school": "Oklahoma",
+                "teamId": "832438360",
+                "previousRank": 9,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 22,
+                "record": "5-1",
+                "school": "Missouri",
+                "teamId": "832438344",
+                "previousRank": 25,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 23,
+                "record": "4-1",
+                "school": "Oklahoma State",
+                "teamId": "832438361",
+                "previousRank": 23,
+                "previousState": "ranked",
+                "userControlled": false
+              },
+              {
+                "rank": 24,
+                "record": "6-0",
+                "school": "Pittsburgh",
+                "teamId": "832438367",
+                "previousRank": null,
+                "previousState": "unranked",
+                "userControlled": false
+              },
+              {
+                "rank": 25,
+                "record": "7-0",
+                "school": "Nebraska",
+                "teamId": "832438348",
+                "previousRank": null,
+                "previousState": "unranked",
+                "userControlled": false
+              }
+            ],
+            "receivingVotes": [
+              {
+                "votes": 201,
+                "school": "Boise State"
+              },
+              {
+                "votes": 136,
+                "school": "Duke"
+              },
+              {
+                "votes": 92,
+                "school": "Navy"
+              },
+              {
+                "votes": 54,
+                "school": "Mississippi State"
+              },
+              {
+                "votes": 18,
+                "school": "Clemson"
+              }
+            ],
+            "votesCapturedAt": 1795579858944
+          },
+          {
+            "poll": "playoff",
+            "state": "not_released",
+            "capturedAt": 1795579858963,
+            "rows": [],
+            "receivingVotes": null,
+            "votesCapturedAt": 1795579858963
           }
         ]
       }
