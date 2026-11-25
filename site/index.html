@@ -479,7 +479,9 @@ function boardsSorted() { return Object.values(boards).sort((a, b) => (a.at || 0
 function latestBoard() { return boardsSorted().at(-1) || null; }
 function prevBoard() { return boardsSorted().at(-2) || null; }
 function boardLines(bd) { return (bd?.entries || []).map((e) => `${e.name}${e.pos ? " (" + e.pos + ")" : ""}${e.stars ? ", " + e.stars + "-star" : ""}${e.rank ? ", No. " + e.rank : ""}${e.stage ? ", stage: " + e.stage : ""}${e.spot ? ", " + T[U].name + " is No. " + e.spot + " on his list" : ""}${e.trend && e.trend !== "same" ? " (" + e.trend + " this week)" : ""}${e.interest ? ", interest: " + e.interest : ""}${e.schools ? ", also on his list: " + e.schools : ""}${e.note ? ", note: " + e.note : ""}`).join("\n"); }
-function matchRecruit(name) { const n = String(name || "").toLowerCase().replace(/[^a-z]/g, ""); return D.recruits.find((r) => r.n.toLowerCase().replace(/[^a-z]/g, "") === n) || null; }
+function nameParts(name) { const w = String(name || "").toLowerCase().replace(/[^a-z .'-]/g, "").split(/[\s.]+/).filter(Boolean); return { first: w[0] || "", last: w.at(-1) || "" }; }
+function sameRecruit(a, b) { const x = nameParts(a), y = nameParts(b); return !!x.last && x.last === y.last && !!x.first && !!y.first && x.first[0] === y.first[0]; }
+function matchRecruit(name) { const n = String(name || "").toLowerCase().replace(/[^a-z]/g, ""); return D.recruits.find((r) => r.n.toLowerCase().replace(/[^a-z]/g, "") === n) || D.recruits.find((r) => sameRecruit(r.n, name)) || null; }
 const inputStyle = "min-height:44px;font:16px Inter,sans-serif;padding:0 10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink)";
 let boardWeek = null;
 function boardSection() {
@@ -524,7 +526,7 @@ async function readBoard(files) {
   const list = [...files].slice(0, imgLimits?.maxCount || 4);
   st.textContent = `Reading ${list.length} photo${list.length > 1 ? "s" : ""}… this can take up to a minute.`;
   const prompt = `These are photos of the recruiting board list screen from a College Football 27 dynasty, taken off a TV. The school is ${T[U].name}. The list shows each recruit on the board, his interest in ${T[U].name}, where ${T[U].name} ranks on his list (1st, 2nd, 3rd...), and an arrow showing whether that went up or down. Read every recruit row you can see clearly.
-For each recruit return: name (exactly as shown), pos, stars (number), rank (national rank number if shown), stage (the recruit's stage if shown, such as Top 10, Top 5, Top 3, Battle, Committed), spot (${T[U].name}'s place on his list as a number: 1st is 1), trend ("up", "down" or "same", from the arrow; null if none shown), interest (the interest level as shown, short), schools (other schools if shown, comma separated), note (anything else important that is shown, short).
+For each recruit return: name (exactly as shown), pos, stars (number), rank (only a number labeled as his national ranking; NOT the row number or board order; null otherwise), stage (the recruit's stage if shown, such as Top 10, Top 5, Top 3, Battle, Committed), spot (${T[U].name}'s place on his list as a number: 1st is 1), trend ("up", "down" or "same", from the arrow; null if none shown), interest (the interest level as shown, short), schools (other schools if shown, comma separated), note (anything else important that is shown, short).
 Use null for anything not visible. Never guess a name you cannot read; count those in "unreadable". If the same recruit appears in more than one photo, list him once.
 Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|null,"rank":number|null,"stage":string|null,"spot":number|null,"trend":"up"|"down"|"same"|null,"interest":string|null,"schools":string|null,"note":string|null}],"unreadable":number}`;
   try {
@@ -548,7 +550,13 @@ async function boardFromNote(text) {
   st.textContent = "Updating your board…";
   const key = boardKey(boardWeek);
   const cur = boards[key]?.entries || latestBoard()?.entries || [];
-  const prompt = `Update a College Football 27 recruiting board for ${T[U].name} from the coach's note. Change only what the note says; keep every other recruit exactly as is. Add a recruit the note names who is not on the board. Remove one only if the note says he was dropped or left the board. If the note says a recruit committed to ${T[U].name}, set stage "Committed" and spot 1. If he committed elsewhere, set stage "Committed elsewhere" and put the school in note. Put rivals the note names in schools. Do not invent anything the note does not say.
+  const prompt = `Update a College Football 27 recruiting board for ${T[U].name} from the coach's note. The coach's words are the truth: use his wording, do not reinterpret or upgrade it.
+Rules:
+- Match each recruit the note names to the board. Board names are often abbreviated ("D. SUN") and the note may be dictated, so names can be misspelled or misheard ("DeMario's son" can mean "D. Sun"). Prefer updating an existing board recruit whose last name and first initial fit; add a new recruit only if nobody on the board plausibly matches, and then use the name as the coach wrote it.
+- Status: put the coach's own status words in stage, with the school when he names one. "Verbally committed to NC State" becomes stage "Verbal to NC State". Never change "verbal" into "committed", never write "elsewhere", never drop the school name.
+- Rival schools he names go in schools.
+- Comments like "gem to watch" are added to note, after the note already there (keep the existing note).
+- Change only what the note says. Keep every other recruit and every other field exactly as is. Remove a recruit only if the note says he was dropped or left the board.
 Return JSON only: {"entries":[{"name":string,"pos":string|null,"stars":number|null,"rank":number|null,"stage":string|null,"spot":number|null,"trend":"up"|"down"|"same"|null,"interest":string|null,"schools":string|null,"note":string|null}]}
 
 CURRENT BOARD (JSON): ${JSON.stringify(cur.map(({ id, ...e }) => e))}
