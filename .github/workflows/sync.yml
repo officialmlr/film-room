@@ -32,7 +32,6 @@ jobs:
       - name: Pull from Dynasty Rewired
         env:
           DR_API_TOKEN: ${{ secrets.DR_API_TOKEN }}
-          LEAGUE_IDS: cfb27-5156880
           FORCE_FULL: ${{ inputs.full == true }}
         run: node scripts/sync.mjs
       - name: Build Film Room data

@@ -1,0 +1,68 @@
+{
+  "_note": "Every dynasty Film Room tracks. status 'archived' = no longer synced (trial ended or retired). Replace the FIU id once the Rewired league exists.",
+  "leagues": [
+    {
+      "id": "pending-fiu",
+      "label": "FIU \u00b7 The Homecoming",
+      "status": "active",
+      "canon": "config/fiu-canon.md",
+      "pyramid": [
+        {
+          "tier": 1,
+          "name": "American",
+          "conferences": [
+            "American"
+          ],
+          "promote": 0,
+          "relegate": 2
+        },
+        {
+          "tier": 2,
+          "name": "Sun Belt",
+          "conferences": [
+            "Sun Belt",
+            "Sun Belt (East)",
+            "Sun Belt (West)"
+          ],
+          "promote": 2,
+          "relegate": 2
+        },
+        {
+          "tier": 3,
+          "name": "Conference USA",
+          "conferences": [
+            "CUSA",
+            "Conference USA"
+          ],
+          "promote": 2,
+          "relegate": 0
+        }
+      ],
+      "ledgerStart": [
+        {
+          "season": "Before the inaugural season",
+          "moves": [
+            {
+              "team": "James Madison",
+              "from": "Sun Belt",
+              "to": "American",
+              "dir": "up"
+            },
+            {
+              "team": "Charlotte",
+              "from": "American",
+              "to": "Sun Belt",
+              "dir": "down"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cfb27-5156880",
+      "label": "Maryland \u00b7 test season",
+      "status": "archived",
+      "legacy": true
+    }
+  ]
+}

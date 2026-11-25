@@ -96,10 +96,10 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
 <header class="mast"><div class="wrap">
   <div class="mtop">
     <div class="brand"><span id="mBadge"></span><div><div class="wordmark">Film Room</div><div class="sub" id="mSub">Loading your dynasty…</div></div></div>
-    <div class="kpis"><div class="kpi"><span id="kRecLab">Record</span><b id="kRec">–</b></div><div class="kpi"><span>Now</span><b id="kStage">–</b></div></div>
+    <div class="kpis"><label class="kpi" id="lgWrap" hidden><span>Dynasty</span><select id="lgSel" aria-label="Dynasty" style="display:block;margin-top:4px"></select></label><div class="kpi"><span id="kRecLab">Record</span><b id="kRec">–</b></div><div class="kpi"><span>Now</span><b id="kStage">–</b></div></div>
   </div>
   <nav class="tabs" aria-label="Sections">
-    <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#roster">Roster</a><a href="#recruiting">Recruiting</a><a href="#league">League</a><a href="#newsroom">Newsroom</a>
+    <a href="#home">Home</a><a href="#pyramid" id="pyrTab" hidden>Pyramid</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#roster">Roster</a><a href="#recruiting">Recruiting</a><a href="#league">League</a><a href="#newsroom">Newsroom</a>
   </nav>
 </div></header>
 <main class="wrap" id="app" aria-live="polite"><div class="empty">Loading…</div></main>
@@ -138,7 +138,10 @@ function recruitingAngle() {
   return Math.random() < 0.2 ? "No big recruiting news; a single light recruiting question is fine." : "";
 }
 const STAGES = ["Top 10", "Top 5", "Top 3", "Battle", "Soft commit", "Hard commit", "Signed"];
-async function saveDoc(path, doc) { if (!db) return false; try { await db.doc(path).set(doc); return true; } catch (e) { return false; } }
+// Each dynasty keeps its own stories, pressers, feeds, columns and boards. Maryland (legacy) uses the original top-level paths.
+let LEAGUES = [], L = null, ledger = {};
+const P = (name) => (!L || L.legacy ? name : `leagues/${L.id}/${name}`);
+async function saveDoc(path, doc) { if (!db) return false; const i = path.indexOf("/"); try { await db.doc(P(path.slice(0, i)) + path.slice(i)).set(doc); return true; } catch (e) { return false; } }
 function quotesFor(gameId) {
   const p = pressers[gameId];
   const qa = (p?.qa || []).filter((x) => x.a && x.a.trim());
@@ -677,7 +680,7 @@ Team record ${T[U].rec}. Coach ${D.coach?.name || ""}.
 National top 10 classes: ${top}.
 Recruit pool status counts: ${D.stageCounts.map((n, i) => STAGES[i] + " " + n).join(", ")}.
 Notable commitments:
-${notable || "none yet"}${latestBoard() ? `\n${T[U].name}'S OWN RECRUITING BOARD (${latestBoard().week}, from the coach's board; the column may report this chase):\n${boardLines(latestBoard())}${latestBoard().notes?.length ? "\nCoach's notes this week: " + latestBoard().notes.join(" / ") : ""}${prevBoard() ? `\nPrevious board (${prevBoard().week}):\n${boardLines(prevBoard())}` : ""}` : ""}`;
+${notable || "none yet"}${canonBlock()}${latestBoard() ? `\n${T[U].name}'S OWN RECRUITING BOARD (${latestBoard().week}, from the coach's board; the column may report this chase):\n${boardLines(latestBoard())}${latestBoard().notes?.length ? "\nCoach's notes this week: " + latestBoard().notes.join(" / ") : ""}${prevBoard() ? `\nPrevious board (${prevBoard().week}):\n${boardLines(prevBoard())}` : ""}` : ""}`;
   try {
     const res = await sample.json(prompt, { modelTier: "default", cache: false });
     if (!res?.headline || !res?.body) throw { message: "The column came back empty." };
@@ -800,6 +803,61 @@ function newsroom() {
 }
 
 // Story writing through Claude, saved in this page's database.
+// Promotion/relegation pyramid (house rules): order by regular-season conference win %, then head-to-head, then conference point differential.
+function tierOf(team) { return (D.cfg?.pyramid || []).find((t) => t.conferences.includes(team?.conf)) || null; }
+function tierTable(tier) {
+  const ids = new Set(D.teams.filter((t) => tier.conferences.includes(t.conf)).map((t) => t.id));
+  const pd = {}, h2h = {};
+  for (const w of D.weeks) for (const g of w.games) {
+    if (g.st !== "final" || !ids.has(g.a) || !ids.has(g.h)) continue;
+    pd[g.a] = (pd[g.a] || 0) + g.as - g.hs; pd[g.h] = (pd[g.h] || 0) + g.hs - g.as;
+    const win = g.as > g.hs ? g.a : g.h, lose = win === g.a ? g.h : g.a;
+    h2h[win + ">" + lose] = (h2h[win + ">" + lose] || 0) + 1;
+  }
+  const rows = D.teams.filter((t) => ids.has(t.id)).map((t) => { const gp = (t.cw || 0) + (t.cl || 0); return { t, gp, pct: gp ? t.cw / gp : null, pd: pd[t.id] || 0 }; });
+  rows.sort((a, b) => {
+    if ((b.pct ?? -1) !== (a.pct ?? -1)) return (b.pct ?? -1) - (a.pct ?? -1);
+    const hb = (h2h[b.t.id + ">" + a.t.id] || 0) - (h2h[a.t.id + ">" + b.t.id] || 0); if (hb) return hb;
+    return b.pd - a.pd;
+  });
+  rows.forEach((r, i) => {
+    const prev = rows[i - 1], next = rows[i + 1];
+    const tied = (x) => x && x.pct === r.pct && !(h2h[x.t.id + ">" + r.t.id] || h2h[r.t.id + ">" + x.t.id]) && x.pd === r.pd;
+    r.unresolved = r.gp > 0 && (tied(prev) || tied(next));
+    r.zone = i < tier.promote ? "up" : i >= rows.length - tier.relegate ? "down" : "";
+  });
+  return rows;
+}
+function pyramidStatus() {
+  const tier = tierOf(T[U]); if (!tier) return "";
+  const tiers = D.cfg.pyramid, rows = tierTable(tier), i = rows.findIndex((r) => r.t.id === U), r = rows[i];
+  const up = tiers.find((t) => t.tier === tier.tier - 1), down = tiers.find((t) => t.tier === tier.tier + 1);
+  const zone = r?.zone === "up" ? `in the promotion zone (top ${tier.promote} move up to the ${up?.name})` : r?.zone === "down" ? `in the relegation zone (bottom ${tier.relegate} drop to the ${down?.name})` : "outside the promotion and relegation spots";
+  return `Promotion/relegation pyramid: ${T[U].name} plays in the ${tier.name} (tier ${tier.tier} of ${tiers.length}). By regular-season conference winning percentage it is currently ${i + 1} of ${rows.length}, ${r?.gp ? zone : "with no conference games played yet"}.`;
+}
+let confirmLedger = false;
+function pyramidPage() {
+  if (!D.cfg?.pyramid) return '<section class="card empty">This dynasty has no promotion and relegation.</section>';
+  const season = D.league.season;
+  const moves = [];
+  const tiers = [...D.cfg.pyramid].sort((a, b) => a.tier - b.tier);
+  const tables = tiers.map((tier) => {
+    const rows = tierTable(tier), up = tiers.find((t) => t.tier === tier.tier - 1), down = tiers.find((t) => t.tier === tier.tier + 1);
+    rows.forEach((r) => { if (r.zone === "up" && up) moves.push({ team: r.t.name, from: tier.name, to: up.name, dir: "up" }); if (r.zone === "down" && down) moves.push({ team: r.t.name, from: tier.name, to: down.name, dir: "down" }); });
+    return `<section class="card"><div class="hd"><h2>Tier ${tier.tier}: ${esc(tier.name)}</h2><span class="note">${tier.promote ? `Top ${tier.promote} up` : "Top tier"}${tier.relegate ? ` · bottom ${tier.relegate} down` : ""}</span></div>
+      <div class="scroll"><table><thead><tr><th class="n">#</th><th>Team</th><th class="n">Conf</th><th class="n">Win %</th><th class="n">Conf pt diff</th><th class="n">Overall</th><th></th></tr></thead><tbody>
+      ${rows.map((r, i) => `<tr style="${r.t.id === U ? "box-shadow:inset 3px 0 0 var(--team);" : ""}${r.zone ? "background:color-mix(in srgb," + (r.zone === "up" ? "var(--team)" : "var(--opp)") + " 10%,transparent)" : ""}"><td class="n">${i + 1}</td><td><span style="display:inline-flex;gap:8px;align-items:center">${badge(r.t.id, 24)}<b>${esc(r.t.name)}</b></span></td><td class="n">${esc(r.t.confRec || "0-0")}</td><td class="n">${r.pct == null ? "–" : r.pct.toFixed(3).replace(/^0/, "")}</td><td class="n">${r.pd > 0 ? "+" : ""}${r.pd}</td><td class="n">${esc(r.t.rec || "")}</td><td class="note">${r.zone === "up" ? "▲ Promotion" : r.zone === "down" ? "▼ Relegation" : ""}${r.unresolved ? " · tie unresolved" : ""}</td></tr>`).join("")}
+      </tbody></table></div></section>`;
+  }).join("");
+  const history = [...(D.cfg.ledgerStart || []), ...Object.values(ledger).sort((a, b) => a.season - b.season)];
+  return `<section class="card"><h2>The pyramid</h2><p class="muted" style="margin:8px 0 0">Live order by regular-season conference winning percentage, then head-to-head, then conference point differential. Conference title games don't count. A tie those can't break is flagged for you to settle. Shaded rows would move if the season ended today.</p></section>
+    ${tables}
+    <section class="card"><div class="hd"><h2>Movement ledger</h2></div>
+      ${history.length ? history.map((h) => `<div style="padding:8px 0;border-top:1px solid var(--rule)"><b>${esc(h.season)}</b>${h.moves.map((m) => `<div style="font-size:14px">${m.dir === "up" ? "▲" : "▼"} ${esc(m.team)}: ${esc(m.from)} → ${esc(m.to)}</div>`).join("")}</div>`).join("") : '<p class="muted">No moves recorded yet.</p>'}
+      <div style="margin-top:12px">${db ? (confirmLedger ? `<p class="note">Record these ${moves.length} moves as the ${season} season's final result? Do this only after the regular season ends, and before you realign in the game.</p><button class="btn solid" data-ledger-save="1">Yes, record ${season}</button> <button class="btn" data-ledger-cancel="1">Cancel</button>` : `<button class="btn" data-ledger="1">Record ${season}'s moves</button>`) : ""}</div></section>`;
+}
+
+function canonBlock() { return D.cfg?.canon ? `\n\nPROGRAM CANON (fictional background for this dynasty; use it for color and continuity, never contradict it, never present it as real history, never quote real people named in it):\n${D.cfg.canon}` : ""; }
 function factsFor(b) {
   const lines = [];
   const side = (s, name) => `${name}: ${s.pts ?? ""} points (quarters ${[s.q1, s.q2, s.q3, s.q4].map((x) => x || 0).join("-")}${s.ot ? ", OT " + s.ot : ""}), ${s.yds || 0} total yards (${s.passYds || 0} pass, ${s.rushYds || 0} rush), ${s.firstDowns || 0} first downs, third downs ${s.thirdConv || 0}/${s.thirdAtt || 0}, turnovers ${s.turnovers || 0}, penalties ${s.pen || 0} for ${s.penYds || 0} yards.`;
@@ -813,9 +871,11 @@ function factsFor(b) {
   const me = T[U];
   const done = myGames().filter((g) => g.final);
   lines.push(`Context: ${me.name} (${me.conf}) is coached by ${D.coach?.name || "the user"}; season record now ${me.rec}, conference ${me.confRec}. Season results so far: ${done.map((g) => `${g.week} ${g.home ? "vs" : "at"} ${T[g.opp]?.name || g.oppName} ${g.us}-${g.them}`).join("; ")}.`);
+  const pz = pyramidStatus();
+  if (pz) lines.push(pz);
   const nx = myGames().find((g) => !g.final);
   if (nx) lines.push(`Next game: ${nx.week} ${nx.home ? "vs" : "at"} ${T[nx.opp]?.name || nx.oppName} (${T[nx.opp]?.rec || ""}).`);
-  return lines.join("\n");
+  return lines.join("\n") + canonBlock();
 }
 // Every story opens and is built differently from that writer's recent pieces.
 const OPENINGS = ["a question to the reader", "a blunt one-sentence verdict", "a comparison with an earlier game this season", "one moment of the game, told only through the facts given", "a claim that sounds wrong and is then backed up", "the opponent's side of the game first", "a single striking number", "a direct word to the fan base", "the player who mattered most", "what this result means for next week"];
@@ -849,7 +909,7 @@ ${factsFor(b)}${quotesFor(gameId)}`;
     const doc = { gameId, persona: personaId, headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now(), opening, shape,
       prev: old ? { headline: old.headline, dek: old.dek, body: old.body, at: old.at } : null };
     stories[key] = doc;
-    if (db) { try { await db.doc("stories/" + key).set(doc); } catch (e) { st.textContent = "Written, but it could not be saved: " + (e?.message || ""); } }
+    if (db && !(await saveDoc("stories/" + key, doc))) st.textContent = "Written, but it could not be saved.";
     route();
   } catch (e) {
     st.textContent = e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : e?.code === "not_granted" ? "Story writing was not allowed for this page." : "That did not work: " + (e?.message || "unknown error");
@@ -861,7 +921,7 @@ async function undo(gameId, personaId) {
   if (!s?.prev) return;
   const doc = { ...s, ...s.prev, prev: null };
   stories[key] = doc;
-  if (db) { try { await db.doc("stories/" + key).set(doc); } catch {} }
+  await saveDoc("stories/" + key, doc);
   route();
 }
 
@@ -874,6 +934,7 @@ function route() {
   else if (h === "schedule") { app.innerHTML = schedulePage(); board(+document.getElementById("wkSel").value); }
   else if (h === "roster") { app.innerHTML = rosterPage(); rosterTable(); }
   else if (h === "league") { app.innerHTML = leaguePage(); standings(); poll(); }
+  else if (h === "pyramid") app.innerHTML = pyramidPage();
   else if (h === "stats") { app.innerHTML = statsPage(); if (document.getElementById("playerStats")) playerStats(); }
   else if (h === "recruiting") { app.innerHTML = recruitingPage(); classesTable(); recruitTable(); }
   else if (h === "newsroom") app.innerHTML = newsroom();
@@ -893,6 +954,15 @@ app.addEventListener("click", (e) => {
   const bdl = e.target.closest("[data-board-del]"); if (bdl) { const cur = [...((boards[boardKey(boardWeek)] || latestBoard())?.entries || [])]; cur.splice(+bdl.dataset.boardDel, 1); return saveBoard(cur); }
   const bad = e.target.closest("[data-board-add]"); if (bad) { const name = document.getElementById("addName").value.trim(); if (!name) return; const m = matchRecruit(name); const cur = [...(boards[boardKey(boardWeek)]?.entries || [])]; cur.push({ name, pos: m?.pos || null, stars: m?.s || null, rank: m?.r || null, stage: document.getElementById("addStage").value || null, spot: +document.getElementById("addSpot").value || null, interest: null, schools: null, note: document.getElementById("addNote").value.trim() || null, id: m?.id || null }); return saveBoard(cur); }
   const u = e.target.closest("[data-undo]"); if (u) return undo(u.dataset.undo, u.dataset.persona);
+  if (e.target.closest("[data-ledger]")) { confirmLedger = true; route(); return; }
+  if (e.target.closest("[data-ledger-cancel]")) { confirmLedger = false; route(); return; }
+  if (e.target.closest("[data-ledger-save]")) {
+    const season = D.league.season, moves = [];
+    const tiers = D.cfg.pyramid;
+    for (const tier of tiers) { const rows = tierTable(tier), up = tiers.find((t) => t.tier === tier.tier - 1), down = tiers.find((t) => t.tier === tier.tier + 1); rows.forEach((r) => { if (r.zone === "up" && up) moves.push({ team: r.t.name, from: tier.name, to: up.name, dir: "up" }); if (r.zone === "down" && down) moves.push({ team: r.t.name, from: tier.name, to: down.name, dir: "down" }); }); }
+    ledger[season] = { season, moves, at: Date.now() }; confirmLedger = false;
+    saveDoc("ledger/" + season, ledger[season]).then(() => route()); return;
+  }
   const stb = e.target.closest("[data-stattab]"); if (stb) { statTab = stb.dataset.stattab; document.querySelectorAll("[data-stattab]").forEach((b) => b.setAttribute("aria-pressed", b === stb)); playerStats(); return; }
   const p = e.target.closest("[data-poll]"); if (p) { pollKind = p.dataset.poll; document.querySelectorAll("[data-poll]").forEach((b) => b.setAttribute("aria-pressed", b === p)); poll(); }
 });
@@ -910,26 +980,48 @@ app.addEventListener("input", (e) => {
 });
 window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
 
-fetch("film-room.json").then((r) => r.json()).then((d) => {
-  D = d; U = d.user; T = Object.fromEntries(d.teams.map((t) => [t.id, t])); UT = T[U];
-  header(); route();
+function loadStore() {
+  stories = {}; pressers = {}; feeds = {}; columns = {}; boards = {}; drafts = {}; suggestions = {};
+  if (!db || !L) return;
+  const timer = setTimeout(() => {}, 10000);
+  const load = (name, put) => db.collection(P(name)).get().then((snap) => { for (const doc of snap?.docs || []) { const v = doc.data(); if (v) put(v); } }).catch(() => {});
+  Promise.all([
+    load("stories", (v) => { if (v.gameId) stories[v.gameId + "-" + v.persona] = v; }),
+    load("pressers", (v) => { if (v.gameId) pressers[v.gameId] = v; }),
+    load("feed", (v) => { if (v.gameId) feeds[v.gameId] = v; }),
+    load("columns", (v) => { if (v.week) columns[v.week] = v; }),
+    load("boards", (v) => { if (v.week) boards[boardKey(v.week)] = v; }),
+    load("ledger", (v) => { if (v.season) ledger[v.season] = v; })
+  ]).then(() => { clearTimeout(timer); if (!document.activeElement?.matches?.("textarea")) route(); });
+}
+function openLeague(id) {
+  L = LEAGUES.find((l) => l.id === id) || LEAGUES[0];
+  try { localStorage.setItem("filmroom-league", L.id); } catch {}
+  return fetch(`data/${L.id}.json`).then((r) => r.json()).then((d) => {
+    D = d; U = d.user; T = Object.fromEntries(d.teams.map((t) => [t.id, t])); UT = T[U];
+    L.legacy = !!d.cfg?.legacy;
+    conf = null; boardWeek = null; rosterFilter = "All"; recFilter = "All";
+    document.getElementById("pyrTab").hidden = !d.cfg?.pyramid;
+    header(); loadStore(); route();
+  });
+}
+fetch("leagues.json").then((r) => r.json()).then((list) => {
+  LEAGUES = list.leagues || [];
+  if (!LEAGUES.length) throw new Error("none");
+  let saved = null; try { saved = localStorage.getItem("filmroom-league"); } catch {}
+  const first = LEAGUES.find((l) => l.id === saved) || LEAGUES.find((l) => l.status !== "archived") || LEAGUES[0];
+  const sel = document.getElementById("lgSel");
+  sel.innerHTML = LEAGUES.map((l) => `<option value="${esc(l.id)}">${esc(l.label)}</option>`).join("");
+  sel.value = first.id;
+  document.getElementById("lgWrap").hidden = LEAGUES.length < 2;
+  sel.addEventListener("change", () => { openLeague(sel.value).then(() => { location.hash = "#home"; }); });
+  return openLeague(first.id);
 }).catch(() => { app.innerHTML = '<section class="card empty">Could not load the dynasty data.</section>'; });
 
 // Optional powers when opened as a Claude page: Claude writes stories, the database keeps them.
 if (window.claude?.use) {
   claude.use("sample").then(async (s) => { sample = s; if (s?.limits) { try { imgLimits = (await s.limits())?.images || null; } catch { imgLimits = null; } } route(); });
-  claude.use("db").then((d) => {
-    db = d; if (!db) return;
-    const timer = setTimeout(() => {}, 10000);
-    const load = (name, put) => db.collection(name).get().then((snap) => { for (const doc of snap?.docs || []) { const v = doc.data(); if (v) put(v); } }).catch(() => {});
-    Promise.all([
-      load("stories", (v) => { if (v.gameId) stories[v.gameId + "-" + v.persona] = v; }),
-      load("pressers", (v) => { if (v.gameId) pressers[v.gameId] = v; }),
-      load("feed", (v) => { if (v.gameId) feeds[v.gameId] = v; }),
-      load("columns", (v) => { if (v.week) columns[v.week] = v; }),
-      load("boards", (v) => { if (v.week) boards[boardKey(v.week)] = v; })
-    ]).then(() => { clearTimeout(timer); if (!document.activeElement?.matches?.("textarea")) route(); });
-  });
+  claude.use("db").then((d) => { db = d; loadStore();  });
 }
 }
 </script>

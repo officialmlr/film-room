@@ -8,7 +8,11 @@ import { dirname, join } from "node:path";
 
 const BASE = "https://dynastyrewired.com/api/developer/v1";
 const TOKEN = process.env.DR_API_TOKEN;
+// Leagues come from config/leagues.json (active ones only), or LEAGUE_IDS to override.
+import { readFileSync } from "node:fs";
+const fromConfig = (() => { try { return JSON.parse(readFileSync("config/leagues.json", "utf8")).leagues.filter((l) => l.status !== "archived" && /^cfb\d+-\d+$/.test(l.id)).map((l) => l.id); } catch { return []; } })();
 const LEAGUES = (process.env.LEAGUE_IDS || "").split(",").map((s) => s.trim()).filter(Boolean);
+if (!LEAGUES.length) LEAGUES.push(...fromConfig);
 const DATA = "data";
 const SEASON_DATASETS = ["schedule", "rankings", "postseason", "recruiting", "coaches", "awards", "rosters"];
 const FORCE = process.env.FORCE_FULL === "true";
@@ -115,7 +119,8 @@ async function syncSeason(league, seasonArg) {
 }
 
 async function main() {
-  if (!LEAGUES.length) {
+  if (!LEAGUES.length) { console.log("No active leagues in config/leagues.json."); return; }
+  if (false) {
     const list = await get("/leagues");
     await save(join(DATA, "leagues.json"), list);
     for (const l of list?.data || []) LEAGUES.push(l.id);

@@ -4,7 +4,17 @@
 import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 
-const LEAGUE = process.env.LEAGUE_ID || "cfb27-5156880";
+const config = JSON.parse(await readFile("config/leagues.json", "utf8")).leagues;
+const built = [];
+for (const cfg of config) {
+  try { await readFile(join("data", cfg.id, "league.json")); } catch { console.log(`${cfg.id}: no data yet, skipped`); continue; }
+  built.push(await buildOne(cfg.id, cfg));
+}
+await mkdir("site", { recursive: true });
+await writeFile("site/leagues.json", JSON.stringify({ leagues: built }));
+console.log(`site/leagues.json: ${built.map((b) => b.label).join(", ")}`);
+
+async function buildOne(LEAGUE, cfg) {
 const root = join("data", LEAGUE);
 const J = async (f) => JSON.parse(await readFile(f, "utf8"));
 const tryJ = async (f) => { try { return await J(f); } catch { return null; } };
@@ -174,7 +184,11 @@ const out = {
   teams, weeks, boxes, polls, classes, classesWeek, classHistory, recruits, commits, stageCounts, recruitingWeek, rosters, topPlayers,
   awards: (awards?.winners || []).map((w) => ({ a: w.award, w: w.winner, s: w.school, t: w.teamId, pos: w.position }))
 };
-await mkdir("site", { recursive: true });
+out.cfg = { label: cfg.label, status: cfg.status, legacy: !!cfg.legacy, pyramid: cfg.pyramid || null, ledgerStart: cfg.ledgerStart || [], canon: cfg.canon ? await readFile(cfg.canon, "utf8").catch(() => "") : "" };
+await mkdir("site/data", { recursive: true });
 const text = JSON.stringify(out);
-await writeFile("site/film-room.json", text);
-console.log(`site/film-room.json: ${(text.length / 1024).toFixed(0)} KB, ${boxes.length} box scores, ${teams.length} teams`);
+await writeFile(`site/data/${LEAGUE}.json`, text);
+console.log(`site/data/${LEAGUE}.json: ${(text.length / 1024).toFixed(0)} KB, ${boxes.length} box scores, ${teams.length} teams`);
+return { id: LEAGUE, label: cfg.label, status: cfg.status, team: userTeam?.name || null, season: Number(season), stage: out.league.stage };
+
+}
