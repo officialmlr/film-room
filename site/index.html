@@ -114,7 +114,7 @@ let D = null, T = {}, U = null, UT = null, db = null, sample = null, imgLimits =
 const PERSONAS = [
   { id: "staff", name: "Film Room Staff", outlet: "Beat writer", ini: "FR", voice: "a straight, professional newspaper beat writer. Clear game story: result first, key performers, the turning point, what is next. No hype." },
   { id: "shell", name: "Sully", outlet: "The Shell (fan blog)", ini: "SL", voice: "Sully, a lifelong, grumpy, old-school fan blogger for this school. Opinionated, funny, short paragraphs, loves the run game and defense, suspicious of the coaching staff, but every claim must still match the numbers." },
-  { id: "steph", name: "Stat Sheet Steph", outlet: "By the Numbers (blog)", ini: "SS", voice: "Steph, an analytics blogger. Leads with one surprising number, explains what the stats say about the team, uses rates and comparisons computed only from the numbers given." }
+  { id: "steph", name: "Stat Sheet Steph", outlet: "By the Numbers (blog)", ini: "SS", voice: "Steph, an analytics blogger with a dry sense of humor. Explains what the stats say about the team using rates and comparisons computed only from the numbers given. A number is her tool, not her opening line." }
 ];
 
 const RECRUITER = { name: "Dana Ruiz", outlet: "The Recruiting Trail", voice: "Dana Ruiz, a well-sourced recruiting reporter. Tracks commitments, class rankings and momentum week to week; measured, specific, never gossipy." };
@@ -817,14 +817,27 @@ function factsFor(b) {
   if (nx) lines.push(`Next game: ${nx.week} ${nx.home ? "vs" : "at"} ${T[nx.opp]?.name || nx.oppName} (${T[nx.opp]?.rec || ""}).`);
   return lines.join("\n");
 }
+// Every story opens and is built differently from that writer's recent pieces.
+const OPENINGS = ["a question to the reader", "a blunt one-sentence verdict", "a comparison with an earlier game this season", "one moment of the game, told only through the facts given", "a claim that sounds wrong and is then backed up", "the opponent's side of the game first", "a single striking number", "a direct word to the fan base", "the player who mattered most", "what this result means for next week"];
+const SHAPES = { staff: ["a classic game story", "a game story that builds to the turning point", "a game story led by the key performer"], shell: ["a rant with a twist at the end", "five quick hits", "an open letter to the coaching staff", "a grudging compliment followed by complaints", "a classic column"], steph: ["three takeaways", "unit-by-unit grades from A to F", "what worked and what didn't", "a short Q&A with herself", "one big number explained in depth", "a classic analysis column"] };
+const pickOne = (arr) => arr[Math.floor(Math.random() * arr.length)];
+function recentBy(personaId, exceptGame) {
+  return Object.values(stories).filter((x) => x.persona === personaId && x.gameId !== exceptGame).sort((a, b) => (b.at || 0) - (a.at || 0)).slice(0, 4);
+}
 async function write(gameId, personaId) {
   const b = D.boxes.find((x) => x.id === gameId), p = PERSONAS.find((x) => x.id === personaId);
+  const recent = recentBy(personaId, gameId);
+  const usedOpen = recent.map((x) => x.opening).filter(Boolean);
+  const opening = pickOne(OPENINGS.filter((o) => !usedOpen.slice(0, 3).includes(o)));
+  const shape = pickOne((SHAPES[personaId] || SHAPES.staff).filter((x) => x !== recent[0]?.shape));
+  const avoid = recent.map((x) => `- "${x.headline}" (opened: ${String(x.body || "").split(/[.!?]/)[0].slice(0, 120)})`).join("\n");
   const st = document.getElementById("status-" + gameId);
   document.querySelectorAll(`[data-write="${gameId}"]`).forEach((x) => (x.disabled = true));
   st.textContent = `${p.name} is writing…`;
   const prompt = `You write for "Film Room", a newspaper-style site about one person's College Football 27 video game dynasty. Write as ${p.voice}
 Cover this game from ${T[U].name}'s point of view. Use ONLY the facts below. Do not invent any statistic, quote (other than the coach's press conference words given below, if any), injury, play-by-play detail, crowd detail, weather or player not listed. Rates or totals you state must be computed from these numbers. Refer to the schools by the names given.
-Length: 170 to 260 words in 3 to 5 short paragraphs. No em dashes. No hashtags or emoji.
+This piece: open with ${opening}, and shape it as ${shape}. Vary sentence length; never start two paragraphs the same way.${avoid ? `\nThis writer's recent pieces are below. Do not reuse their headline pattern, opening move or structure, and do not repeat their phrases:\n${avoid}` : ""}
+Length: 170 to 260 words in 3 to 6 short paragraphs (a list or grades format may use short lines). No em dashes. No hashtags or emoji.
 Return JSON only: {"headline": string (under 12 words), "dek": string (one sentence), "body": string (paragraphs separated by blank lines)}.
 
 FACTS
@@ -833,7 +846,7 @@ ${factsFor(b)}${quotesFor(gameId)}`;
     const res = await sample.json(prompt, { modelTier: "default", cache: false });
     if (!res?.headline || !res?.body) throw { message: "The story came back empty." };
     const key = gameId + "-" + personaId, old = stories[key];
-    const doc = { gameId, persona: personaId, headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now(),
+    const doc = { gameId, persona: personaId, headline: String(res.headline), dek: String(res.dek || ""), body: String(res.body), at: Date.now(), opening, shape,
       prev: old ? { headline: old.headline, dek: old.dek, body: old.body, at: old.at } : null };
     stories[key] = doc;
     if (db) { try { await db.doc("stories/" + key).set(doc); } catch (e) { st.textContent = "Written, but it could not be saved: " + (e?.message || ""); } }
