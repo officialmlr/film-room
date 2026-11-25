@@ -1,6 +1,11 @@
 {
   "_note": "Rename opponents the game shows generically. Key: game id from data/.../box-scores or schedule.json. Value: the real name to show.",
   "games": {
-    "831914699": { "FCS East": "Hampton" }
+    "831914699": {
+      "FCS East": "Hampton"
+    },
+    "831914634": {
+      "FCS Southeast": "LIU"
+    }
   }
 }
