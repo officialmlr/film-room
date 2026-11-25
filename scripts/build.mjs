@@ -70,7 +70,7 @@ const P = {
 const T = { SCR1: "q1", SCR2: "q2", SCR3: "q3", SCR4: "q4", SCRO: "ot", SCOR: "pts", OFYD: "yds", OFPY: "passYds", OFRY: "rushYds",
   PSAT: "passAtt", COMP: "comp", ORUS: "rushAtt", OFFD: "firstDowns", THRD: "thirdConv", THDD: "thirdAtt", FRTH: "fourthConv",
   FTHD: "fourthAtt", TURN: "turnovers", FUMB: "fumLost", INTC: "intThrown", PNLT: "pen", PNTY: "penYds", PSSC: "top", PLAY: "plays",
-  OYPP: "ypp", YPRU: "ypr", YPPA: "ypa", TPUN: "punts", PSTD: "passTd", OFTD: "rushTd" };
+  OYPP: "ypp", YPRU: "ypr", YPPA: "ypa", TPUN: "punts", PSTD: "passTd", OFTD: "rushTd", REDP: "rzTrips", RDTD: "rzTd", TWOP: "twoConv", TWPA: "twoAtt", KRYD: "krYds", PRYD: "prYds" };
 const pick = (stats, map) => {
   const out = {}; let any = false;
   for (const [code, key] of Object.entries(map)) { const v = stats?.[code]; if (v != null && v !== 0) { out[key] = Math.round(v * 10) / 10; any = true; } }
@@ -149,6 +149,22 @@ for (const t of schedule.teams) {
   if (t.userControlled) rosters[t.teamId] = sorted.map((p) => slim(p, true));
   topPlayers[t.teamId] = sorted.slice(0, 6).map((p) => slim(p, false));
 }
+
+// National scoring table from every final game in the schedule (all 138 schools).
+const scoring = {};
+for (const w of schedule.weeks) for (const g of w.games) {
+  if (g.status !== "final" || g.awayScore == null) continue;
+  for (const [id, pf, pa] of [[g.awayTeamId, g.awayScore, g.homeScore], [g.homeTeamId, g.homeScore, g.awayScore]]) {
+    if (!id) continue;
+    const s = (scoring[id] ||= { g: 0, pf: 0, pa: 0 }); s.g++; s.pf += pf; s.pa += pa;
+  }
+}
+const nilTotals = {};
+for (const t of schedule.teams) {
+  const r = (await tryJ(join(dir, "rosters", `${t.teamId}.json`)))?.data;
+  if (r) nilTotals[t.teamId] = r.players.reduce((a, p) => a + (p.nilCompensation || 0), 0);
+}
+for (const t of teams) { if (scoring[t.id]) t.sc = scoring[t.id]; if (nilTotals[t.id] != null) t.nil = nilTotals[t.id]; }
 
 const out = {
   builtAt: Math.max(schedule.capturedAt || 0, schedule.teamsCapturedAt || 0, ...boxes.map(() => 0)) || null,

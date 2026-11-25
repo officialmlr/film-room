@@ -99,7 +99,7 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
     <div class="kpis"><div class="kpi"><span id="kRecLab">Record</span><b id="kRec">–</b></div><div class="kpi"><span>Now</span><b id="kStage">–</b></div></div>
   </div>
   <nav class="tabs" aria-label="Sections">
-    <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#roster">Roster</a><a href="#recruiting">Recruiting</a><a href="#league">League</a><a href="#newsroom">Newsroom</a>
+    <a href="#home">Home</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#roster">Roster</a><a href="#recruiting">Recruiting</a><a href="#league">League</a><a href="#newsroom">Newsroom</a>
   </nav>
 </div></header>
 <main class="wrap" id="app" aria-live="polite"><div class="empty">Loading…</div></main>
@@ -571,6 +571,65 @@ COACH'S NOTE: ${text}`;
   } catch (e) { st.textContent = e?.code === "rate_limited" ? "Claude is busy. Try again in a minute." : "That did not work: " + (e?.message || "unknown error"); }
 }
 
+// Season stats: team profile with national ranks, per-game charts, player tables.
+function natRank(key, dir) {
+  const ts = D.teams.filter((t) => !t.fcs && t.sc?.g);
+  const val = (t) => key === "pf" ? t.sc.pf / t.sc.g : key === "pa" ? t.sc.pa / t.sc.g : key === "diff" ? (t.sc.pf - t.sc.pa) / t.sc.g : t.nil;
+  const sorted = ts.filter((t) => val(t) != null).sort((a, b) => dir === "low" ? val(a) - val(b) : val(b) - val(a));
+  const i = sorted.findIndex((t) => t.id === U);
+  return i < 0 ? null : { rank: i + 1, of: sorted.length, v: val(T[U]) };
+}
+let statTab = "pass";
+function statsPage() {
+  const games = myGames().filter((g) => g.final && g.box);
+  if (!games.length) return '<section class="card empty">No games yet.</section>';
+  const n = games.length;
+  const mine = games.map((g) => g.box[teamSide(g.box)[0]]), theirs = games.map((g) => g.box[teamSide(g.box)[1]]);
+  const tot = (arr, k) => sum(arr, (s) => s[k]);
+  const per = (arr, k, d = 1) => (tot(arr, k) / n).toFixed(d);
+  const ranks = [["Scoring offense", natRank("pf", "high"), (v) => v.toFixed(1) + " ppg"], ["Scoring defense", natRank("pa", "low"), (v) => v.toFixed(1) + " allowed"], ["Point margin", natRank("diff", "high"), (v) => (v > 0 ? "+" : "") + v.toFixed(1) + " per game"], ["NIL pool", natRank("nil", "high"), (v) => Number(v).toLocaleString() + " (as the game reports it)"]];
+  const rows = [
+    ["Total yards per game", per(mine, "yds", 0), per(theirs, "yds", 0)], ["Passing yards per game", per(mine, "passYds", 0), per(theirs, "passYds", 0)], ["Rushing yards per game", per(mine, "rushYds", 0), per(theirs, "rushYds", 0)],
+    ["Yards per play", tot(mine, "plays") ? (tot(mine, "yds") / tot(mine, "plays")).toFixed(1) : "–", tot(theirs, "plays") ? (tot(theirs, "yds") / tot(theirs, "plays")).toFixed(1) : "–"],
+    ["First downs per game", per(mine, "firstDowns", 1), per(theirs, "firstDowns", 1)],
+    ["Third downs", `${tot(mine, "thirdConv")}/${tot(mine, "thirdAtt")} (${pct(tot(mine, "thirdConv"), tot(mine, "thirdAtt"))}%)`, `${tot(theirs, "thirdConv")}/${tot(theirs, "thirdAtt")} (${pct(tot(theirs, "thirdConv"), tot(theirs, "thirdAtt"))}%)`],
+    ["Fourth downs", `${tot(mine, "fourthConv")}/${tot(mine, "fourthAtt")}`, `${tot(theirs, "fourthConv")}/${tot(theirs, "fourthAtt")}`],
+    ["Red zone TDs", tot(mine, "rzTd"), tot(theirs, "rzTd")],
+    ["Turnovers", tot(mine, "turnovers"), tot(theirs, "turnovers")], ["Penalties (yards)", `${tot(mine, "pen")} (${tot(mine, "penYds")})`, `${tot(theirs, "pen")} (${tot(theirs, "penYds")})`],
+    ["Time of possession per game", (() => { const t = tot(mine, "top") / n; return `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`; })(), (() => { const t = tot(theirs, "top") / n; return `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`; })()]
+  ];
+  const ptsMax = Math.max(1, ...games.flatMap((g) => [g.us, g.them]));
+  const third = games.map((g) => { const s = g.box[teamSide(g.box)[0]]; return { opp: T[g.opp]?.abbr || g.oppName, v: pct(s.thirdConv || 0, s.thirdAtt || 0) }; });
+  const tos = games.map((g) => ({ opp: T[g.opp]?.abbr || g.oppName, us: g.box[teamSide(g.box)[0]].turnovers || 0, them: g.box[teamSide(g.box)[1]].turnovers || 0 }));
+  const toMax = Math.max(1, ...tos.flatMap((t) => [t.us, t.them]));
+  return `<section class="card"><div class="hd"><h2>National ranks</h2><span class="note">Among ${natRank("pf", "high")?.of || 0} FBS schools, from every score in the dynasty</span></div>
+      ${ranks.map(([l, r, f]) => r ? `<div class="brow" style="grid-template-columns:140px minmax(0,1fr) 120px"><span style="font-size:14px">${l}<div class="note">${esc(f(r.v))}</div></span><div class="bar" title="Rank ${r.rank} of ${r.of}"><i style="width:${((r.of - r.rank + 1) / r.of) * 100}%"></i></div><span class="num" style="font-size:22px">#${r.rank}<span class="muted" style="font-size:14px"> of ${r.of}</span></span></div>` : "").join("")}
+      <p class="note" style="margin-bottom:0">Longer bar means better. Yardage, third-down and turnover rankings across the country aren't possible: the sync only has box scores for your games.</p></section>
+    <div class="row"><section class="card" style="flex:1 1 420px"><div class="hd"><h2>Team stats</h2><span class="note">${n} games</span></div><div class="scroll"><table><thead><tr><th></th><th class="n">${esc(T[U].abbr)}</th><th class="n">Opponents</th></tr></thead><tbody>${rows.map(([l, a, b]) => `<tr><td>${l}</td><td class="n">${esc(a)}</td><td class="n">${esc(b)}</td></tr>`).join("")}</tbody></table></div>
+      <p class="note">Red zone counts are as the game reports them; the sync doesn't label them, so treat them as unconfirmed.</p></section>
+      <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:24px">
+        <section class="card"><div class="hd"><h2>Points by game</h2></div><div class="cols">${games.map((g) => `<div class="col"><div class="pair"><i style="height:${(g.us / ptsMax) * 100}%;background:var(--team)"></i><i style="height:${(g.them / ptsMax) * 100}%;background:var(--opp)"></i></div><span class="v">${g.us}–${g.them}</span></div>`).join("")}</div><div class="xl">${games.map((g) => `<span>${esc(T[g.opp]?.abbr || g.oppName)}</span>`).join("")}</div><div class="key"><span><i style="background:var(--team)"></i>${esc(T[U].abbr)}</span><span><i style="background:var(--opp)"></i>Opponent</span></div></section>
+        <section class="card"><div class="hd"><h2>Third-down rate</h2></div>${third.map((t) => `<div class="brow" style="grid-template-columns:60px minmax(0,1fr) 50px"><span class="num muted">${esc(t.opp)}</span><div class="bar"><i style="width:${t.v}%"></i></div><span class="num">${t.v}%</span></div>`).join("")}</section>
+        <section class="card"><div class="hd"><h2>Turnovers</h2></div><div class="cols" style="height:120px">${tos.map((t) => `<div class="col"><div class="pair"><i style="height:${(t.us / toMax) * 100}%;background:var(--team)"></i><i style="height:${(t.them / toMax) * 100}%;background:var(--opp)"></i></div><span class="v">${t.us}–${t.them}</span></div>`).join("")}</div><div class="xl">${tos.map((t) => `<span>${esc(t.opp)}</span>`).join("")}</div><div class="key"><span><i style="background:var(--team)"></i>Lost</span><span><i style="background:var(--opp)"></i>Forced</span></div></section>
+      </div></div>
+    <section class="card"><div class="hd"><h2>Player season stats</h2><div class="personas" role="group" aria-label="Category" style="margin:0">${[["pass", "Passing"], ["rush", "Rushing"], ["rec", "Receiving"], ["def", "Defense"], ["line", "Line"], ["kick", "Kicking"]].map(([k, l]) => `<button data-stattab="${k}" aria-pressed="${statTab === k}">${l}</button>`).join("")}</div></div><div id="playerStats"></div>
+      <p class="note">Totals from every game this season, played or simulated. Career totals build up from here as Film Room tracks more seasons.</p></section>`;
+}
+function playerStats() {
+  const COLS = { pass: [["yds", "YDS"], ["cmp", "CMP"], ["att", "ATT"], ["pct", "PCT"], ["td", "TD"], ["int", "INT"], ["sck", "SCK"], ["lng", "LNG"]], rush: [["yds", "YDS"], ["car", "CAR"], ["avg", "AVG"], ["td", "TD"], ["lng", "LNG"], ["fum", "FUM"]], rec: [["yds", "YDS"], ["rec", "REC"], ["avg", "AVG"], ["td", "TD"], ["lng", "LNG"], ["drop", "DROP"]], def: [["tkl", "TKL"], ["solo", "SOLO"], ["tfl", "TFL"], ["sck", "SCK"], ["int", "INT"], ["pd", "PD"], ["ff", "FF"]], line: [["pancakes", "PANC"], ["sckAllowed", "SCK ALW"]], kick: [["fgm", "FGM"], ["fga", "FGA"], ["lng", "LNG"], ["xpm", "XPM"], ["xpa", "XPA"]] };
+  const cols = COLS[statTab];
+  const rows = seasonPlayers().filter((p) => p[statTab]).map((p) => {
+    const s = { ...p[statTab] };
+    if (statTab === "pass") s.pct = s.att ? (Math.round((s.cmp / s.att) * 1000) / 10).toFixed(1) : "–";
+    if (statTab === "rush") s.avg = s.car ? (s.yds / s.car).toFixed(1) : "–";
+    if (statTab === "rec") s.avg = s.rec ? (s.yds / s.rec).toFixed(1) : "–";
+    const key = cols[0][0];
+    const vals = p.games.map((g) => g.p[statTab]?.[key] || 0), m = Math.max(1, ...vals);
+    return { p, s, games: p.games.length, spark: `<span style="display:inline-flex;gap:2px;align-items:flex-end;height:20px" aria-hidden="true">${vals.map((v) => `<i style="width:6px;height:${Math.max(2, (v / m) * 20)}px;background:var(--team);border-radius:2px;display:block"></i>`).join("")}</span>` };
+  }).sort((a, b) => (b.s[cols[0][0]] || 0) - (a.s[cols[0][0]] || 0));
+  document.getElementById("playerStats").innerHTML = rows.length ? `<div class="scroll"><table><thead><tr><th>Player</th><th class="n">G</th>${cols.map(([, h]) => `<th class="n">${h}</th>`).join("")}<th>By game</th></tr></thead><tbody>${rows.map((r) => `<tr><td><b>${esc(r.p.n)}</b> <span class="muted">${esc(r.p.pos)}</span></td><td class="n">${r.games}</td>${cols.map(([k]) => `<td class="n">${esc(r.s[k] ?? 0)}</td>`).join("")}<td>${r.spark}</td></tr>`).join("")}</tbody></table></div>` : '<p class="muted">No stats in this category yet.</p>';
+}
+
 let recFilter = "All";
 function recruitingPage() {
   const mine = D.classes.find((c) => c.t === U) || { r: "–", n: 0, pts: 0, st: [0, 0, 0, 0, 0] };
@@ -802,6 +861,7 @@ function route() {
   else if (h === "schedule") { app.innerHTML = schedulePage(); board(+document.getElementById("wkSel").value); }
   else if (h === "roster") { app.innerHTML = rosterPage(); rosterTable(); }
   else if (h === "league") { app.innerHTML = leaguePage(); standings(); poll(); }
+  else if (h === "stats") { app.innerHTML = statsPage(); if (document.getElementById("playerStats")) playerStats(); }
   else if (h === "recruiting") { app.innerHTML = recruitingPage(); classesTable(); recruitTable(); }
   else if (h === "newsroom") app.innerHTML = newsroom();
   else app.innerHTML = home();
@@ -820,6 +880,7 @@ app.addEventListener("click", (e) => {
   const bdl = e.target.closest("[data-board-del]"); if (bdl) { const cur = [...((boards[boardKey(boardWeek)] || latestBoard())?.entries || [])]; cur.splice(+bdl.dataset.boardDel, 1); return saveBoard(cur); }
   const bad = e.target.closest("[data-board-add]"); if (bad) { const name = document.getElementById("addName").value.trim(); if (!name) return; const m = matchRecruit(name); const cur = [...(boards[boardKey(boardWeek)]?.entries || [])]; cur.push({ name, pos: m?.pos || null, stars: m?.s || null, rank: m?.r || null, stage: document.getElementById("addStage").value || null, spot: +document.getElementById("addSpot").value || null, interest: null, schools: null, note: document.getElementById("addNote").value.trim() || null, id: m?.id || null }); return saveBoard(cur); }
   const u = e.target.closest("[data-undo]"); if (u) return undo(u.dataset.undo, u.dataset.persona);
+  const stb = e.target.closest("[data-stattab]"); if (stb) { statTab = stb.dataset.stattab; document.querySelectorAll("[data-stattab]").forEach((b) => b.setAttribute("aria-pressed", b === stb)); playerStats(); return; }
   const p = e.target.closest("[data-poll]"); if (p) { pollKind = p.dataset.poll; document.querySelectorAll("[data-poll]").forEach((b) => b.setAttribute("aria-pressed", b === p)); poll(); }
 });
 app.addEventListener("change", (e) => {
