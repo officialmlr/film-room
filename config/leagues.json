@@ -1,8 +1,8 @@
 {
-  "_note": "Every dynasty Film Room tracks. status 'archived' = no longer synced. hidden = kept in data/ but left out of Film Room's switcher (delete the line to bring it back). Replace the FIU id once the Rewired league exists.",
+  "_note": "Every dynasty Film Room tracks. status 'archived' = no longer synced. hidden = kept in data/ but left out of Film Room's switcher (delete the line to bring it back).",
   "leagues": [
     {
-      "id": "pending-fiu",
+      "id": "cfb27-5185342",
       "label": "FIU \u00b7 The Homecoming",
       "status": "active",
       "canon": "config/fiu-canon.md",
