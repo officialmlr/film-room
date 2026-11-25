@@ -15,7 +15,7 @@ PROGRAM IDENTITY
 - Starting point: about a one-star program, team overall 74, few Dynasty Points. Standout young running back Devonte Lyons; quarterback JJ Kohl has a big arm but inconsistent deep accuracy.
 
 THE LEAGUE STRUCTURE (custom house rules, fictional)
-- A three-tier promotion/relegation pyramid: American (top tier, 14 teams) > Sun Belt (14) > Conference USA (10, bottom tier).
+- A three-tier promotion/relegation pyramid: American (top tier, 14 teams) > Sun Belt (12) > Conference USA (12, bottom tier). Charlotte opens in Conference USA, alongside FIU.
 - Each year, by regular-season conference winning percentage: the top two of the Sun Belt and of Conference USA move up; the bottom two of the American and of the Sun Belt move down. No exceptions, FIU included. A conference championship is its own achievement and does not change promotion.
 - Possible far-future storylines, none promised: an American title, national relevance, an ACC invitation, offers from Florida or the Dolphins. Nothing is predetermined; never predict or announce these as coming.
 
