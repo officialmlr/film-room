@@ -7,6 +7,7 @@ import { join } from "node:path";
 const config = JSON.parse(await readFile("config/leagues.json", "utf8")).leagues;
 const built = [];
 for (const cfg of config) {
+  if (cfg.hidden) { console.log(`${cfg.id}: hidden, skipped`); continue; }
   try { await readFile(join("data", cfg.id, "league.json")); } catch { console.log(`${cfg.id}: no data yet, skipped`); continue; }
   built.push(await buildOne(cfg.id, cfg));
 }

@@ -807,14 +807,22 @@ function newsroom() {
 function tierOf(team) { return (D.cfg?.pyramid || []).find((t) => t.conferences.includes(team?.conf)) || null; }
 function tierTable(tier) {
   const ids = new Set(D.teams.filter((t) => tier.conferences.includes(t.conf)).map((t) => t.id));
-  const pd = {}, h2h = {};
-  for (const w of D.weeks) for (const g of w.games) {
-    if (g.st !== "final" || !ids.has(g.a) || !ids.has(g.h)) continue;
-    pd[g.a] = (pd[g.a] || 0) + g.as - g.hs; pd[g.h] = (pd[g.h] || 0) + g.hs - g.as;
-    const win = g.as > g.hs ? g.a : g.h, lose = win === g.a ? g.h : g.a;
-    h2h[win + ">" + lose] = (h2h[win + ">" + lose] || 0) + 1;
+  // Conference records are counted here from regular-season games only (Week 0 to Week 14), between two schools in the
+  // same conference, so a conference title game, which only decides the champion, never moves anyone up or down.
+  const confOf = Object.fromEntries(D.teams.map((t) => [t.id, t.conf]));
+  const sameConf = (a, b) => confOf[a] && (confOf[a] === confOf[b] || (tier.conferences.includes(confOf[a]) && tier.conferences.includes(confOf[b]) && /Sun Belt/.test(confOf[a] + confOf[b])));
+  const pd = {}, h2h = {}, wl = {};
+  for (const w of D.weeks) {
+    const m = /^Week (\d+)$/.exec(w.label || ""); if (!m || +m[1] > 14) continue;
+    for (const g of w.games) {
+      if (g.st !== "final" || !ids.has(g.a) || !ids.has(g.h) || !sameConf(g.a, g.h)) continue;
+      pd[g.a] = (pd[g.a] || 0) + g.as - g.hs; pd[g.h] = (pd[g.h] || 0) + g.hs - g.as;
+      const win = g.as > g.hs ? g.a : g.h, lose = win === g.a ? g.h : g.a;
+      h2h[win + ">" + lose] = (h2h[win + ">" + lose] || 0) + 1;
+      (wl[win] ||= [0, 0])[0]++; (wl[lose] ||= [0, 0])[1]++;
+    }
   }
-  const rows = D.teams.filter((t) => ids.has(t.id)).map((t) => { const gp = (t.cw || 0) + (t.cl || 0); return { t, gp, pct: gp ? t.cw / gp : null, pd: pd[t.id] || 0 }; });
+  const rows = D.teams.filter((t) => ids.has(t.id)).map((t) => { const [cw, cl] = wl[t.id] || [0, 0], gp = cw + cl; return { t, cw, cl, gp, pct: gp ? cw / gp : null, pd: pd[t.id] || 0 }; });
   rows.sort((a, b) => {
     if ((b.pct ?? -1) !== (a.pct ?? -1)) return (b.pct ?? -1) - (a.pct ?? -1);
     const hb = (h2h[b.t.id + ">" + a.t.id] || 0) - (h2h[a.t.id + ">" + b.t.id] || 0); if (hb) return hb;
@@ -846,11 +854,11 @@ function pyramidPage() {
     rows.forEach((r) => { if (r.zone === "up" && up) moves.push({ team: r.t.name, from: tier.name, to: up.name, dir: "up" }); if (r.zone === "down" && down) moves.push({ team: r.t.name, from: tier.name, to: down.name, dir: "down" }); });
     return `<section class="card"><div class="hd"><h2>Tier ${tier.tier}: ${esc(tier.name)}</h2><span class="note">${tier.promote ? `Top ${tier.promote} up` : "Top tier"}${tier.relegate ? ` · bottom ${tier.relegate} down` : ""}</span></div>
       <div class="scroll"><table><thead><tr><th class="n">#</th><th>Team</th><th class="n">Conf</th><th class="n">Win %</th><th class="n">Conf pt diff</th><th class="n">Overall</th><th></th></tr></thead><tbody>
-      ${rows.map((r, i) => `<tr style="${r.t.id === U ? "box-shadow:inset 3px 0 0 var(--team);" : ""}${r.zone ? "background:color-mix(in srgb," + (r.zone === "up" ? "var(--team)" : "var(--opp)") + " 10%,transparent)" : ""}"><td class="n">${i + 1}</td><td><span style="display:inline-flex;gap:8px;align-items:center">${badge(r.t.id, 24)}<b>${esc(r.t.name)}</b></span></td><td class="n">${esc(r.t.confRec || "0-0")}</td><td class="n">${r.pct == null ? "–" : r.pct.toFixed(3).replace(/^0/, "")}</td><td class="n">${r.pd > 0 ? "+" : ""}${r.pd}</td><td class="n">${esc(r.t.rec || "")}</td><td class="note">${r.zone === "up" ? "▲ Promotion" : r.zone === "down" ? "▼ Relegation" : ""}${r.unresolved ? " · tie unresolved" : ""}</td></tr>`).join("")}
+      ${rows.map((r, i) => `<tr style="${r.t.id === U ? "box-shadow:inset 3px 0 0 var(--team);" : ""}${r.zone ? "background:color-mix(in srgb," + (r.zone === "up" ? "var(--team)" : "var(--opp)") + " 10%,transparent)" : ""}"><td class="n">${i + 1}</td><td><span style="display:inline-flex;gap:8px;align-items:center">${badge(r.t.id, 24)}<b>${esc(r.t.name)}</b></span></td><td class="n">${r.cw}-${r.cl}</td><td class="n">${r.pct == null ? "–" : r.pct.toFixed(3).replace(/^0/, "")}</td><td class="n">${r.pd > 0 ? "+" : ""}${r.pd}</td><td class="n">${esc(r.t.rec || "")}</td><td class="note">${r.zone === "up" ? "▲ Promotion" : r.zone === "down" ? "▼ Relegation" : ""}${r.unresolved ? " · tie unresolved" : ""}</td></tr>`).join("")}
       </tbody></table></div></section>`;
   }).join("");
   const history = [...(D.cfg.ledgerStart || []), ...Object.values(ledger).sort((a, b) => a.season - b.season)];
-  return `<section class="card"><h2>The pyramid</h2><p class="muted" style="margin:8px 0 0">Live order by regular-season conference winning percentage, then head-to-head, then conference point differential. Conference title games don't count. A tie those can't break is flagged for you to settle. Shaded rows would move if the season ended today.</p></section>
+  return `<section class="card"><h2>The pyramid</h2><p class="muted" style="margin:8px 0 0">Live order by regular-season conference winning percentage, then head-to-head, then conference point differential. Records here count only conference games from Week 0 through Week 14, so conference title games never affect who moves. A tie those can't break is flagged for you to settle. Shaded rows would move if the season ended today.</p></section>
     ${tables}
     <section class="card"><div class="hd"><h2>Movement ledger</h2></div>
       ${history.length ? history.map((h) => `<div style="padding:8px 0;border-top:1px solid var(--rule)"><b>${esc(h.season)}</b>${h.moves.map((m) => `<div style="font-size:14px">${m.dir === "up" ? "▲" : "▼"} ${esc(m.team)}: ${esc(m.from)} → ${esc(m.to)}</div>`).join("")}</div>`).join("") : '<p class="muted">No moves recorded yet.</p>'}
@@ -1007,7 +1015,7 @@ function openLeague(id) {
 }
 fetch("leagues.json").then((r) => r.json()).then((list) => {
   LEAGUES = list.leagues || [];
-  if (!LEAGUES.length) throw new Error("none");
+  if (!LEAGUES.length) { document.getElementById("mSub").textContent = "Waiting for the first sync"; app.innerHTML = '<section class="card empty">No dynasty to show yet. FIU appears here after its first sync.</section>'; return; }
   let saved = null; try { saved = localStorage.getItem("filmroom-league"); } catch {}
   const first = LEAGUES.find((l) => l.id === saved) || LEAGUES.find((l) => l.status !== "archived") || LEAGUES[0];
   const sel = document.getElementById("lgSel");

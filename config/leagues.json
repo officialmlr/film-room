@@ -1,5 +1,5 @@
 {
-  "_note": "Every dynasty Film Room tracks. status 'archived' = no longer synced (trial ended or retired). Replace the FIU id once the Rewired league exists.",
+  "_note": "Every dynasty Film Room tracks. status 'archived' = no longer synced. hidden = kept in data/ but left out of Film Room's switcher (delete the line to bring it back). Replace the FIU id once the Rewired league exists.",
   "leagues": [
     {
       "id": "pending-fiu",
@@ -62,7 +62,8 @@
       "id": "cfb27-5156880",
       "label": "Maryland \u00b7 test season",
       "status": "archived",
-      "legacy": true
+      "legacy": true,
+      "hidden": true
     }
   ]
 }
