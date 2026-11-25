@@ -1,0 +1,40 @@
+{
+  "league": {
+    "id": "cfb27-5185342",
+    "name": "FIU",
+    "url": "https://dynastyrewired.com/leagues/cfb27-5185342"
+  },
+  "data": {
+    "id": "cfb27-5185342",
+    "name": "FIU",
+    "url": "https://dynastyrewired.com/leagues/cfb27-5185342",
+    "role": "owner",
+    "visibility": "private",
+    "trackingState": "active",
+    "currentSeason": 2026,
+    "lastCaptureAt": null,
+    "access": "active",
+    "seasons": [
+      2026
+    ],
+    "stage": {
+      "key": "[\"hub\",2026,0,1,0,1]",
+      "label": "Week 0",
+      "year": 2026,
+      "phase": "season",
+      "week": 0
+    },
+    "stageState": "stable",
+    "stageObservedAt": 1795643446818,
+    "datasets": [
+      "schedule",
+      "rankings",
+      "postseason",
+      "recruiting",
+      "coaches",
+      "awards",
+      "box-scores",
+      "rosters"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "league": {
+    "id": "cfb27-5185342",
+    "name": "FIU",
+    "url": "https://dynastyrewired.com/leagues/cfb27-5185342"
+  },
+  "season": 2026,
+  "dataset": "postseason",
+  "data": {
+    "state": "pending",
+    "capturedAt": null,
+    "slots": [],
+    "championships": []
+  }
+}

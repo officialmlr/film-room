@@ -1,0 +1,162 @@
+{
+  "league": {
+    "id": "cfb27-5185342",
+    "name": "FIU",
+    "url": "https://dynastyrewired.com/leagues/cfb27-5185342"
+  },
+  "season": 2026,
+  "dataset": "coaches",
+  "data": {
+    "state": "pending",
+    "capturedAt": 1795643439498,
+    "capturedStage": "2026 · Wk 1",
+    "active": [
+      {
+        "name": "Michael Rothenberg",
+        "role": "HC",
+        "wins": 0,
+        "losses": 0,
+        "school": "Florida International",
+        "teamId": "832438307",
+        "identity": "coach:256",
+        "bowlRecord": "0-0",
+        "playoffWins": 0,
+        "playoffLosses": 0,
+        "userControlled": true,
+        "firstSeen": {
+          "at": 1795643439498,
+          "year": 2026,
+          "stage": "Wk 1"
+        },
+        "lastSeen": {
+          "at": 1795643439498,
+          "year": 2026,
+          "stage": "Wk 1"
+        },
+        "departed": null,
+        "schools": [
+          {
+            "teamId": "832438307",
+            "school": "Florida International",
+            "firstSeen": {
+              "at": 1795643439498,
+              "year": 2026,
+              "stage": "Wk 1"
+            },
+            "lastSeen": {
+              "at": 1795643439498,
+              "year": 2026,
+              "stage": "Wk 1"
+            }
+          }
+        ]
+      }
+    ],
+    "retired": [],
+    "rankings": {
+      "poll": "media",
+      "teams": [
+        {
+          "teamId": "832438359",
+          "rank": 1
+        },
+        {
+          "teamId": "832438364",
+          "rank": 2
+        },
+        {
+          "teamId": "832438357",
+          "rank": 3
+        },
+        {
+          "teamId": "832438312",
+          "rank": 4
+        },
+        {
+          "teamId": "832438319",
+          "rank": 5
+        },
+        {
+          "teamId": "832438337",
+          "rank": 6
+        },
+        {
+          "teamId": "832438384",
+          "rank": 7
+        },
+        {
+          "teamId": "832438385",
+          "rank": 8
+        },
+        {
+          "teamId": "832438363",
+          "rank": 9
+        },
+        {
+          "teamId": "832438360",
+          "rank": 10
+        },
+        {
+          "teamId": "832438333",
+          "rank": 11
+        },
+        {
+          "teamId": "832438288",
+          "rank": 12
+        },
+        {
+          "teamId": "832438274",
+          "rank": 13
+        },
+        {
+          "teamId": "832438339",
+          "rank": 14
+        },
+        {
+          "teamId": "832438398",
+          "rank": 15
+        },
+        {
+          "teamId": "832438387",
+          "rank": 16
+        },
+        {
+          "teamId": "832438366",
+          "rank": 17
+        },
+        {
+          "teamId": "832438320",
+          "rank": 18
+        },
+        {
+          "teamId": "832438400",
+          "rank": 19
+        },
+        {
+          "teamId": "832438383",
+          "rank": 20
+        },
+        {
+          "teamId": "832438317",
+          "rank": 21
+        },
+        {
+          "teamId": "832438375",
+          "rank": 22
+        },
+        {
+          "teamId": "832438408",
+          "rank": 23
+        },
+        {
+          "teamId": "832438332",
+          "rank": 24
+        },
+        {
+          "teamId": "832438308",
+          "rank": 25
+        }
+      ]
+    }
+  }
+}

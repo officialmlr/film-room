@@ -1,0 +1,17 @@
+{
+  "league": {
+    "id": "cfb27-5185342",
+    "name": "FIU",
+    "url": "https://dynastyrewired.com/leagues/cfb27-5185342"
+  },
+  "season": 2026,
+  "dataset": "awards",
+  "data": {
+    "state": "pending",
+    "capturedAt": null,
+    "expected": 24,
+    "conflicts": 0,
+    "winners": [],
+    "weekly": []
+  }
+}

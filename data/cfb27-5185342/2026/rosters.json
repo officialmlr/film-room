@@ -1,0 +1,717 @@
+{
+  "league": {
+    "id": "cfb27-5185342",
+    "name": "FIU",
+    "url": "https://dynastyrewired.com/leagues/cfb27-5185342"
+  },
+  "season": 2026,
+  "dataset": "rosters",
+  "data": {
+    "runs": [
+      {
+        "id": "d2d5c3c7-8b1d-4e6c-a81d-f2a70386c22c",
+        "stage": {
+          "key": "[\"hub\",2026,0,1,0,1]",
+          "label": "Week 0",
+          "year": 2026,
+          "phase": "season",
+          "week": 0
+        },
+        "startedAt": 1795643452602,
+        "state": "complete",
+        "schools": [
+          {
+            "teamId": "832438272",
+            "name": "Air Force",
+            "capturedAt": 1795643454084
+          },
+          {
+            "teamId": "832438273",
+            "name": "Akron",
+            "capturedAt": 1795643454086
+          },
+          {
+            "teamId": "832438274",
+            "name": "Alabama",
+            "capturedAt": 1795643454088
+          },
+          {
+            "teamId": "832438275",
+            "name": "Appalachian State",
+            "capturedAt": 1795643454090
+          },
+          {
+            "teamId": "832438276",
+            "name": "Arizona",
+            "capturedAt": 1795643454097
+          },
+          {
+            "teamId": "832438277",
+            "name": "Arizona State",
+            "capturedAt": 1795643454099
+          },
+          {
+            "teamId": "832438278",
+            "name": "Arkansas",
+            "capturedAt": 1795643454101
+          },
+          {
+            "teamId": "832438279",
+            "name": "Arkansas State",
+            "capturedAt": 1795643454103
+          },
+          {
+            "teamId": "832438280",
+            "name": "Army",
+            "capturedAt": 1795643454108
+          },
+          {
+            "teamId": "832438281",
+            "name": "Auburn",
+            "capturedAt": 1795643454112
+          },
+          {
+            "teamId": "832438282",
+            "name": "Ball State",
+            "capturedAt": 1795643454115
+          },
+          {
+            "teamId": "832438283",
+            "name": "Baylor",
+            "capturedAt": 1795643454119
+          },
+          {
+            "teamId": "832438284",
+            "name": "Boise State",
+            "capturedAt": 1795643454123
+          },
+          {
+            "teamId": "832438285",
+            "name": "Boston College",
+            "capturedAt": 1795643454125
+          },
+          {
+            "teamId": "832438286",
+            "name": "Bowling Green",
+            "capturedAt": 1795643454129
+          },
+          {
+            "teamId": "832438287",
+            "name": "Buffalo",
+            "capturedAt": 1795643454133
+          },
+          {
+            "teamId": "832438288",
+            "name": "BYU",
+            "capturedAt": 1795643454135
+          },
+          {
+            "teamId": "832438289",
+            "name": "California",
+            "capturedAt": 1795643454138
+          },
+          {
+            "teamId": "832438290",
+            "name": "Central Michigan",
+            "capturedAt": 1795643454141
+          },
+          {
+            "teamId": "832438291",
+            "name": "Charlotte",
+            "capturedAt": 1795643454144
+          },
+          {
+            "teamId": "832438292",
+            "name": "Cincinnati",
+            "capturedAt": 1795643454148
+          },
+          {
+            "teamId": "832438293",
+            "name": "Clemson",
+            "capturedAt": 1795643454150
+          },
+          {
+            "teamId": "832438294",
+            "name": "Coastal Carolina",
+            "capturedAt": 1795643454223
+          },
+          {
+            "teamId": "832438295",
+            "name": "Colorado",
+            "capturedAt": 1795643454260
+          },
+          {
+            "teamId": "832438296",
+            "name": "Colorado State",
+            "capturedAt": 1795643454288
+          },
+          {
+            "teamId": "832438298",
+            "name": "Delaware",
+            "capturedAt": 1795643454296
+          },
+          {
+            "teamId": "832438299",
+            "name": "Duke",
+            "capturedAt": 1795643454317
+          },
+          {
+            "teamId": "832438300",
+            "name": "Eastern Michigan",
+            "capturedAt": 1795643454323
+          },
+          {
+            "teamId": "832438301",
+            "name": "East Carolina",
+            "capturedAt": 1795643454333
+          },
+          {
+            "teamId": "832438307",
+            "name": "Florida International",
+            "capturedAt": 1795643454337
+          },
+          {
+            "teamId": "832438308",
+            "name": "Florida",
+            "capturedAt": 1795643454346
+          },
+          {
+            "teamId": "832438309",
+            "name": "Florida Atlantic",
+            "capturedAt": 1795643454353
+          },
+          {
+            "teamId": "832438310",
+            "name": "Florida State",
+            "capturedAt": 1795643454359
+          },
+          {
+            "teamId": "832438311",
+            "name": "Fresno State",
+            "capturedAt": 1795643454367
+          },
+          {
+            "teamId": "832438312",
+            "name": "Georgia",
+            "capturedAt": 1795643454373
+          },
+          {
+            "teamId": "832438313",
+            "name": "Georgia Southern",
+            "capturedAt": 1795643454379
+          },
+          {
+            "teamId": "832438314",
+            "name": "Georgia State",
+            "capturedAt": 1795643454387
+          },
+          {
+            "teamId": "832438315",
+            "name": "Georgia Tech",
+            "capturedAt": 1795643454393
+          },
+          {
+            "teamId": "832438316",
+            "name": "Hawai'i",
+            "capturedAt": 1795643454402
+          },
+          {
+            "teamId": "832438317",
+            "name": "Houston",
+            "capturedAt": 1795643454408
+          },
+          {
+            "teamId": "832438318",
+            "name": "Illinois",
+            "capturedAt": 1795643454414
+          },
+          {
+            "teamId": "832438319",
+            "name": "Indiana",
+            "capturedAt": 1795643454419
+          },
+          {
+            "teamId": "832438320",
+            "name": "Iowa",
+            "capturedAt": 1795643454422
+          },
+          {
+            "teamId": "832438321",
+            "name": "Iowa State",
+            "capturedAt": 1795643454426
+          },
+          {
+            "teamId": "832438322",
+            "name": "Jacksonville State",
+            "capturedAt": 1795643454430
+          },
+          {
+            "teamId": "832438323",
+            "name": "James Madison",
+            "capturedAt": 1795643454432
+          },
+          {
+            "teamId": "832438324",
+            "name": "Kansas",
+            "capturedAt": 1795643454436
+          },
+          {
+            "teamId": "832438325",
+            "name": "Kansas State",
+            "capturedAt": 1795643454440
+          },
+          {
+            "teamId": "832438326",
+            "name": "Kennesaw State",
+            "capturedAt": 1795643454442
+          },
+          {
+            "teamId": "832438327",
+            "name": "Kent State",
+            "capturedAt": 1795643454446
+          },
+          {
+            "teamId": "832438328",
+            "name": "Kentucky",
+            "capturedAt": 1795643454450
+          },
+          {
+            "teamId": "832438329",
+            "name": "Liberty",
+            "capturedAt": 1795643454452
+          },
+          {
+            "teamId": "832438330",
+            "name": "Louisiana",
+            "capturedAt": 1795643454456
+          },
+          {
+            "teamId": "832438331",
+            "name": "Louisiana Tech",
+            "capturedAt": 1795643454458
+          },
+          {
+            "teamId": "832438332",
+            "name": "Louisville",
+            "capturedAt": 1795643454461
+          },
+          {
+            "teamId": "832438333",
+            "name": "LSU",
+            "capturedAt": 1795643454465
+          },
+          {
+            "teamId": "832438334",
+            "name": "Marshall",
+            "capturedAt": 1795643454467
+          },
+          {
+            "teamId": "832438335",
+            "name": "Maryland",
+            "capturedAt": 1795643454471
+          },
+          {
+            "teamId": "832438396",
+            "name": "Massachusetts",
+            "capturedAt": 1795643454473
+          },
+          {
+            "teamId": "832438336",
+            "name": "Memphis",
+            "capturedAt": 1795643454477
+          },
+          {
+            "teamId": "832438337",
+            "name": "Miami",
+            "capturedAt": 1795643454480
+          },
+          {
+            "teamId": "832438338",
+            "name": "Miami University",
+            "capturedAt": 1795643454482
+          },
+          {
+            "teamId": "832438339",
+            "name": "Michigan",
+            "capturedAt": 1795643454486
+          },
+          {
+            "teamId": "832438340",
+            "name": "Michigan State",
+            "capturedAt": 1795643454490
+          },
+          {
+            "teamId": "832438341",
+            "name": "Middle Tennessee",
+            "capturedAt": 1795643454492
+          },
+          {
+            "teamId": "832438342",
+            "name": "Minnesota",
+            "capturedAt": 1795643454496
+          },
+          {
+            "teamId": "832438343",
+            "name": "Mississippi State",
+            "capturedAt": 1795643454500
+          },
+          {
+            "teamId": "832438344",
+            "name": "Missouri",
+            "capturedAt": 1795643454516
+          },
+          {
+            "teamId": "832438345",
+            "name": "Missouri State",
+            "capturedAt": 1795643454550
+          },
+          {
+            "teamId": "832438346",
+            "name": "Navy",
+            "capturedAt": 1795643454554
+          },
+          {
+            "teamId": "832438347",
+            "name": "NC State",
+            "capturedAt": 1795643454556
+          },
+          {
+            "teamId": "832438348",
+            "name": "Nebraska",
+            "capturedAt": 1795643454559
+          },
+          {
+            "teamId": "832438349",
+            "name": "Nevada",
+            "capturedAt": 1795643454561
+          },
+          {
+            "teamId": "832438350",
+            "name": "New Mexico",
+            "capturedAt": 1795643454565
+          },
+          {
+            "teamId": "832438351",
+            "name": "New Mexico State",
+            "capturedAt": 1795643454568
+          },
+          {
+            "teamId": "832438352",
+            "name": "North Carolina",
+            "capturedAt": 1795643454570
+          },
+          {
+            "teamId": "832438353",
+            "name": "North Dakota State",
+            "capturedAt": 1795643454574
+          },
+          {
+            "teamId": "832438354",
+            "name": "North Texas",
+            "capturedAt": 1795643454606
+          },
+          {
+            "teamId": "832438355",
+            "name": "Northern Illinois",
+            "capturedAt": 1795643454618
+          },
+          {
+            "teamId": "832438356",
+            "name": "Northwestern",
+            "capturedAt": 1795643454650
+          },
+          {
+            "teamId": "832438357",
+            "name": "Notre Dame",
+            "capturedAt": 1795643454660
+          },
+          {
+            "teamId": "832438358",
+            "name": "Ohio",
+            "capturedAt": 1795643454704
+          },
+          {
+            "teamId": "832438359",
+            "name": "Ohio State",
+            "capturedAt": 1795643454733
+          },
+          {
+            "teamId": "832438360",
+            "name": "Oklahoma",
+            "capturedAt": 1795643454748
+          },
+          {
+            "teamId": "832438361",
+            "name": "Oklahoma State",
+            "capturedAt": 1795643454779
+          },
+          {
+            "teamId": "832438362",
+            "name": "Old Dominion",
+            "capturedAt": 1795643454792
+          },
+          {
+            "teamId": "832438363",
+            "name": "Ole Miss",
+            "capturedAt": 1795643454822
+          },
+          {
+            "teamId": "832438364",
+            "name": "Oregon",
+            "capturedAt": 1795643454835
+          },
+          {
+            "teamId": "832438365",
+            "name": "Oregon State",
+            "capturedAt": 1795643454867
+          },
+          {
+            "teamId": "832438366",
+            "name": "Penn State",
+            "capturedAt": 1795643454879
+          },
+          {
+            "teamId": "832438367",
+            "name": "Pittsburgh",
+            "capturedAt": 1795643454907
+          },
+          {
+            "teamId": "832438368",
+            "name": "Purdue",
+            "capturedAt": 1795643454918
+          },
+          {
+            "teamId": "832438369",
+            "name": "Rice",
+            "capturedAt": 1795643454951
+          },
+          {
+            "teamId": "832438370",
+            "name": "Rutgers",
+            "capturedAt": 1795643454966
+          },
+          {
+            "teamId": "832438371",
+            "name": "Sacramento State",
+            "capturedAt": 1795643454992
+          },
+          {
+            "teamId": "832438372",
+            "name": "Sam Houston",
+            "capturedAt": 1795643455008
+          },
+          {
+            "teamId": "832438373",
+            "name": "San Diego State",
+            "capturedAt": 1795643455052
+          },
+          {
+            "teamId": "832438374",
+            "name": "San Jose State",
+            "capturedAt": 1795643455322
+          },
+          {
+            "teamId": "832438375",
+            "name": "SMU",
+            "capturedAt": 1795643455326
+          },
+          {
+            "teamId": "832438376",
+            "name": "South Alabama",
+            "capturedAt": 1795643455357
+          },
+          {
+            "teamId": "832438377",
+            "name": "South Carolina",
+            "capturedAt": 1795643455380
+          },
+          {
+            "teamId": "832438378",
+            "name": "Southern Mississippi",
+            "capturedAt": 1795643455394
+          },
+          {
+            "teamId": "832438379",
+            "name": "Stanford",
+            "capturedAt": 1795643455420
+          },
+          {
+            "teamId": "832438380",
+            "name": "Syracuse",
+            "capturedAt": 1795643455423
+          },
+          {
+            "teamId": "832438381",
+            "name": "TCU",
+            "capturedAt": 1795643455457
+          },
+          {
+            "teamId": "832438382",
+            "name": "Temple",
+            "capturedAt": 1795643455488
+          },
+          {
+            "teamId": "832438383",
+            "name": "Tennessee",
+            "capturedAt": 1795643455494
+          },
+          {
+            "teamId": "832438384",
+            "name": "Texas",
+            "capturedAt": 1795643455525
+          },
+          {
+            "teamId": "832438385",
+            "name": "Texas A&M",
+            "capturedAt": 1795643455557
+          },
+          {
+            "teamId": "832438386",
+            "name": "Texas State",
+            "capturedAt": 1795643455580
+          },
+          {
+            "teamId": "832438387",
+            "name": "Texas Tech",
+            "capturedAt": 1795643455599
+          },
+          {
+            "teamId": "832438388",
+            "name": "Toledo",
+            "capturedAt": 1795643455623
+          },
+          {
+            "teamId": "832438389",
+            "name": "Troy",
+            "capturedAt": 1795643455647
+          },
+          {
+            "teamId": "832438390",
+            "name": "Tulane",
+            "capturedAt": 1795643455658
+          },
+          {
+            "teamId": "832438391",
+            "name": "Tulsa",
+            "capturedAt": 1795643455688
+          },
+          {
+            "teamId": "832438392",
+            "name": "UAB",
+            "capturedAt": 1795643455708
+          },
+          {
+            "teamId": "832438393",
+            "name": "UCF",
+            "capturedAt": 1795643455720
+          },
+          {
+            "teamId": "832438394",
+            "name": "UCLA",
+            "capturedAt": 1795643455749
+          },
+          {
+            "teamId": "832438297",
+            "name": "UConn",
+            "capturedAt": 1795643455752
+          },
+          {
+            "teamId": "832438395",
+            "name": "UL Monroe",
+            "capturedAt": 1795643455787
+          },
+          {
+            "teamId": "832438397",
+            "name": "UNLV",
+            "capturedAt": 1795643455813
+          },
+          {
+            "teamId": "832438398",
+            "name": "USC",
+            "capturedAt": 1795643455822
+          },
+          {
+            "teamId": "832438399",
+            "name": "USF",
+            "capturedAt": 1795643455852
+          },
+          {
+            "teamId": "832438400",
+            "name": "Utah",
+            "capturedAt": 1795643455875
+          },
+          {
+            "teamId": "832438401",
+            "name": "Utah State",
+            "capturedAt": 1795643455888
+          },
+          {
+            "teamId": "832438402",
+            "name": "UTEP",
+            "capturedAt": 1795643455915
+          },
+          {
+            "teamId": "832438403",
+            "name": "UTSA",
+            "capturedAt": 1795643455918
+          },
+          {
+            "teamId": "832438404",
+            "name": "Vanderbilt",
+            "capturedAt": 1795643455951
+          },
+          {
+            "teamId": "832438405",
+            "name": "Virginia",
+            "capturedAt": 1795643455981
+          },
+          {
+            "teamId": "832438406",
+            "name": "Virginia Tech",
+            "capturedAt": 1795643455989
+          },
+          {
+            "teamId": "832438407",
+            "name": "Wake Forest",
+            "capturedAt": 1795643456018
+          },
+          {
+            "teamId": "832438408",
+            "name": "Washington",
+            "capturedAt": 1795643456045
+          },
+          {
+            "teamId": "832438409",
+            "name": "Washington State",
+            "capturedAt": 1795643456050
+          },
+          {
+            "teamId": "832438410",
+            "name": "West Virginia",
+            "capturedAt": 1795643456083
+          },
+          {
+            "teamId": "832438411",
+            "name": "Western Kentucky",
+            "capturedAt": 1795643456112
+          },
+          {
+            "teamId": "832438412",
+            "name": "Western Michigan",
+            "capturedAt": 1795643456117
+          },
+          {
+            "teamId": "832438413",
+            "name": "Wisconsin",
+            "capturedAt": 1795643456149
+          },
+          {
+            "teamId": "832438414",
+            "name": "Wyoming",
+            "capturedAt": 1795643456181
+          }
+        ]
+      }
+    ]
+  }
+}
