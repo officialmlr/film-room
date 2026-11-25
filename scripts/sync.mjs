@@ -25,7 +25,14 @@ let requests = 0;
 async function get(path, tries = 0) {
   if (requests > 0) await sleep(1100);
   requests++;
-  const res = await fetch(BASE + path, { headers: { Authorization: `Bearer ${TOKEN}` } });
+  let res;
+  try {
+    res = await fetch(BASE + path, { headers: { Authorization: `Bearer ${TOKEN}` } });
+  } catch (e) {
+    // Network hiccup (DNS, reset): wait and try again, up to 3 times.
+    if (tries < 3) { console.log(`Network error on ${path}; retrying in ${10 * (tries + 1)}s`); await sleep(10000 * (tries + 1)); return get(path, tries + 1); }
+    throw e;
+  }
   if (res.ok) return res.json();
   const body = await res.json().catch(() => ({}));
   const code = body?.error?.code || res.status;
