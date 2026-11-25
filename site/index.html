@@ -642,17 +642,26 @@ async function makeFeed(gameId) {
   st.textContent = "Checking the timeline…";
   const me = T[U], [us, them] = teamSide(b), opp = T[b[them === "home" ? "h" : "a"]] || {};
   const won = b[us === "home" ? "hs" : "as"] > b[us === "home" ? "as" : "hs"];
-  const prompt = `Invent the social media timeline after this game for "Film Room", a site about one person's College Football 27 video game dynasty. It should read like real college football Twitter: opinions, not a stat recap.
-Write 11 posts. Mix these voices (all fictional, invented display names and @handles):
-- 3 or 4 ${me.name} fans who disagree with each other: ${won ? "one euphoric overreaction (\"we're making the playoff\"), one skeptic who thinks the win hid problems, one who wants a specific player to get more touches" : "one doom-poster ready to fire everyone, one defender telling people to calm down, one who blames a specific unit or the play-calling"}
-- 2 ${opp.name || "opponent"} fans: ${won ? "salty excuses or grudging respect" : "trolling and gloating"}
-- 1 national hot-take analyst with a bold, arguable claim
-- 1 stats account (the only post that leads with a number)
-- 1 recruiting insider (one post at most, a take, not a report)
-- 1 or 2 meme or joke posts
-- At least 3 posts are REPLIES to an earlier post in the list, arguing or piling on (set "replyTo" to that post's @handle).
-Tone rules: takes, emotion, banter and arguments; at most 3 posts may mention a number. Mild trash talk is fine; no profanity, slurs or personal attacks on real people. Every account is fictional. No post is written as, or quotes, a real player or real coach; players may be named only for what they did in the facts. The coach's only words are the press conference answers below, if any, and fans may react to them. Use only the facts given: no invented injuries, plays or numbers. No emoji. At most one hashtag per post. Each post under 220 characters.
-Return JSON only: {"posts":[{"name": string, "handle": string starting with @, "kind": one of "Fan","Rival fan","Analyst","Stats","Recruiting","Meme", "replyTo": @handle or null, "likes": number, "color": hex like #1A2B3C, "text": string}]}.
+  // Different crowd every week: a random cast, size, order and number of arguments.
+  const shuffle = (a) => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const pool = [
+    `a die-hard ${me.name} optimist`, `a ${me.name} doom-poster`, `a ${me.name} fan who only cares about the defense`, `a ${me.name} fan obsessed with the quarterback`,
+    `a ${me.name} fan who blames the play-calling`, `an old-timer ${me.name} alum comparing this team to the old days`, `a ${me.name} student section account`,
+    `a ${opp.name || "opponent"} fan`, `another ${opp.name || "opponent"} fan`, `a fan of a conference rival (${me.conf || "same conference"}) enjoying the chaos`, `a neutral college football junkie watching every game`,
+    "a national hot-take analyst", "a sports betting account talking about the spread", "a stats account", "a recruiting insider", "a meme account",
+    "a parody account of a grumpy booster", "a local sports talk radio caller", "a fan who only posts in all caps", "a calm, reasonable fan everyone argues with"
+  ];
+  const cast = shuffle(pool).slice(0, 6 + Math.floor(Math.random() * 4));
+  const total = 8 + Math.floor(Math.random() * 6), replies = 2 + Math.floor(Math.random() * 4);
+  const seen = [...new Set(Object.values(feeds).filter((f) => f.gameId !== gameId).flatMap((f) => (f.posts || []).map((p) => p.handle)))];
+  const regulars = shuffle(seen).slice(0, Math.floor(Math.random() * 3));
+  const mood = won ? shuffle(["euphoric", "relieved", "smug", "cautiously optimistic", "nitpicky even after a win"]).slice(0, 2).join(" and ") : shuffle(["furious", "resigned", "in denial", "darkly funny", "already looking at next year"]).slice(0, 2).join(" and ");
+  const prompt = `Invent the social media timeline after this game for "Film Room", a site about one person's College Football 27 video game dynasty. It should read like real college football Twitter: opinions, arguments and jokes, not a stat recap.
+This week's crowd (all fictional, each with an invented display name and @handle): ${cast.join("; ")}.${regulars.length ? `\nRegulars from earlier weeks who show up again (keep their exact handles): ${regulars.join(", ")}.` : ""}
+${seen.filter((h) => !regulars.includes(h)).length ? `Every other account must be NEW: do not reuse any of these handles: ${seen.filter((h) => !regulars.includes(h)).join(", ")}.` : "Every other account must be new."}
+Write ${total} posts. The ${me.name} fan base is mostly ${mood}, but people disagree. Shuffle the order: do not open with the most obvious take, and do not follow the pattern "angry fan, then someone telling him to calm down". ${replies} posts are replies (set "replyTo" to the @handle of an earlier post): spread them around, different people replying to different people, including a reply to a reply and someone quoting the coach if he spoke. Not every account posts; some post twice.
+Tone rules: takes, emotion, banter; at most 3 posts mention a number. Mild trash talk is fine; no profanity, slurs or personal attacks on real people. No post is written as, or quotes, a real player or real coach; players may be named only for what they did in the facts. The coach's only words are the press conference answers below, if any. Use only the facts given: no invented injuries, plays or numbers. No emoji. At most one hashtag per post. Each post under 220 characters.
+Return JSON only: {"posts":[{"name": string, "handle": string starting with @, "kind": one of "Fan","Rival fan","Analyst","Stats","Recruiting","Meme","Neutral", "replyTo": @handle or null, "likes": number, "color": hex like #1A2B3C, "text": string}]}.
 
 FACTS
 ${factsFor(b)}${quotesFor(gameId)}`;
