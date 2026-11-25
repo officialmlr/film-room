@@ -8,13 +8,13 @@
   "dataset": "coaches",
   "data": {
     "state": "available",
-    "capturedAt": 1795580580673,
-    "capturedStage": "2026 · Week 9",
+    "capturedAt": 1795581241339,
+    "capturedStage": "2026 · Week 10",
     "active": [
       {
         "name": "Michael Rothenberg",
         "role": "HC",
-        "wins": 3,
+        "wins": 4,
         "losses": 4,
         "school": "Maryland",
         "teamId": "832438335",
@@ -29,9 +29,9 @@
           "stage": "Wk 3"
         },
         "lastSeen": {
-          "at": 1795580580673,
+          "at": 1795581241339,
           "year": 2026,
-          "stage": "Week 9"
+          "stage": "Week 10"
         },
         "departed": null,
         "schools": [
@@ -44,9 +44,9 @@
               "stage": "Wk 3"
             },
             "lastSeen": {
-              "at": 1795580580673,
+              "at": 1795581241339,
               "year": 2026,
-              "stage": "Week 9"
+              "stage": "Week 10"
             }
           }
         ]
@@ -54,18 +54,18 @@
     ],
     "retired": [],
     "rankings": {
-      "poll": "media",
+      "poll": "playoff",
       "teams": [
         {
           "teamId": "832438359",
           "rank": 1
         },
         {
-          "teamId": "832438398",
+          "teamId": "832438385",
           "rank": 2
         },
         {
-          "teamId": "832438385",
+          "teamId": "832438337",
           "rank": 3
         },
         {
@@ -73,15 +73,15 @@
           "rank": 4
         },
         {
-          "teamId": "832438337",
+          "teamId": "832438398",
           "rank": 5
         },
         {
-          "teamId": "832438339",
+          "teamId": "832438384",
           "rank": 6
         },
         {
-          "teamId": "832438384",
+          "teamId": "832438312",
           "rank": 7
         },
         {
@@ -89,71 +89,71 @@
           "rank": 8
         },
         {
-          "teamId": "832438408",
+          "teamId": "832438357",
           "rank": 9
         },
         {
-          "teamId": "832438357",
+          "teamId": "832438387",
           "rank": 10
         },
         {
-          "teamId": "832438312",
+          "teamId": "832438400",
           "rank": 11
         },
         {
-          "teamId": "832438319",
+          "teamId": "832438360",
           "rank": 12
         },
         {
-          "teamId": "832438400",
+          "teamId": "832438319",
           "rank": 13
         },
         {
-          "teamId": "832438387",
+          "teamId": "832438364",
           "rank": 14
         },
         {
-          "teamId": "832438360",
+          "teamId": "832438367",
           "rank": 15
         },
         {
-          "teamId": "832438364",
+          "teamId": "832438339",
           "rank": 16
         },
         {
-          "teamId": "832438363",
+          "teamId": "832438383",
           "rank": 17
         },
         {
-          "teamId": "832438284",
+          "teamId": "832438344",
           "rank": 18
         },
         {
-          "teamId": "832438367",
+          "teamId": "832438348",
           "rank": 19
         },
         {
-          "teamId": "832438348",
+          "teamId": "832438317",
           "rank": 20
         },
         {
-          "teamId": "832438383",
+          "teamId": "832438284",
           "rank": 21
         },
         {
-          "teamId": "832438344",
+          "teamId": "832438403",
           "rank": 22
         },
         {
-          "teamId": "832438317",
+          "teamId": "832438361",
           "rank": 23
         },
         {
-          "teamId": "832438346",
+          "teamId": "832438375",
           "rank": 24
         },
         {
-          "teamId": "832438292",
+          "teamId": "832438408",
           "rank": 25
         }
       ]
