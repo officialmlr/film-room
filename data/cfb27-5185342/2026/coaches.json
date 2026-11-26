@@ -7,14 +7,14 @@
   "season": 2026,
   "dataset": "coaches",
   "data": {
-    "state": "pending",
-    "capturedAt": 1795643439498,
-    "capturedStage": "2026 · Wk 1",
+    "state": "available",
+    "capturedAt": 1795669512174,
+    "capturedStage": "2026 · Week 1",
     "active": [
       {
         "name": "Michael Rothenberg",
         "role": "HC",
-        "wins": 0,
+        "wins": 1,
         "losses": 0,
         "school": "Florida International",
         "teamId": "832438307",
@@ -29,9 +29,9 @@
           "stage": "Wk 1"
         },
         "lastSeen": {
-          "at": 1795643439498,
+          "at": 1795669512174,
           "year": 2026,
-          "stage": "Wk 1"
+          "stage": "Week 1"
         },
         "departed": null,
         "schools": [
@@ -44,9 +44,9 @@
               "stage": "Wk 1"
             },
             "lastSeen": {
-              "at": 1795643439498,
+              "at": 1795669512174,
               "year": 2026,
-              "stage": "Wk 1"
+              "stage": "Week 1"
             }
           }
         ]

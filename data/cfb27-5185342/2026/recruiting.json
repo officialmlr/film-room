@@ -63338,18 +63338,1829 @@
         "classes": []
       },
       {
-        "dataset": "recruit_status",
+        "dataset": "top_classes",
         "stage": {
-          "key": "[\"hub\",2026,0,1,0,1]",
-          "label": "Week 0",
+          "key": "[\"hub\",2026,0,1,1,2]",
+          "label": "Week 1",
           "year": 2026,
           "phase": "season",
-          "week": 0
+          "week": 1
+        },
+        "classYear": 2026,
+        "state": "available",
+        "finalized": false,
+        "capturedAt": 1795669513529,
+        "recruits": [],
+        "classes": [
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 1,
+            "three": 0,
+            "points": 0,
+            "school": "Boise State",
+            "teamId": "832438284",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 2,
+            "three": 0,
+            "points": 0,
+            "school": "Wyoming",
+            "teamId": "832438414",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 3,
+            "three": 0,
+            "points": 0,
+            "school": "UTEP",
+            "teamId": "832438402",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 4,
+            "three": 0,
+            "points": 0,
+            "school": "UNLV",
+            "teamId": "832438397",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 5,
+            "three": 0,
+            "points": 0,
+            "school": "San Jose State",
+            "teamId": "832438374",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 6,
+            "three": 0,
+            "points": 0,
+            "school": "NIU",
+            "teamId": "832438355",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 7,
+            "three": 0,
+            "points": 0,
+            "school": "NDSU",
+            "teamId": "832438353",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 8,
+            "three": 0,
+            "points": 0,
+            "school": "New Mexico",
+            "teamId": "832438350",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 9,
+            "three": 0,
+            "points": 0,
+            "school": "Nevada",
+            "teamId": "832438349",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 10,
+            "three": 0,
+            "points": 0,
+            "school": "Hawai'i",
+            "teamId": "832438316",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 11,
+            "three": 0,
+            "points": 0,
+            "school": "Air Force",
+            "teamId": "832438272",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 12,
+            "three": 0,
+            "points": 0,
+            "school": "W. Michigan",
+            "teamId": "832438412",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 13,
+            "three": 0,
+            "points": 0,
+            "school": "Massachusetts",
+            "teamId": "832438396",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 14,
+            "three": 0,
+            "points": 0,
+            "school": "Toledo",
+            "teamId": "832438388",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 15,
+            "three": 0,
+            "points": 0,
+            "school": "Sac State",
+            "teamId": "832438371",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 16,
+            "three": 0,
+            "points": 0,
+            "school": "Ohio",
+            "teamId": "832438358",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 17,
+            "three": 0,
+            "points": 0,
+            "school": "Miami (OH)",
+            "teamId": "832438338",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 18,
+            "three": 0,
+            "points": 0,
+            "school": "Kent State",
+            "teamId": "832438327",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 19,
+            "three": 0,
+            "points": 0,
+            "school": "E. Michigan",
+            "teamId": "832438300",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 20,
+            "three": 0,
+            "points": 0,
+            "school": "C. Michigan",
+            "teamId": "832438290",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 21,
+            "three": 0,
+            "points": 0,
+            "school": "Buffalo",
+            "teamId": "832438287",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 22,
+            "three": 0,
+            "points": 0,
+            "school": "Bowling Green",
+            "teamId": "832438286",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 23,
+            "three": 0,
+            "points": 0,
+            "school": "Ball State",
+            "teamId": "832438282",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 24,
+            "three": 0,
+            "points": 0,
+            "school": "Akron",
+            "teamId": "832438273",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 25,
+            "three": 0,
+            "points": 0,
+            "school": "Notre Dame",
+            "teamId": "832438357",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 26,
+            "three": 0,
+            "points": 0,
+            "school": "UConn",
+            "teamId": "832438297",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 27,
+            "three": 0,
+            "points": 0,
+            "school": "UL Monroe",
+            "teamId": "832438395",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 28,
+            "three": 0,
+            "points": 0,
+            "school": "Charlotte",
+            "teamId": "832438291",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 29,
+            "three": 0,
+            "points": 0,
+            "school": "W. Kentucky",
+            "teamId": "832438411",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 30,
+            "three": 0,
+            "points": 0,
+            "school": "Sam Houston",
+            "teamId": "832438372",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 31,
+            "three": 0,
+            "points": 0,
+            "school": "New Mexico St.",
+            "teamId": "832438351",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 32,
+            "three": 0,
+            "points": 0,
+            "school": "Missouri State",
+            "teamId": "832438345",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 33,
+            "three": 0,
+            "points": 0,
+            "school": "MTSU",
+            "teamId": "832438341",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 34,
+            "three": 0,
+            "points": 0,
+            "school": "Liberty",
+            "teamId": "832438329",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 35,
+            "three": 0,
+            "points": 0,
+            "school": "Troy",
+            "teamId": "832438389",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 36,
+            "three": 0,
+            "points": 0,
+            "school": "Southern Miss",
+            "teamId": "832438378",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 37,
+            "three": 0,
+            "points": 0,
+            "school": "South Alabama",
+            "teamId": "832438376",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 38,
+            "three": 0,
+            "points": 0,
+            "school": "Louisiana Tech",
+            "teamId": "832438331",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 39,
+            "three": 0,
+            "points": 0,
+            "school": "Louisiana",
+            "teamId": "832438330",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 40,
+            "three": 0,
+            "points": 0,
+            "school": "Arkansas State",
+            "teamId": "832438279",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 41,
+            "three": 0,
+            "points": 0,
+            "school": "Marshall",
+            "teamId": "832438334",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 42,
+            "three": 0,
+            "points": 0,
+            "school": "Old Dominion",
+            "teamId": "832438362",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 43,
+            "three": 0,
+            "points": 0,
+            "school": "Georgia State",
+            "teamId": "832438314",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 44,
+            "three": 0,
+            "points": 0,
+            "school": "Ga Southern",
+            "teamId": "832438313",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 45,
+            "three": 0,
+            "points": 0,
+            "school": "C. Carolina",
+            "teamId": "832438294",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 46,
+            "three": 0,
+            "points": 0,
+            "school": "App St.",
+            "teamId": "832438275",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 47,
+            "three": 0,
+            "points": 0,
+            "school": "Texas",
+            "teamId": "832438384",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 48,
+            "three": 0,
+            "points": 0,
+            "school": "Oklahoma",
+            "teamId": "832438360",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 49,
+            "three": 0,
+            "points": 0,
+            "school": "Texas A&M",
+            "teamId": "832438385",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 50,
+            "three": 0,
+            "points": 0,
+            "school": "Ole Miss",
+            "teamId": "832438363",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 51,
+            "three": 0,
+            "points": 0,
+            "school": "Mississippi St",
+            "teamId": "832438343",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 52,
+            "three": 0,
+            "points": 0,
+            "school": "LSU",
+            "teamId": "832438333",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 53,
+            "three": 0,
+            "points": 0,
+            "school": "Auburn",
+            "teamId": "832438281",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 54,
+            "three": 0,
+            "points": 0,
+            "school": "Arkansas",
+            "teamId": "832438278",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 55,
+            "three": 0,
+            "points": 0,
+            "school": "Alabama",
+            "teamId": "832438274",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 56,
+            "three": 0,
+            "points": 0,
+            "school": "Vanderbilt",
+            "teamId": "832438404",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 57,
+            "three": 0,
+            "points": 0,
+            "school": "Tennessee",
+            "teamId": "832438383",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 58,
+            "three": 0,
+            "points": 0,
+            "school": "South Carolina",
+            "teamId": "832438377",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 59,
+            "three": 0,
+            "points": 0,
+            "school": "Missouri",
+            "teamId": "832438344",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 60,
+            "three": 0,
+            "points": 0,
+            "school": "Kentucky",
+            "teamId": "832438328",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 61,
+            "three": 0,
+            "points": 0,
+            "school": "Georgia",
+            "teamId": "832438312",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 62,
+            "three": 0,
+            "points": 0,
+            "school": "Florida",
+            "teamId": "832438308",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 63,
+            "three": 0,
+            "points": 0,
+            "school": "Washington St.",
+            "teamId": "832438409",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 64,
+            "three": 0,
+            "points": 0,
+            "school": "Utah State",
+            "teamId": "832438401",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 65,
+            "three": 0,
+            "points": 0,
+            "school": "Texas State",
+            "teamId": "832438386",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 66,
+            "three": 0,
+            "points": 0,
+            "school": "San Diego St.",
+            "teamId": "832438373",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 67,
+            "three": 0,
+            "points": 0,
+            "school": "Oregon State",
+            "teamId": "832438365",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 68,
+            "three": 0,
+            "points": 0,
+            "school": "Fresno State",
+            "teamId": "832438311",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 69,
+            "three": 0,
+            "points": 0,
+            "school": "Colorado State",
+            "teamId": "832438296",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 70,
+            "three": 0,
+            "points": 0,
+            "school": "Baylor",
+            "teamId": "832438283",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 71,
+            "three": 0,
+            "points": 0,
+            "school": "Arizona State",
+            "teamId": "832438277",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 72,
+            "three": 0,
+            "points": 0,
+            "school": "Arizona",
+            "teamId": "832438276",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 73,
+            "three": 0,
+            "points": 0,
+            "school": "Army",
+            "teamId": "832438280",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 74,
+            "three": 0,
+            "points": 0,
+            "school": "James Madison",
+            "teamId": "832438323",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 75,
+            "three": 0,
+            "points": 0,
+            "school": "UAB",
+            "teamId": "832438392",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 76,
+            "three": 0,
+            "points": 0,
+            "school": "Rice",
+            "teamId": "832438369",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 77,
+            "three": 0,
+            "points": 0,
+            "school": "UTSA",
+            "teamId": "832438403",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 78,
+            "three": 0,
+            "points": 0,
+            "school": "North Texas",
+            "teamId": "832438354",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 79,
+            "three": 0,
+            "points": 0,
+            "school": "FLA Atlantic",
+            "teamId": "832438309",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 80,
+            "three": 0,
+            "points": 0,
+            "school": "Tulsa",
+            "teamId": "832438391",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 81,
+            "three": 0,
+            "points": 0,
+            "school": "Tulane",
+            "teamId": "832438390",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 82,
+            "three": 0,
+            "points": 0,
+            "school": "Temple",
+            "teamId": "832438382",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 83,
+            "three": 0,
+            "points": 0,
+            "school": "USF",
+            "teamId": "832438399",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 84,
+            "three": 0,
+            "points": 0,
+            "school": "Navy",
+            "teamId": "832438346",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 85,
+            "three": 0,
+            "points": 0,
+            "school": "Memphis",
+            "teamId": "832438336",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 86,
+            "three": 0,
+            "points": 0,
+            "school": "East Carolina",
+            "teamId": "832438301",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 87,
+            "three": 0,
+            "points": 0,
+            "school": "Stanford",
+            "teamId": "832438379",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 88,
+            "three": 0,
+            "points": 0,
+            "school": "California",
+            "teamId": "832438289",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 89,
+            "three": 0,
+            "points": 0,
+            "school": "SMU",
+            "teamId": "832438375",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 90,
+            "three": 0,
+            "points": 0,
+            "school": "Virginia Tech",
+            "teamId": "832438406",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 91,
+            "three": 0,
+            "points": 0,
+            "school": "Virginia",
+            "teamId": "832438405",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 92,
+            "three": 0,
+            "points": 0,
+            "school": "Pittsburgh",
+            "teamId": "832438367",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 93,
+            "three": 0,
+            "points": 0,
+            "school": "North Carolina",
+            "teamId": "832438352",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 94,
+            "three": 0,
+            "points": 0,
+            "school": "Miami",
+            "teamId": "832438337",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 95,
+            "three": 0,
+            "points": 0,
+            "school": "Georgia Tech",
+            "teamId": "832438315",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 96,
+            "three": 0,
+            "points": 0,
+            "school": "Duke",
+            "teamId": "832438299",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 97,
+            "three": 0,
+            "points": 0,
+            "school": "Syracuse",
+            "teamId": "832438380",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 98,
+            "three": 0,
+            "points": 0,
+            "school": "Louisville",
+            "teamId": "832438332",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 99,
+            "three": 0,
+            "points": 0,
+            "school": "Florida State",
+            "teamId": "832438310",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 100,
+            "three": 0,
+            "points": 0,
+            "school": "Clemson",
+            "teamId": "832438293",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 101,
+            "three": 0,
+            "points": 0,
+            "school": "Boston College",
+            "teamId": "832438285",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 102,
+            "three": 0,
+            "points": 0,
+            "school": "NC State",
+            "teamId": "832438347",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 103,
+            "three": 0,
+            "points": 0,
+            "school": "Wake Forest",
+            "teamId": "832438407",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 104,
+            "three": 0,
+            "points": 0,
+            "school": "Kennesaw St.",
+            "teamId": "832438326",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 105,
+            "three": 0,
+            "points": 0,
+            "school": "Jax State",
+            "teamId": "832438322",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 106,
+            "three": 0,
+            "points": 0,
+            "school": "FIU",
+            "teamId": "832438307",
+            "commits": 0,
+            "userControlled": true
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 107,
+            "three": 0,
+            "points": 0,
+            "school": "Delaware",
+            "teamId": "832438298",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 108,
+            "three": 0,
+            "points": 0,
+            "school": "UCLA",
+            "teamId": "832438394",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 109,
+            "three": 0,
+            "points": 0,
+            "school": "USC",
+            "teamId": "832438398",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 110,
+            "three": 0,
+            "points": 0,
+            "school": "Wisconsin",
+            "teamId": "832438413",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 111,
+            "three": 0,
+            "points": 0,
+            "school": "Washington",
+            "teamId": "832438408",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 112,
+            "three": 0,
+            "points": 0,
+            "school": "Purdue",
+            "teamId": "832438368",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 113,
+            "three": 0,
+            "points": 0,
+            "school": "Oregon",
+            "teamId": "832438364",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 114,
+            "three": 0,
+            "points": 0,
+            "school": "Northwestern",
+            "teamId": "832438356",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 115,
+            "three": 0,
+            "points": 0,
+            "school": "Nebraska",
+            "teamId": "832438348",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 116,
+            "three": 0,
+            "points": 0,
+            "school": "Minnesota",
+            "teamId": "832438342",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 117,
+            "three": 0,
+            "points": 0,
+            "school": "Iowa",
+            "teamId": "832438320",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 118,
+            "three": 0,
+            "points": 0,
+            "school": "Illinois",
+            "teamId": "832438318",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 119,
+            "three": 0,
+            "points": 0,
+            "school": "Rutgers",
+            "teamId": "832438370",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 120,
+            "three": 0,
+            "points": 0,
+            "school": "Penn State",
+            "teamId": "832438366",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 121,
+            "three": 0,
+            "points": 0,
+            "school": "Ohio State",
+            "teamId": "832438359",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 122,
+            "three": 0,
+            "points": 0,
+            "school": "Michigan State",
+            "teamId": "832438340",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 123,
+            "three": 0,
+            "points": 0,
+            "school": "Michigan",
+            "teamId": "832438339",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 124,
+            "three": 0,
+            "points": 0,
+            "school": "Maryland",
+            "teamId": "832438335",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 125,
+            "three": 0,
+            "points": 0,
+            "school": "Indiana",
+            "teamId": "832438319",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 126,
+            "three": 0,
+            "points": 0,
+            "school": "UCF",
+            "teamId": "832438393",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 127,
+            "three": 0,
+            "points": 0,
+            "school": "West Virginia",
+            "teamId": "832438410",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 128,
+            "three": 0,
+            "points": 0,
+            "school": "Texas Tech",
+            "teamId": "832438387",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 129,
+            "three": 0,
+            "points": 0,
+            "school": "Utah",
+            "teamId": "832438400",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 130,
+            "three": 0,
+            "points": 0,
+            "school": "TCU",
+            "teamId": "832438381",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 131,
+            "three": 0,
+            "points": 0,
+            "school": "Oklahoma State",
+            "teamId": "832438361",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 132,
+            "three": 0,
+            "points": 0,
+            "school": "Kansas State",
+            "teamId": "832438325",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 133,
+            "three": 0,
+            "points": 0,
+            "school": "Kansas",
+            "teamId": "832438324",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 134,
+            "three": 0,
+            "points": 0,
+            "school": "Iowa State",
+            "teamId": "832438321",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 135,
+            "three": 0,
+            "points": 0,
+            "school": "Houston",
+            "teamId": "832438317",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 136,
+            "three": 0,
+            "points": 0,
+            "school": "Colorado",
+            "teamId": "832438295",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 137,
+            "three": 0,
+            "points": 0,
+            "school": "Cincinnati",
+            "teamId": "832438292",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 138,
+            "three": 0,
+            "points": 0,
+            "school": "BYU",
+            "teamId": "832438288",
+            "commits": 0,
+            "userControlled": false
+          }
+        ]
+      },
+      {
+        "dataset": "recruit_status",
+        "stage": {
+          "key": "[\"hub\",2026,0,1,1,2]",
+          "label": "Week 1",
+          "year": 2026,
+          "phase": "season",
+          "week": 1
         },
         "classYear": null,
         "state": "available",
         "finalized": false,
-        "capturedAt": 1795643445239,
+        "capturedAt": 1795669522824,
         "recruits": [],
         "classes": [],
         "status": [
@@ -64070,7 +65881,7 @@
             "recruitId": "rank:179"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:180"
           },
           {
@@ -64734,7 +66545,7 @@
             "recruitId": "rank:345"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:346"
           },
           {
@@ -64894,7 +66705,7 @@
             "recruitId": "rank:385"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:386"
           },
           {
@@ -65038,7 +66849,7 @@
             "recruitId": "rank:421"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:422"
           },
           {
@@ -65130,7 +66941,7 @@
             "recruitId": "rank:444"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:445"
           },
           {
@@ -65174,7 +66985,7 @@
             "recruitId": "rank:455"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:456"
           },
           {
@@ -65182,7 +66993,7 @@
             "recruitId": "rank:457"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:458"
           },
           {
@@ -65378,7 +67189,7 @@
             "recruitId": "rank:506"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:507"
           },
           {
@@ -65386,7 +67197,7 @@
             "recruitId": "rank:508"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:509"
           },
           {
@@ -65482,7 +67293,7 @@
             "recruitId": "rank:532"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:533"
           },
           {
@@ -65682,7 +67493,7 @@
             "recruitId": "rank:582"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:583"
           },
           {
@@ -65694,7 +67505,7 @@
             "recruitId": "rank:585"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:586"
           },
           {
@@ -65782,7 +67593,7 @@
             "recruitId": "rank:607"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:608"
           },
           {
@@ -65806,7 +67617,7 @@
             "recruitId": "rank:613"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:614"
           },
           {
@@ -65834,7 +67645,7 @@
             "recruitId": "rank:620"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:621"
           },
           {
@@ -66302,7 +68113,7 @@
             "recruitId": "rank:737"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:738"
           },
           {
@@ -66318,7 +68129,7 @@
             "recruitId": "rank:741"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:742"
           },
           {
@@ -66358,7 +68169,7 @@
             "recruitId": "rank:751"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:752"
           },
           {
@@ -66398,7 +68209,7 @@
             "recruitId": "rank:761"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:762"
           },
           {
@@ -66590,7 +68401,7 @@
             "recruitId": "rank:809"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:810"
           },
           {
@@ -66638,7 +68449,7 @@
             "recruitId": "rank:821"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:822"
           },
           {
@@ -66718,7 +68529,7 @@
             "recruitId": "rank:841"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:842"
           },
           {
@@ -66762,7 +68573,7 @@
             "recruitId": "rank:852"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:853"
           },
           {
@@ -66822,7 +68633,7 @@
             "recruitId": "rank:867"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:868"
           },
           {
@@ -66862,7 +68673,7 @@
             "recruitId": "rank:877"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:878"
           },
           {
@@ -66966,7 +68777,7 @@
             "recruitId": "rank:903"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:904"
           },
           {
@@ -66998,7 +68809,7 @@
             "recruitId": "rank:911"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:912"
           },
           {
@@ -67146,7 +68957,7 @@
             "recruitId": "rank:948"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:949"
           },
           {
@@ -67178,7 +68989,7 @@
             "recruitId": "rank:956"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:957"
           },
           {
@@ -67266,7 +69077,7 @@
             "recruitId": "rank:978"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:979"
           },
           {
@@ -67582,7 +69393,7 @@
             "recruitId": "rank:1057"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1058"
           },
           {
@@ -67726,7 +69537,7 @@
             "recruitId": "rank:1093"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1094"
           },
           {
@@ -67770,7 +69581,7 @@
             "recruitId": "rank:1104"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1105"
           },
           {
@@ -67814,7 +69625,7 @@
             "recruitId": "rank:1115"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1116"
           },
           {
@@ -67890,7 +69701,7 @@
             "recruitId": "rank:1134"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1135"
           },
           {
@@ -67906,7 +69717,7 @@
             "recruitId": "rank:1138"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1139"
           },
           {
@@ -68066,7 +69877,7 @@
             "recruitId": "rank:1178"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1179"
           },
           {
@@ -68134,7 +69945,7 @@
             "recruitId": "rank:1195"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1196"
           },
           {
@@ -68146,7 +69957,7 @@
             "recruitId": "rank:1198"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1199"
           },
           {
@@ -68242,11 +70053,11 @@
             "recruitId": "rank:1222"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1223"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1224"
           },
           {
@@ -68290,7 +70101,7 @@
             "recruitId": "rank:1234"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1235"
           },
           {
@@ -68390,7 +70201,7 @@
             "recruitId": "rank:1259"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1260"
           },
           {
@@ -68454,7 +70265,7 @@
             "recruitId": "rank:1275"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1276"
           },
           {
@@ -68726,7 +70537,7 @@
             "recruitId": "rank:1343"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1344"
           },
           {
@@ -68762,7 +70573,7 @@
             "recruitId": "rank:1352"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1353"
           },
           {
@@ -69094,7 +70905,7 @@
             "recruitId": "rank:1435"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1436"
           },
           {
@@ -71822,7 +73633,7 @@
             "recruitId": "rank:2117"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2118"
           },
           {
@@ -72398,7 +74209,7 @@
             "recruitId": "rank:2261"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2262"
           },
           {
@@ -73110,7 +74921,7 @@
             "recruitId": "rank:2439"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2440"
           },
           {
@@ -73298,7 +75109,7 @@
             "recruitId": "rank:2486"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2487"
           },
           {
@@ -74070,7 +75881,7 @@
             "recruitId": "rank:2679"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2680"
           },
           {
@@ -74446,7 +76257,7 @@
             "recruitId": "rank:2773"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2774"
           },
           {
@@ -75330,7 +77141,7 @@
             "recruitId": "rank:2994"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2995"
           },
           {
@@ -75798,7 +77609,7 @@
             "recruitId": "rank:3111"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3112"
           },
           {
@@ -78214,7 +80025,7 @@
             "recruitId": "rank:3715"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3716"
           },
           {
@@ -78374,7 +80185,7 @@
             "recruitId": "rank:3755"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3756"
           },
           {
