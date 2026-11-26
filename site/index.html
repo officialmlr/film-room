@@ -109,7 +109,7 @@ details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
 {
 const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const app = document.getElementById("app");
-let D = null, T = {}, U = null, UT = null, db = null, sample = null, imgLimits = null, stories = {}, pressers = {}, feeds = {}, columns = {}, boards = {}, drafts = {}, suggestions = {};
+let D = null, T = {}, U = null, UT = null, db = null, sample = null, imgLimits = null, stories = {}, pressers = {}, feeds = {}, columns = {}, boards = {}, drafts = {}, suggestions = {}, notes = {};
 
 const PERSONAS = [
   { id: "staff", name: "Film Room Staff", outlet: "Beat writer", ini: "FR", voice: "a straight, professional newspaper beat writer. Clear game story: result first, key performers, the turning point, what is next. No hype." },
@@ -403,7 +403,7 @@ function game(id) {
         <div class="score" style="flex:1 1 320px"><div style="text-align:center">${badge(b.a, 46)}<div class="big">${b.as}</div><div style="font-weight:600">${esc(b.an)}</div></div><span style="font-family:Fraunces,serif;font-size:22px">at</span><div style="text-align:center">${badge(b.h, 46)}<div class="big">${b.hs}</div><div style="font-weight:600">${esc(b.hn)}</div></div></div>
         <div style="flex:1 1 300px;background:var(--card);color:var(--ink);border-radius:10px;padding:6px 10px">${quarterTable(b)}</div>
       </div></section>
-    <div class="row"><div class="main" style="display:flex;flex-direction:column;gap:24px"><section class="card" aria-label="Press conference"><div class="hd"><h2>Press conference</h2>${pressers[b.id]?.done ? '<span class="note">The writers can quote you</span>' : ""}</div>${presserBlock(b.id)}</section><section class="card main" aria-label="Stories"><div class="hd"><h2>The newsroom</h2></div>${storyBlock(b.id, false)}</section></div>
+    <div class="row"><div class="main" style="display:flex;flex-direction:column;gap:24px">${notesBlock(b.id)}<section class="card" aria-label="Press conference"><div class="hd"><h2>Press conference</h2>${pressers[b.id]?.done ? '<span class="note">The writers can quote you</span>' : ""}</div>${presserBlock(b.id)}</section><section class="card main" aria-label="Stories"><div class="hd"><h2>The newsroom</h2></div>${storyBlock(b.id, false)}</section></div>
       <div class="side">${teamCompare(b)}<section class="card" aria-label="Social feed"><div class="hd"><h2>The feed</h2></div>${feedBlock(b.id)}</section></div></div>
     <div class="row">${boxTables(b, b.aRaw, b.an)}${boxTables(b, b.hRaw, b.hn)}</div>`;
 }
@@ -915,6 +915,22 @@ ${introFacts()}`, { modelTier: "default", cache: false });
   } catch (e) { introErr(e); document.querySelectorAll("[data-intro-story]").forEach((b) => (b.disabled = false)); }
 }
 
+// Optional game notes: weather, injuries, a benching. Writers treat them as fact for this game only.
+function notesBlock(gameId) {
+  const n = notes[gameId];
+  return `<section class="card" aria-label="Game notes"><div class="hd"><h2>Game notes</h2>${n?.text ? '<span class="note">The writers will use these</span>' : ""}</div>
+    <label class="note" for="note-${esc(gameId)}">Optional. Anything the numbers don't show: weather, kickoff time, an injury, a benching. Stories, the press conference and the feed treat it as fact, so keep it accurate. Stories written before you add a note won't have it until you regenerate them.</label>
+    <textarea id="note-${esc(gameId)}" rows="2" style="width:100%;margin-top:6px;font:16px/1.5 Inter,sans-serif;padding:10px;border-radius:10px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink)">${esc(n?.text || "")}</textarea>
+    <div style="display:flex;gap:10px;align-items:center;margin-top:8px"><button class="btn" data-note-save="${esc(gameId)}">Save note</button><span class="note" id="status-note-${esc(gameId)}"></span></div></section>`;
+}
+async function saveNote(gameId) {
+  const text = document.getElementById("note-" + gameId).value.trim();
+  notes[gameId] = { gameId, text, at: Date.now() };
+  const ok = await saveDoc("notes/" + gameId, notes[gameId]);
+  const st = document.getElementById("status-note-" + gameId);
+  if (st) st.textContent = ok || !db ? (text ? "Saved." : "Cleared.") : "Could not save. Try again.";
+}
+
 function newsroom() {
   const done = myGames().filter((g) => g.final && g.box).reverse();
   const col = columns[D.recruitingWeek];
@@ -1003,6 +1019,8 @@ function factsFor(b) {
   if (pz) lines.push(pz);
   const nx = myGames().find((g) => !g.final);
   if (nx) lines.push(`Next game: ${nx.week} ${nx.home ? "vs" : "at"} ${T[nx.opp]?.name || nx.oppName} (${T[nx.opp]?.rec || ""}).`);
+  const nt = notes[b.id]?.text?.trim();
+  if (nt) lines.push(`COACH'S GAME NOTES (written by the person playing; treat as true, and these are the only details beyond the numbers you may use, including weather or injuries; use them as written and add no detail they do not state): ${nt}`);
   return lines.join("\n") + canonBlock();
 }
 // Every story opens and is built differently from that writer's recent pieces.
@@ -1084,6 +1102,7 @@ app.addEventListener("click", (e) => {
   if (e.target.closest("[data-intro-edit]")) { pressers.intro.done = false; route(); return; }
   if (e.target.closest("[data-intro-back]")) { const p = introDoc(); return saveIntro({ ...p, qa: [], done: false }).then(route); }
   if (e.target.closest("[data-intro-story]") && sample) { e.target.closest("button").disabled = true; return introStory(); }
+  const ns = e.target.closest("[data-note-save]"); if (ns) return saveNote(ns.dataset.noteSave);
   const fd = e.target.closest("[data-feed]"); if (fd && sample) { fd.disabled = true; return makeFeed(fd.dataset.feed); }
   const cl = e.target.closest("[data-column]"); if (cl && sample) { cl.disabled = true; return writeColumn(); }
   const bn = e.target.closest("[data-board-note]"); if (bn && sample) { const t = document.getElementById("boardNote").value.trim(); if (!t) return; bn.disabled = true; return boardFromNote(t); }
@@ -1120,7 +1139,7 @@ app.addEventListener("input", (e) => {
 window.addEventListener("hashchange", () => { route(); window.scrollTo(0, 0); });
 
 function loadStore() {
-  stories = {}; pressers = {}; feeds = {}; columns = {}; boards = {}; drafts = {}; suggestions = {};
+  stories = {}; pressers = {}; feeds = {}; columns = {}; boards = {}; drafts = {}; suggestions = {}; notes = {};
   if (!db || !L) return;
   const timer = setTimeout(() => {}, 10000);
   const load = (name, put) => db.collection(P(name)).get().then((snap) => { for (const doc of snap?.docs || []) { const v = doc.data(); if (v) put(v); } }).catch(() => {});
@@ -1130,7 +1149,8 @@ function loadStore() {
     load("feed", (v) => { if (v.gameId) feeds[v.gameId] = v; }),
     load("columns", (v) => { if (v.week) columns[v.week] = v; }),
     load("boards", (v) => { if (v.week) boards[boardKey(v.week)] = v; }),
-    load("ledger", (v) => { if (v.season) ledger[v.season] = v; })
+    load("ledger", (v) => { if (v.season) ledger[v.season] = v; }),
+    load("notes", (v) => { if (v.gameId) notes[v.gameId] = v; })
   ]).then(() => { clearTimeout(timer); if (!document.activeElement?.matches?.("textarea")) route(); });
 }
 function openLeague(id) {
