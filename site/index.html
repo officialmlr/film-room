@@ -445,11 +445,11 @@ function rosterPage() {
 function rosterTable() {
   const r = (D.rosters[U] || []).filter((p) => rosterFilter === "All" || p.pos === rosterFilter);
   const ht = (i) => (i ? `${Math.floor(i / 12)}'${i % 12}"` : "");
-  document.getElementById("rosterTable").innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Player</th><th>Pos</th><th>Year</th><th>Dev</th><th class="n">SPD</th><th class="n">OVR</th></tr></thead><tbody>
+  document.getElementById("rosterTable").innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Player</th><th>Pos</th><th>Year</th><th>Dev</th><th class="n">OVR</th><th class="n">SPD</th></tr></thead><tbody>
     ${r.map((p) => `<tr><td><details><summary><b>${esc(p.n)}</b>&nbsp;<span class="muted">#${p.j}</span></summary><div class="note" style="padding:4px 0 8px">${ht(p.ht)}, ${p.wt || ""} lb${p.nil ? " · NIL " + esc(p.nil) : ""}</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px">${Object.entries(p.rt || {}).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([k, v]) => `<span class="tag">${esc(RT[k] || k)} ${v}</span>`).join("")}</div>
       ${p.ab?.length ? `<div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px">${p.ab.map(([a, t]) => `<span class="tag" style="border-color:var(--team)">${esc(a)} · ${esc(t)}</span>`).join("")}</div>` : ""}</details></td>
-      <td>${esc(p.pos)}</td><td>${esc(p.yr)}</td><td>${p.dev != null ? DEV[p.dev] : ""}</td><td class="n">${p.spd ?? ""}</td><td class="n"><b>${p.ovr}</b></td></tr>`).join("")}
+      <td>${esc(p.pos)}</td><td>${esc(p.yr)}</td><td>${p.dev != null ? DEV[p.dev] : ""}</td><td class="n"><b>${p.ovr}</b></td><td class="n">${p.spd ?? ""}</td></tr>`).join("")}
   </tbody></table></div>`;
 }
 const RT = { PSPD: "Speed", PACC: "Accel", PAGI: "Agility", PSTR: "Strength", PAWR: "Awareness", PTHP: "Throw power", PTHA: "Throw acc", PTUP: "Under pressure", PCAR: "Carrying", PBCV: "Vision", PBTK: "Break tackle", PCTH: "Catching", PRRS: "Short routes", PRRM: "Mid routes", PRRD: "Deep routes", PPBK: "Pass block", PRBK: "Run block", PTAK: "Tackle", PBSG: "Block shed", PLPU: "Pursuit", PLPR: "Play rec", PLMC: "Man cover", PLZC: "Zone cover", PKPR: "Kick power", PKAC: "Kick acc" };
