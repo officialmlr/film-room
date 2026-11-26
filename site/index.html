@@ -1001,11 +1001,19 @@ function pyramidPage() {
       <div style="margin-top:12px">${db ? (confirmLedger ? `<p class="note">Record these ${moves.length} moves as the ${season} season's final result? Do this only after the regular season ends, and before you realign in the game.</p><button class="btn solid" data-ledger-save="1">Yes, record ${season}</button> <button class="btn" data-ledger-cancel="1">Cancel</button>` : `<button class="btn" data-ledger="1">Record ${season}'s moves</button>`) : ""}</div></section>`;
 }
 
+// Spell out whether a game counts in the conference, so writers never call a non-conference game a conference one.
+function gameType(a, h) {
+  const ta = T[a], th = T[h];
+  if (!ta || !th) return "Game type: non-conference (one team is outside FBS conferences). It does not count in any conference standings or the pyramid.";
+  if (ta.conf && ta.conf === th.conf) return `Game type: CONFERENCE game (both teams are in ${ta.conf}). It counts in the ${ta.conf} standings and the pyramid.`;
+  return `Game type: NON-CONFERENCE game (${ta.name} plays in ${ta.conf || "no conference"}, ${th.name} plays in ${th.conf || "no conference"}). It does NOT count in either conference's standings or in the pyramid; never call it a conference game.`;
+}
 function canonBlock() { return D.cfg?.canon ? `\n\nPROGRAM CANON (fictional background for this dynasty; use it for color and continuity, never contradict it, never present it as real history, never quote real people named in it):\n${D.cfg.canon}` : ""; }
 function factsFor(b) {
   const lines = [];
   const side = (s, name) => `${name}: ${s.pts ?? ""} points (quarters ${[s.q1, s.q2, s.q3, s.q4].map((x) => x || 0).join("-")}${s.ot ? ", OT " + s.ot : ""}), ${s.yds || 0} total yards (${s.passYds || 0} pass, ${s.rushYds || 0} rush), ${s.firstDowns || 0} first downs, third downs ${s.thirdConv || 0}/${s.thirdAtt || 0}, turnovers ${s.turnovers || 0}, penalties ${s.pen || 0} for ${s.penYds || 0} yards.`;
   lines.push(`${b.week}. ${b.an} at ${b.hn}. Final: ${b.an} ${b.as}, ${b.hn} ${b.hs}.`);
+  lines.push(gameType(b.a, b.h));
   lines.push(side(b.away, b.an), side(b.home, b.hn));
   for (const [team, name] of [[b.aRaw, b.an], [b.hRaw, b.hn]]) {
     const ps = b.players.filter((p) => p.t === team);
@@ -1014,7 +1022,7 @@ function factsFor(b) {
   }
   const me = T[U];
   const done = myGames().filter((g) => g.final);
-  lines.push(`Context: ${me.name} (${me.conf}) is coached by ${D.coach?.name || "the user"}; season record now ${me.rec}, conference ${me.confRec}. Season results so far: ${done.map((g) => `${g.week} ${g.home ? "vs" : "at"} ${T[g.opp]?.name || g.oppName} ${g.us}-${g.them}`).join("; ")}.`);
+  lines.push(`Context: ${me.name} (${me.conf}) is coached by ${D.coach?.name || "the user"}; season record now ${me.rec}, conference ${me.confRec}. Season results so far: ${done.map((g) => `${g.week} ${g.home ? "vs" : "at"} ${T[g.opp]?.name || g.oppName} ${g.us}-${g.them} (${T[g.opp]?.conf && T[g.opp].conf === me.conf ? "conference" : "non-conference"})`).join("; ")}. Only conference games count toward the conference record and the pyramid.`);
   const pz = pyramidStatus();
   if (pz) lines.push(pz);
   const nx = myGames().find((g) => !g.final);
