@@ -18,14 +18,14 @@
       2026
     ],
     "stage": {
-      "key": "[\"hub\",2026,0,1,2,3]",
-      "label": "Week 2",
+      "key": "[\"hub\",2026,0,1,3,4]",
+      "label": "Week 3",
       "year": 2026,
       "phase": "season",
-      "week": 2
+      "week": 3
     },
     "stageState": "stable",
-    "stageObservedAt": 1795728584884,
+    "stageObservedAt": 1795750968031,
     "datasets": [
       "schedule",
       "rankings",
