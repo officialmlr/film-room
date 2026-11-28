@@ -183,7 +183,9 @@ const out = {
   user: userTeam ? userTeam.teamId : null,
   coach: coaches?.active?.find((c) => c.role === "HC" && c.userControlled) || null,
   teams, weeks, boxes, polls, classes, classesWeek, classHistory, recruits, commits, stageCounts, recruitingWeek, rosters, topPlayers,
-  awards: (awards?.winners || []).map((w) => ({ a: w.award, w: w.winner, s: w.school, t: w.teamId, pos: w.position }))
+  awards: (awards?.winners || []).map((w) => ({ a: w.award, w: w.winner, s: w.school, t: w.teamId, pos: w.position })),
+  // Weekly players of the week: national plus one per conference, offense and defense.
+  weeklyAwards: (awards?.weekly || []).map((wk) => ({ label: wk.label, week: wk.week, list: (wk.awards || []).map((x) => ({ type: /Defens/.test(x.award) ? "def" : "off", conf: x.conference, n: x.name, pos: x.position, s: x.school, t: x.teamId, res: x.result, line: String(x.statLine || "").trim().replace(/\s*\n\s*/g, " · ") })) })).sort((a, b) => a.week - b.week)
 };
 out.cfg = { label: cfg.label, status: cfg.status, legacy: !!cfg.legacy, pyramid: cfg.pyramid || null, ledgerStart: cfg.ledgerStart || [], canon: cfg.canon ? await readFile(cfg.canon, "utf8").catch(() => "") : "" };
 await mkdir("site/data", { recursive: true });

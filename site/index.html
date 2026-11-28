@@ -470,7 +470,29 @@ function leaguePage() {
   const confs = [...new Set(D.teams.filter((t) => !t.fcs).map((t) => t.conf))].sort();
   return `<div class="row"><section class="card" style="flex:1 1 440px"><div class="hd"><h2>Standings</h2><select id="confSel" aria-label="Conference">${confs.map((c) => `<option ${c === conf ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div><div id="standings"></div></section>
     <section class="card" style="flex:1 1 360px"><div class="hd"><h2>Top 25</h2><div class="personas" role="group" aria-label="Poll" style="margin:0"><button data-poll="media" aria-pressed="${pollKind === "media"}">Media</button><button data-poll="coaches" aria-pressed="${pollKind === "coaches"}">Coaches</button></div></div><div id="poll"></div></section></div>
-`;
+    ${awardsCard()}`;
+}
+// Players of the week, as the game names them each week. National first, then every conference, with the user's conference first.
+let awardWeek = null;
+function awardsCard() {
+  const W = D.weeklyAwards || [];
+  if (!W.length) return "";
+  const wk = W.find((w) => w.week === awardWeek) || W.at(-1);
+  const mineAll = W.flatMap((w) => w.list.filter((x) => x.t === U).map((x) => ({ ...x, label: w.label })));
+  const confs = [...new Set(wk.list.map((x) => x.conf))].sort((a, b) => (a === "National" ? -1 : b === "National" ? 1 : a === T[U].conf ? -1 : b === T[U].conf ? 1 : a.localeCompare(b)));
+  const cell = (x) => x ? `<span style="display:inline-flex;gap:8px;align-items:flex-start">${badge(x.t, 24)}<span><b${x.t === U ? ' style="color:var(--team)"' : ""}>${esc(x.n)}</b> <span class="muted">${esc(x.pos)}, ${esc(x.s)}</span><div class="note">${esc(x.res)}</div><div style="font-size:13px">${esc(x.line)}</div></span></span>` : "";
+  return `<section class="card" aria-label="Players of the week"><div class="hd"><h2>Players of the week</h2><select id="awardSel" aria-label="Week">${W.map((w) => `<option value="${w.week}" ${w === wk ? "selected" : ""}>${esc(w.label)}</option>`).join("")}</select></div>
+    <p class="note" style="margin-top:0">${mineAll.length ? `${esc(T[U].name)} this season: ${mineAll.map((x) => `${esc(x.n)} (${esc(x.label)}, ${x.conf === "National" ? "national " : esc(x.conf) + " "}${x.type === "off" ? "offense" : "defense"})`).join("; ")}.` : `No ${esc(T[U].name)} player has won one yet this season.`}</p>
+    <div class="scroll"><table class="stack"><thead><tr><th>Award</th><th>Offense</th><th>Defense</th></tr></thead><tbody>
+    ${confs.map((c) => `<tr${c === "National" || c === T[U].conf ? ' style="background:color-mix(in srgb,var(--team) 7%,transparent)"' : ""}><td><b>${esc(c)}</b></td><td>${cell(wk.list.find((x) => x.conf === c && x.type === "off"))}</td><td>${cell(wk.list.find((x) => x.conf === c && x.type === "def"))}</td></tr>`).join("")}
+    </tbody></table></div></section>`;
+}
+// Award lines for the writers: anyone from either team in this game who won one for that week.
+function awardsFor(b) {
+  const n = parseInt(String(b.week).replace(/\D+/g, ""), 10), wk = (D.weeklyAwards || []).find((w) => w.week === n);
+  if (!wk) return "";
+  const hits = wk.list.filter((x) => x.t === b.a || x.t === b.h);
+  return hits.length ? `Players of the week (named by the game for ${wk.label}): ${hits.map((x) => `${x.n} (${x.pos}, ${x.s}) won ${x.conf === "National" ? "the NATIONAL" : "the " + x.conf} ${x.type === "off" ? "Offensive" : "Defensive"} Player of the Week (${x.line})`).join("; ")}.` : "";
 }
 function standings() {
   const ts = D.teams.filter((t) => t.conf === conf).sort((a, b) => (b.cw - b.cl) - (a.cw - a.cl) || (b.w - b.l) - (a.w - a.l) || (b.ovr || 0) - (a.ovr || 0));
@@ -1046,6 +1068,7 @@ function factsFor(b) {
   if (pz) lines.push(pz);
   const nx = myGames().find((g) => !g.final);
   if (nx) lines.push(`Next game: ${nx.week} ${nx.home ? "vs" : "at"} ${T[nx.opp]?.name || nx.oppName} (${T[nx.opp]?.rec || ""}).`);
+  const aw = awardsFor(b); if (aw) lines.push(aw);
   const nt = notes[b.id]?.text?.trim();
   if (nt) lines.push(`COACH'S GAME NOTES (written by the person playing; treat as true, and these are the only details beyond the numbers you may use, including weather or injuries; use them as written and add no detail they do not state): ${nt}`);
   return lines.join("\n") + canonBlock();
@@ -1153,6 +1176,7 @@ app.addEventListener("change", (e) => {
   if (e.target.id === "wkSel") board(+e.target.value);
   if (e.target.id === "posSel") { rosterFilter = e.target.value; rosterTable(); }
   if (e.target.id === "confSel") { conf = e.target.value; standings(); }
+  if (e.target.id === "awardSel") { awardWeek = +e.target.value; route(); }
   if (e.target.id === "recSel") { recFilter = e.target.value; recruitTable(); }
   if (e.target.id === "boardWeek") { boardWeek = e.target.value.trim() || boardWeek; route(); }
   if (e.target.id === "boardPhotos" && e.target.files?.length && sample) readBoard(e.target.files);
