@@ -278,7 +278,7 @@ function snapshot(games) {
   const yds = sum(mine, (s) => s.yds), plays = sum(mine, (s) => s.plays);
   const third = sum(mine, (s) => s.thirdConv), thirdA = sum(mine, (s) => s.thirdAtt);
   const sacked = sum(done, (g) => sum(g.box.players.filter((p) => p.t === U), (p) => p.pass?.sck));
-  const to = sum(mine, (s) => s.turnovers), take = sum(theirs, (s) => s.turnovers);
+  const to = sum(mine, (s) => s.turnovers), take = sum(done, takeaways);
   const items = [[(pts / n).toFixed(1), "Points per game"], [(opp / n).toFixed(1), "Points allowed per game"], [(yds / n).toFixed(0), "Yards per game"],
     [plays ? (yds / plays).toFixed(1) : "–", "Yards per play"], [thirdA ? pct(third, thirdA) + "%" : "–", `Third downs (${third}/${thirdA})`],
     [(take - to > 0 ? "+" : "") + (take - to), `Turnover margin (${take} won, ${to} lost)`], [sacked, "Sacks allowed"], [sum(done, (g) => sum(g.box.players.filter((p) => p.t === U), (p) => p.def?.sck)), "Sacks by the defense"]];
@@ -383,7 +383,17 @@ function boxTables(b, team, title) {
   </section>`;
 }
 
+// FCS opponents come through with only the score: no team or player stats.
+const hasStats = (side) => side && side.yds != null;
+const oppSide = (g) => g.box[teamSide(g.box)[1]];
+// Takeaways: the opponent's turnovers, or our own interceptions and fumble recoveries when the opponent's stats are missing.
+const takeaways = (g) => { const s = oppSide(g); return hasStats(s) ? s.turnovers || 0 : sum(g.box.players.filter((p) => p.t === U), (p) => (p.def?.int || 0) + (p.def?.fr || 0)); };
 function teamCompare(b) {
+  if (!hasStats(b.away) || !hasStats(b.home)) {
+    const [us, them] = teamSide(b), s = b[us], missing = b[them === "home" ? "hn" : "an"];
+    const rows = [["Total yards", "yds"], ["Passing yards", "passYds"], ["Rushing yards", "rushYds"], ["First downs", "firstDowns"], ["Plays", "plays"], ["Turnovers", "turnovers"], ["Penalty yards", "penYds"]];
+    return `<section class="card" aria-label="Team stats"><div class="hd"><h2>Team stats</h2><span class="note">${esc(T[U].abbr)}</span></div>${rows.map(([l, k]) => `<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0"><span class="muted">${l}</span><span class="num" style="font-size:18px">${s[k] || 0}</span></div>`).join("")}<div style="display:flex;justify-content:space-between;font-size:14px;padding:6px 0"><span class="muted">Third downs</span><span class="num" style="font-size:18px">${s.thirdConv || 0}/${s.thirdAtt || 0}</span></div><p class="note">The game doesn't record team or player stats for ${esc(missing)}, so only ${esc(T[U].name)}'s side is shown.</p></section>`;
+  }
   const rows = [["Total yards", "yds"], ["Passing yards", "passYds"], ["Rushing yards", "rushYds"], ["First downs", "firstDowns"], ["Plays", "plays"], ["Turnovers", "turnovers"], ["Penalty yards", "penYds"]];
   const top = (s) => (s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}` : "–");
   return `<section class="card" aria-label="Team stats"><div class="hd"><h2>Team stats</h2><span class="note">${esc(T[b.a]?.abbr)} · ${esc(T[b.h]?.abbr)}</span></div>
@@ -588,9 +598,10 @@ function statsPage() {
   const games = myGames().filter((g) => g.final && g.box);
   if (!games.length) return '<section class="card empty">No games yet.</section>';
   const n = games.length;
-  const mine = games.map((g) => g.box[teamSide(g.box)[0]]), theirs = games.map((g) => g.box[teamSide(g.box)[1]]);
+  const mine = games.map((g) => g.box[teamSide(g.box)[0]]), theirs = games.map(oppSide).filter(hasStats);
+  const skipped = games.filter((g) => !hasStats(oppSide(g))).map((g) => T[g.opp]?.name || g.oppName);
   const tot = (arr, k) => sum(arr, (s) => s[k]);
-  const per = (arr, k, d = 1) => (tot(arr, k) / n).toFixed(d);
+  const per = (arr, k, d = 1) => (tot(arr, k) / Math.max(1, arr === theirs ? theirs.length : n)).toFixed(d);
   const ranks = [["Scoring offense", natRank("pf", "high"), (v) => v.toFixed(1) + " ppg"], ["Scoring defense", natRank("pa", "low"), (v) => v.toFixed(1) + " allowed"], ["Point margin", natRank("diff", "high"), (v) => (v > 0 ? "+" : "") + v.toFixed(1) + " per game"], ["NIL pool", natRank("nil", "high"), (v) => Number(v).toLocaleString() + " (as the game reports it)"]];
   const rows = [
     ["Total yards per game", per(mine, "yds", 0), per(theirs, "yds", 0)], ["Passing yards per game", per(mine, "passYds", 0), per(theirs, "passYds", 0)], ["Rushing yards per game", per(mine, "rushYds", 0), per(theirs, "rushYds", 0)],
@@ -599,17 +610,18 @@ function statsPage() {
     ["Third downs", `${tot(mine, "thirdConv")}/${tot(mine, "thirdAtt")} (${pct(tot(mine, "thirdConv"), tot(mine, "thirdAtt"))}%)`, `${tot(theirs, "thirdConv")}/${tot(theirs, "thirdAtt")} (${pct(tot(theirs, "thirdConv"), tot(theirs, "thirdAtt"))}%)`],
     ["Fourth downs", `${tot(mine, "fourthConv")}/${tot(mine, "fourthAtt")}`, `${tot(theirs, "fourthConv")}/${tot(theirs, "fourthAtt")}`],
     ["Red zone TDs", tot(mine, "rzTd"), tot(theirs, "rzTd")],
-    ["Turnovers", tot(mine, "turnovers"), tot(theirs, "turnovers")], ["Penalties (yards)", `${tot(mine, "pen")} (${tot(mine, "penYds")})`, `${tot(theirs, "pen")} (${tot(theirs, "penYds")})`],
-    ["Time of possession per game", (() => { const t = tot(mine, "top") / n; return `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`; })(), (() => { const t = tot(theirs, "top") / n; return `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`; })()]
+    ["Turnovers", tot(mine, "turnovers"), sum(games, takeaways)], ["Penalties (yards)", `${tot(mine, "pen")} (${tot(mine, "penYds")})`, `${tot(theirs, "pen")} (${tot(theirs, "penYds")})`],
+    ["Time of possession per game", (() => { const t = tot(mine, "top") / n; return `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`; })(), (() => { const t = tot(theirs, "top") / Math.max(1, theirs.length); return `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`; })()]
   ];
   const ptsMax = Math.max(1, ...games.flatMap((g) => [g.us, g.them]));
   const third = games.map((g) => { const s = g.box[teamSide(g.box)[0]]; return { opp: T[g.opp]?.abbr || g.oppName, v: pct(s.thirdConv || 0, s.thirdAtt || 0) }; });
-  const tos = games.map((g) => ({ opp: T[g.opp]?.abbr || g.oppName, us: g.box[teamSide(g.box)[0]].turnovers || 0, them: g.box[teamSide(g.box)[1]].turnovers || 0 }));
+  const tos = games.map((g) => ({ opp: T[g.opp]?.abbr || g.oppName, us: g.box[teamSide(g.box)[0]].turnovers || 0, them: takeaways(g) }));
   const toMax = Math.max(1, ...tos.flatMap((t) => [t.us, t.them]));
   return `<section class="card"><div class="hd"><h2>National ranks</h2><span class="note">Among ${natRank("pf", "high")?.of || 0} FBS schools, from every score in the dynasty</span></div>
       ${ranks.map(([l, r, f]) => r ? `<div class="brow" style="grid-template-columns:140px minmax(0,1fr) 120px"><span style="font-size:14px">${l}<div class="note">${esc(f(r.v))}</div></span><div class="bar" title="Rank ${r.rank} of ${r.of}"><i style="width:${((r.of - r.rank + 1) / r.of) * 100}%"></i></div><span class="num" style="font-size:22px">#${r.rank}<span class="muted" style="font-size:14px"> of ${r.of}</span></span></div>` : "").join("")}
       <p class="note" style="margin-bottom:0">Longer bar means better. Yardage, third-down and turnover rankings across the country aren't possible: the sync only has box scores for your games.</p></section>
     <div class="row"><section class="card" style="flex:1 1 420px"><div class="hd"><h2>Team stats</h2><span class="note">${n} games</span></div><div class="scroll"><table><thead><tr><th></th><th class="n">${esc(T[U].abbr)}</th><th class="n">Opponents</th></tr></thead><tbody>${rows.map(([l, a, b]) => `<tr><td>${l}</td><td class="n">${esc(a)}</td><td class="n">${esc(b)}</td></tr>`).join("")}</tbody></table></div>
+      ${skipped.length ? `<p class="note">Opponent columns leave out ${esc(skipped.join(", "))}: the game doesn't record stats for FCS opponents. Opponent turnovers there come from your own interceptions and fumble recoveries.</p>` : ""}
       <p class="note">Red zone counts are as the game reports them; the sync doesn't label them, so treat them as unconfirmed.</p></section>
       <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:24px">
         <section class="card"><div class="hd"><h2>Points by game</h2></div><div class="cols">${games.map((g) => `<div class="col"><div class="pair"><i style="height:${(g.us / ptsMax) * 100}%;background:var(--team)"></i><i style="height:${(g.them / ptsMax) * 100}%;background:var(--opp)"></i></div><span class="v">${g.us}–${g.them}</span></div>`).join("")}</div><div class="xl">${games.map((g) => `<span>${esc(T[g.opp]?.abbr || g.oppName)}</span>`).join("")}</div><div class="key"><span><i style="background:var(--team)"></i>${esc(T[U].abbr)}</span><span><i style="background:var(--opp)"></i>Opponent</span></div></section>
@@ -1021,7 +1033,7 @@ function factsFor(b) {
   const side = (s, name) => `${name}: ${s.pts ?? ""} points (quarters ${[s.q1, s.q2, s.q3, s.q4].map((x) => x || 0).join("-")}${s.ot ? ", OT " + s.ot : ""}), ${s.yds || 0} total yards (${s.passYds || 0} pass, ${s.rushYds || 0} rush), ${s.firstDowns || 0} first downs, third downs ${s.thirdConv || 0}/${s.thirdAtt || 0}, turnovers ${s.turnovers || 0}, penalties ${s.pen || 0} for ${s.penYds || 0} yards.`;
   lines.push(`${b.week}. ${b.an} at ${b.hn}. Final: ${b.an} ${b.as}, ${b.hn} ${b.hs}.`);
   lines.push(gameType(b.a, b.h));
-  lines.push(side(b.away, b.an), side(b.home, b.hn));
+  for (const [sd, name] of [[b.away, b.an], [b.home, b.hn]]) lines.push(hasStats(sd) ? side(sd, name) : `${name}: ${sd.pts ?? ""} points (quarters ${[sd.q1, sd.q2, sd.q3, sd.q4].map((x) => x || 0).join("-")}). The game recorded NO team or player stats for ${name} (an FCS opponent): do not state, estimate or imply their yards, players or other numbers.`);
   for (const [team, name] of [[b.aRaw, b.an], [b.hRaw, b.hn]]) {
     const ps = b.players.filter((p) => p.t === team);
     const f = (p) => [p.pass && `passing ${p.pass.cmp || 0}/${p.pass.att || 0}, ${p.pass.yds || 0} yds, ${p.pass.td || 0} TD, ${p.pass.int || 0} INT, sacked ${p.pass.sck || 0}`, p.rush && `rushing ${p.rush.car || 0}-${p.rush.yds || 0}, ${p.rush.td || 0} TD`, p.rec && `receiving ${p.rec.rec || 0}-${p.rec.yds || 0}, ${p.rec.td || 0} TD`, p.def && `defense ${p.def.tkl || 0} tkl${p.def.sck ? ", " + p.def.sck + " sck" : ""}${p.def.int ? ", " + p.def.int + " INT" : ""}${p.def.tfl ? ", " + p.def.tfl + " TFL" : ""}`, p.kick && `kicking FG ${p.kick.fgm || 0}/${p.kick.fga || 0}, XP ${p.kick.xpm || 0}/${p.kick.xpa || 0}`, p.line?.sckAllowed && `allowed ${p.line.sckAllowed} sack(s)`].filter(Boolean).join("; ");
