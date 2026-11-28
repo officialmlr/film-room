@@ -68771,18 +68771,1829 @@
         ]
       },
       {
-        "dataset": "recruit_status",
+        "dataset": "top_classes",
         "stage": {
-          "key": "[\"hub\",2026,0,1,3,4]",
-          "label": "Week 3",
+          "key": "[\"hub\",2026,0,1,4,5]",
+          "label": "Week 4",
           "year": 2026,
           "phase": "season",
-          "week": 3
+          "week": 4
+        },
+        "classYear": 2026,
+        "state": "available",
+        "finalized": false,
+        "capturedAt": 1795831974104,
+        "recruits": [],
+        "classes": [
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 1,
+            "three": 6,
+            "points": 85.3499984741211,
+            "school": "Auburn",
+            "teamId": "832438281",
+            "commits": 6,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 2,
+            "rank": 2,
+            "three": 2,
+            "points": 68.75,
+            "school": "Penn State",
+            "teamId": "832438366",
+            "commits": 4,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 1,
+            "four": 2,
+            "rank": 3,
+            "three": 0,
+            "points": 64.4000015258789,
+            "school": "Ohio State",
+            "teamId": "832438359",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 4,
+            "three": 3,
+            "points": 44.54999923706055,
+            "school": "Colorado",
+            "teamId": "832438295",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 5,
+            "three": 3,
+            "points": 44.54999923706055,
+            "school": "Missouri",
+            "teamId": "832438344",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 6,
+            "three": 3,
+            "points": 44.54999923706055,
+            "school": "Oregon",
+            "teamId": "832438364",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 7,
+            "three": 2,
+            "points": 39.650001525878906,
+            "school": "Kansas State",
+            "teamId": "832438325",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 4,
+            "five": 0,
+            "four": 0,
+            "rank": 8,
+            "three": 0,
+            "points": 39.20000076293945,
+            "school": "W. Michigan",
+            "teamId": "832438412",
+            "commits": 4,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 9,
+            "three": 2,
+            "points": 29.850000381469727,
+            "school": "NC State",
+            "teamId": "832438347",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 10,
+            "three": 2,
+            "points": 29.850000381469727,
+            "school": "Baylor",
+            "teamId": "832438283",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 11,
+            "three": 2,
+            "points": 29.850000381469727,
+            "school": "Arkansas",
+            "teamId": "832438278",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 3,
+            "five": 0,
+            "four": 0,
+            "rank": 12,
+            "three": 0,
+            "points": 29.700000762939453,
+            "school": "UNLV",
+            "teamId": "832438397",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 3,
+            "five": 0,
+            "four": 0,
+            "rank": 13,
+            "three": 0,
+            "points": 29.700000762939453,
+            "school": "Ga Southern",
+            "teamId": "832438313",
+            "commits": 3,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 14,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "Stanford",
+            "teamId": "832438379",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 15,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "Texas Tech",
+            "teamId": "832438387",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 16,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "Cincinnati",
+            "teamId": "832438292",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 17,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "Northwestern",
+            "teamId": "832438356",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 18,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "Maryland",
+            "teamId": "832438335",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 19,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "Navy",
+            "teamId": "832438346",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 20,
+            "three": 1,
+            "points": 24.899999618530273,
+            "school": "James Madison",
+            "teamId": "832438323",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 1,
+            "rank": 21,
+            "three": 0,
+            "points": 20,
+            "school": "USC",
+            "teamId": "832438398",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 2,
+            "five": 0,
+            "four": 0,
+            "rank": 22,
+            "three": 0,
+            "points": 19.899999618530273,
+            "school": "App St.",
+            "teamId": "832438275",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 2,
+            "five": 0,
+            "four": 0,
+            "rank": 23,
+            "three": 0,
+            "points": 19.899999618530273,
+            "school": "Rice",
+            "teamId": "832438369",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 2,
+            "five": 0,
+            "four": 0,
+            "rank": 24,
+            "three": 0,
+            "points": 19.899999618530273,
+            "school": "Tulane",
+            "teamId": "832438390",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 2,
+            "five": 0,
+            "four": 0,
+            "rank": 25,
+            "three": 0,
+            "points": 19.899999618530273,
+            "school": "Fresno State",
+            "teamId": "832438311",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 2,
+            "five": 0,
+            "four": 0,
+            "rank": 26,
+            "three": 0,
+            "points": 19.899999618530273,
+            "school": "Miami (OH)",
+            "teamId": "832438338",
+            "commits": 2,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 27,
+            "three": 1,
+            "points": 15,
+            "school": "Kentucky",
+            "teamId": "832438328",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 28,
+            "three": 1,
+            "points": 15,
+            "school": "Georgia",
+            "teamId": "832438312",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 29,
+            "three": 1,
+            "points": 15,
+            "school": "Florida",
+            "teamId": "832438308",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 30,
+            "three": 1,
+            "points": 15,
+            "school": "South Carolina",
+            "teamId": "832438377",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 31,
+            "three": 1,
+            "points": 15,
+            "school": "LSU",
+            "teamId": "832438333",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 32,
+            "three": 1,
+            "points": 15,
+            "school": "Mississippi St",
+            "teamId": "832438343",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 33,
+            "three": 1,
+            "points": 15,
+            "school": "Oklahoma",
+            "teamId": "832438360",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 34,
+            "three": 1,
+            "points": 15,
+            "school": "Washington St.",
+            "teamId": "832438409",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 35,
+            "three": 1,
+            "points": 15,
+            "school": "Utah State",
+            "teamId": "832438401",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 36,
+            "three": 1,
+            "points": 15,
+            "school": "Boise State",
+            "teamId": "832438284",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 37,
+            "three": 1,
+            "points": 15,
+            "school": "West Virginia",
+            "teamId": "832438410",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 38,
+            "three": 1,
+            "points": 15,
+            "school": "TCU",
+            "teamId": "832438381",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 39,
+            "three": 1,
+            "points": 15,
+            "school": "Oklahoma State",
+            "teamId": "832438361",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 40,
+            "three": 1,
+            "points": 15,
+            "school": "Arizona State",
+            "teamId": "832438277",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 41,
+            "three": 1,
+            "points": 15,
+            "school": "Miami",
+            "teamId": "832438337",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 42,
+            "three": 1,
+            "points": 15,
+            "school": "California",
+            "teamId": "832438289",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 43,
+            "three": 1,
+            "points": 15,
+            "school": "Clemson",
+            "teamId": "832438293",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 44,
+            "three": 1,
+            "points": 15,
+            "school": "Syracuse",
+            "teamId": "832438380",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 45,
+            "three": 1,
+            "points": 15,
+            "school": "Duke",
+            "teamId": "832438299",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 46,
+            "three": 0,
+            "points": 10,
+            "school": "Delaware",
+            "teamId": "832438298",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 47,
+            "three": 0,
+            "points": 10,
+            "school": "Old Dominion",
+            "teamId": "832438362",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 48,
+            "three": 0,
+            "points": 10,
+            "school": "UTSA",
+            "teamId": "832438403",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 49,
+            "three": 0,
+            "points": 10,
+            "school": "North Texas",
+            "teamId": "832438354",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 50,
+            "three": 0,
+            "points": 10,
+            "school": "FLA Atlantic",
+            "teamId": "832438309",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 51,
+            "three": 0,
+            "points": 10,
+            "school": "Marshall",
+            "teamId": "832438334",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 52,
+            "three": 0,
+            "points": 10,
+            "school": "Louisiana",
+            "teamId": "832438330",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 53,
+            "three": 0,
+            "points": 10,
+            "school": "Louisiana Tech",
+            "teamId": "832438331",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 54,
+            "three": 0,
+            "points": 10,
+            "school": "North Carolina",
+            "teamId": "832438352",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 55,
+            "three": 0,
+            "points": 10,
+            "school": "Hawai'i",
+            "teamId": "832438316",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 1,
+            "five": 0,
+            "four": 0,
+            "rank": 56,
+            "three": 0,
+            "points": 10,
+            "school": "Nevada",
+            "teamId": "832438349",
+            "commits": 1,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 57,
+            "three": 0,
+            "points": 0,
+            "school": "UTEP",
+            "teamId": "832438402",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 58,
+            "three": 0,
+            "points": 0,
+            "school": "San Jose State",
+            "teamId": "832438374",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 59,
+            "three": 0,
+            "points": 0,
+            "school": "NIU",
+            "teamId": "832438355",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 60,
+            "three": 0,
+            "points": 0,
+            "school": "NDSU",
+            "teamId": "832438353",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 61,
+            "three": 0,
+            "points": 0,
+            "school": "New Mexico",
+            "teamId": "832438350",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 62,
+            "three": 0,
+            "points": 0,
+            "school": "Air Force",
+            "teamId": "832438272",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 63,
+            "three": 0,
+            "points": 0,
+            "school": "Massachusetts",
+            "teamId": "832438396",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 64,
+            "three": 0,
+            "points": 0,
+            "school": "Toledo",
+            "teamId": "832438388",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 65,
+            "three": 0,
+            "points": 0,
+            "school": "Sac State",
+            "teamId": "832438371",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 66,
+            "three": 0,
+            "points": 0,
+            "school": "Ohio",
+            "teamId": "832438358",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 67,
+            "three": 0,
+            "points": 0,
+            "school": "Kent State",
+            "teamId": "832438327",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 68,
+            "three": 0,
+            "points": 0,
+            "school": "E. Michigan",
+            "teamId": "832438300",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 69,
+            "three": 0,
+            "points": 0,
+            "school": "Wyoming",
+            "teamId": "832438414",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 70,
+            "three": 0,
+            "points": 0,
+            "school": "Troy",
+            "teamId": "832438389",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 71,
+            "three": 0,
+            "points": 0,
+            "school": "Colorado State",
+            "teamId": "832438296",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 72,
+            "three": 0,
+            "points": 0,
+            "school": "Oregon State",
+            "teamId": "832438365",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 73,
+            "three": 0,
+            "points": 0,
+            "school": "San Diego St.",
+            "teamId": "832438373",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 74,
+            "three": 0,
+            "points": 0,
+            "school": "Texas State",
+            "teamId": "832438386",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 75,
+            "three": 0,
+            "points": 0,
+            "school": "Southern Miss",
+            "teamId": "832438378",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 76,
+            "three": 0,
+            "points": 0,
+            "school": "South Alabama",
+            "teamId": "832438376",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 77,
+            "three": 0,
+            "points": 0,
+            "school": "Arkansas State",
+            "teamId": "832438279",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 78,
+            "three": 0,
+            "points": 0,
+            "school": "Georgia State",
+            "teamId": "832438314",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 79,
+            "three": 0,
+            "points": 0,
+            "school": "C. Carolina",
+            "teamId": "832438294",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 80,
+            "three": 0,
+            "points": 0,
+            "school": "Texas",
+            "teamId": "832438384",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 81,
+            "three": 0,
+            "points": 0,
+            "school": "Texas A&M",
+            "teamId": "832438385",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 82,
+            "three": 0,
+            "points": 0,
+            "school": "Ole Miss",
+            "teamId": "832438363",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 83,
+            "three": 0,
+            "points": 0,
+            "school": "Alabama",
+            "teamId": "832438274",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 84,
+            "three": 0,
+            "points": 0,
+            "school": "Tennessee",
+            "teamId": "832438383",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 85,
+            "three": 0,
+            "points": 0,
+            "school": "Vanderbilt",
+            "teamId": "832438404",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 86,
+            "three": 0,
+            "points": 0,
+            "school": "Wake Forest",
+            "teamId": "832438407",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 87,
+            "three": 0,
+            "points": 0,
+            "school": "Boston College",
+            "teamId": "832438285",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 88,
+            "three": 0,
+            "points": 0,
+            "school": "Florida State",
+            "teamId": "832438310",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 89,
+            "three": 0,
+            "points": 0,
+            "school": "Louisville",
+            "teamId": "832438332",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 90,
+            "three": 0,
+            "points": 0,
+            "school": "Georgia Tech",
+            "teamId": "832438315",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 91,
+            "three": 0,
+            "points": 0,
+            "school": "Pittsburgh",
+            "teamId": "832438367",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 92,
+            "three": 0,
+            "points": 0,
+            "school": "Virginia",
+            "teamId": "832438405",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 93,
+            "three": 0,
+            "points": 0,
+            "school": "Virginia Tech",
+            "teamId": "832438406",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 94,
+            "three": 0,
+            "points": 0,
+            "school": "SMU",
+            "teamId": "832438375",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 95,
+            "three": 0,
+            "points": 0,
+            "school": "East Carolina",
+            "teamId": "832438301",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 96,
+            "three": 0,
+            "points": 0,
+            "school": "Memphis",
+            "teamId": "832438336",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 97,
+            "three": 0,
+            "points": 0,
+            "school": "USF",
+            "teamId": "832438399",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 98,
+            "three": 0,
+            "points": 0,
+            "school": "Temple",
+            "teamId": "832438382",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 99,
+            "three": 0,
+            "points": 0,
+            "school": "Tulsa",
+            "teamId": "832438391",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 100,
+            "three": 0,
+            "points": 0,
+            "school": "UAB",
+            "teamId": "832438392",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 101,
+            "three": 0,
+            "points": 0,
+            "school": "Army",
+            "teamId": "832438280",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 102,
+            "three": 0,
+            "points": 0,
+            "school": "Arizona",
+            "teamId": "832438276",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 103,
+            "three": 0,
+            "points": 0,
+            "school": "BYU",
+            "teamId": "832438288",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 104,
+            "three": 0,
+            "points": 0,
+            "school": "Houston",
+            "teamId": "832438317",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 105,
+            "three": 0,
+            "points": 0,
+            "school": "Iowa State",
+            "teamId": "832438321",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 106,
+            "three": 0,
+            "points": 0,
+            "school": "Kansas",
+            "teamId": "832438324",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 107,
+            "three": 0,
+            "points": 0,
+            "school": "Utah",
+            "teamId": "832438400",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 108,
+            "three": 0,
+            "points": 0,
+            "school": "UCF",
+            "teamId": "832438393",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 109,
+            "three": 0,
+            "points": 0,
+            "school": "Indiana",
+            "teamId": "832438319",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 110,
+            "three": 0,
+            "points": 0,
+            "school": "Michigan",
+            "teamId": "832438339",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 111,
+            "three": 0,
+            "points": 0,
+            "school": "Michigan State",
+            "teamId": "832438340",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 112,
+            "three": 0,
+            "points": 0,
+            "school": "Rutgers",
+            "teamId": "832438370",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 113,
+            "three": 0,
+            "points": 0,
+            "school": "Illinois",
+            "teamId": "832438318",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 114,
+            "three": 0,
+            "points": 0,
+            "school": "Iowa",
+            "teamId": "832438320",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 115,
+            "three": 0,
+            "points": 0,
+            "school": "Minnesota",
+            "teamId": "832438342",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 116,
+            "three": 0,
+            "points": 0,
+            "school": "Nebraska",
+            "teamId": "832438348",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 117,
+            "three": 0,
+            "points": 0,
+            "school": "Purdue",
+            "teamId": "832438368",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 118,
+            "three": 0,
+            "points": 0,
+            "school": "Washington",
+            "teamId": "832438408",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 119,
+            "three": 0,
+            "points": 0,
+            "school": "Wisconsin",
+            "teamId": "832438413",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 120,
+            "three": 0,
+            "points": 0,
+            "school": "UCLA",
+            "teamId": "832438394",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 121,
+            "three": 0,
+            "points": 0,
+            "school": "FIU",
+            "teamId": "832438307",
+            "commits": 0,
+            "userControlled": true
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 122,
+            "three": 0,
+            "points": 0,
+            "school": "Jax State",
+            "teamId": "832438322",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 123,
+            "three": 0,
+            "points": 0,
+            "school": "Kennesaw St.",
+            "teamId": "832438326",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 124,
+            "three": 0,
+            "points": 0,
+            "school": "Liberty",
+            "teamId": "832438329",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 125,
+            "three": 0,
+            "points": 0,
+            "school": "MTSU",
+            "teamId": "832438341",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 126,
+            "three": 0,
+            "points": 0,
+            "school": "Missouri State",
+            "teamId": "832438345",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 127,
+            "three": 0,
+            "points": 0,
+            "school": "New Mexico St.",
+            "teamId": "832438351",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 128,
+            "three": 0,
+            "points": 0,
+            "school": "Sam Houston",
+            "teamId": "832438372",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 129,
+            "three": 0,
+            "points": 0,
+            "school": "W. Kentucky",
+            "teamId": "832438411",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 130,
+            "three": 0,
+            "points": 0,
+            "school": "Charlotte",
+            "teamId": "832438291",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 131,
+            "three": 0,
+            "points": 0,
+            "school": "UL Monroe",
+            "teamId": "832438395",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 132,
+            "three": 0,
+            "points": 0,
+            "school": "UConn",
+            "teamId": "832438297",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 133,
+            "three": 0,
+            "points": 0,
+            "school": "Notre Dame",
+            "teamId": "832438357",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 134,
+            "three": 0,
+            "points": 0,
+            "school": "Akron",
+            "teamId": "832438273",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 135,
+            "three": 0,
+            "points": 0,
+            "school": "Ball State",
+            "teamId": "832438282",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 136,
+            "three": 0,
+            "points": 0,
+            "school": "Bowling Green",
+            "teamId": "832438286",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 137,
+            "three": 0,
+            "points": 0,
+            "school": "Buffalo",
+            "teamId": "832438287",
+            "commits": 0,
+            "userControlled": false
+          },
+          {
+            "one": 0,
+            "two": 0,
+            "five": 0,
+            "four": 0,
+            "rank": 138,
+            "three": 0,
+            "points": 0,
+            "school": "C. Michigan",
+            "teamId": "832438290",
+            "commits": 0,
+            "userControlled": false
+          }
+        ]
+      },
+      {
+        "dataset": "recruit_status",
+        "stage": {
+          "key": "[\"hub\",2026,0,1,4,5]",
+          "label": "Week 4",
+          "year": 2026,
+          "phase": "season",
+          "week": 4
         },
         "classYear": null,
         "state": "available",
         "finalized": false,
-        "capturedAt": 1795750975484,
+        "capturedAt": 1795831977180,
         "recruits": [],
         "classes": [],
         "status": [
@@ -68795,7 +70606,7 @@
             "recruitId": "rank:2"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3"
           },
           {
@@ -68803,7 +70614,7 @@
             "recruitId": "rank:4"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:5"
           },
           {
@@ -68811,7 +70622,7 @@
             "recruitId": "rank:6"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:7"
           },
           {
@@ -68843,7 +70654,7 @@
             "recruitId": "rank:14"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:15"
           },
           {
@@ -68863,7 +70674,7 @@
             "recruitId": "rank:19"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:20"
           },
           {
@@ -68871,11 +70682,17 @@
             "recruitId": "rank:21"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:22"
+            "stage": 4,
+            "school": {
+              "name": "Ohio State",
+              "logoId": "78",
+              "gameplayTeamId": "1178"
+            },
+            "recruitId": "rank:22",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:23"
           },
           {
@@ -68895,7 +70712,7 @@
             "recruitId": "rank:27"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:28"
           },
           {
@@ -68927,7 +70744,7 @@
             "recruitId": "rank:35"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:36"
           },
           {
@@ -68939,7 +70756,7 @@
             "recruitId": "rank:38"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:39"
           },
           {
@@ -68967,7 +70784,7 @@
             "recruitId": "rank:45"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:46"
           },
           {
@@ -68987,7 +70804,7 @@
             "recruitId": "rank:50"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:51"
           },
           {
@@ -69003,11 +70820,11 @@
             "recruitId": "rank:54"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:55"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:56"
           },
           {
@@ -69019,7 +70836,7 @@
             "recruitId": "rank:58"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:59"
           },
           {
@@ -69075,19 +70892,19 @@
             "recruitId": "rank:72"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:73"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:74"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:75"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:76"
           },
           {
@@ -69095,7 +70912,7 @@
             "recruitId": "rank:77"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:78"
           },
           {
@@ -69107,7 +70924,7 @@
             "recruitId": "rank:80"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:81"
           },
           {
@@ -69115,7 +70932,7 @@
             "recruitId": "rank:82"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:83"
           },
           {
@@ -69147,11 +70964,11 @@
             "recruitId": "rank:90"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:91"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:92"
           },
           {
@@ -69187,7 +71004,7 @@
             "recruitId": "rank:100"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:101"
           },
           {
@@ -69227,7 +71044,7 @@
             "recruitId": "rank:110"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:111"
           },
           {
@@ -69235,7 +71052,7 @@
             "recruitId": "rank:112"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:113"
           },
           {
@@ -69263,7 +71080,7 @@
             "recruitId": "rank:119"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:120"
           },
           {
@@ -69271,15 +71088,21 @@
             "recruitId": "rank:121"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:122"
-          },
-          {
-            "stage": 0,
-            "recruitId": "rank:123"
+            "stage": 4,
+            "school": {
+              "name": "Ohio State",
+              "logoId": "78",
+              "gameplayTeamId": "1178"
+            },
+            "recruitId": "rank:122",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
+            "recruitId": "rank:123"
+          },
+          {
+            "stage": 2,
             "recruitId": "rank:124"
           },
           {
@@ -69291,7 +71114,7 @@
             "recruitId": "rank:126"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:127"
           },
           {
@@ -69303,7 +71126,7 @@
             "recruitId": "rank:129"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:130"
           },
           {
@@ -69311,7 +71134,7 @@
             "recruitId": "rank:131"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:132"
           },
           {
@@ -69331,7 +71154,7 @@
             "recruitId": "rank:136"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:137"
           },
           {
@@ -69339,7 +71162,7 @@
             "recruitId": "rank:138"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:139"
           },
           {
@@ -69363,11 +71186,11 @@
             "recruitId": "rank:144"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:145"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:146"
           },
           {
@@ -69375,7 +71198,7 @@
             "recruitId": "rank:147"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:148"
           },
           {
@@ -69399,7 +71222,7 @@
             "recruitId": "rank:153"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:154"
           },
           {
@@ -69431,7 +71254,7 @@
             "recruitId": "rank:161"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:162"
           },
           {
@@ -69475,7 +71298,7 @@
             "recruitId": "rank:172"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:173"
           },
           {
@@ -69499,12 +71322,18 @@
             "recruitId": "rank:178"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:179"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:180"
+            "stage": 4,
+            "school": {
+              "name": "USC",
+              "logoId": "116",
+              "gameplayTeamId": "1216"
+            },
+            "recruitId": "rank:180",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -69527,7 +71356,7 @@
             "recruitId": "rank:185"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:186"
           },
           {
@@ -69539,7 +71368,7 @@
             "recruitId": "rank:188"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:189"
           },
           {
@@ -69567,7 +71396,7 @@
             "recruitId": "rank:195"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:196"
           },
           {
@@ -69583,7 +71412,7 @@
             "recruitId": "rank:199"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:200"
           },
           {
@@ -69627,7 +71456,7 @@
             "recruitId": "rank:210"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:211"
           },
           {
@@ -69635,7 +71464,7 @@
             "recruitId": "rank:212"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:213"
           },
           {
@@ -69675,11 +71504,17 @@
             "recruitId": "rank:222"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:223"
+            "stage": 4,
+            "school": {
+              "name": "Penn State",
+              "logoId": "85",
+              "gameplayTeamId": "1185"
+            },
+            "recruitId": "rank:223",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:224"
           },
           {
@@ -69711,7 +71546,7 @@
             "recruitId": "rank:231"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:232"
           },
           {
@@ -69743,7 +71578,7 @@
             "recruitId": "rank:239"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:240"
           },
           {
@@ -69775,7 +71610,7 @@
             "recruitId": "rank:247"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:248"
           },
           {
@@ -69787,7 +71622,7 @@
             "recruitId": "rank:250"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:251"
           },
           {
@@ -69795,19 +71630,25 @@
             "recruitId": "rank:252"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:253"
+            "stage": 4,
+            "school": {
+              "name": "Ohio State",
+              "logoId": "78",
+              "gameplayTeamId": "1178"
+            },
+            "recruitId": "rank:253",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
             "recruitId": "rank:254"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:255"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:256"
           },
           {
@@ -69815,11 +71656,11 @@
             "recruitId": "rank:257"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:258"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:259"
           },
           {
@@ -69827,8 +71668,14 @@
             "recruitId": "rank:260"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:261"
+            "stage": 4,
+            "school": {
+              "name": "Penn State",
+              "logoId": "85",
+              "gameplayTeamId": "1185"
+            },
+            "recruitId": "rank:261",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -69843,7 +71690,7 @@
             "recruitId": "rank:264"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:265"
           },
           {
@@ -69851,7 +71698,7 @@
             "recruitId": "rank:266"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:267"
           },
           {
@@ -69863,7 +71710,7 @@
             "recruitId": "rank:269"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:270"
           },
           {
@@ -70007,11 +71854,11 @@
             "recruitId": "rank:305"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:306"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:307"
           },
           {
@@ -70039,7 +71886,7 @@
             "recruitId": "rank:313"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:314"
           },
           {
@@ -70111,7 +71958,7 @@
             "recruitId": "rank:331"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:332"
           },
           {
@@ -70119,11 +71966,11 @@
             "recruitId": "rank:333"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:334"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:335"
           },
           {
@@ -70167,11 +72014,11 @@
             "recruitId": "rank:345"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:346"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:347"
           },
           {
@@ -70207,7 +72054,7 @@
             "recruitId": "rank:355"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:356"
           },
           {
@@ -70259,7 +72106,7 @@
             "recruitId": "rank:368"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:369"
           },
           {
@@ -70327,7 +72174,7 @@
             "recruitId": "rank:385"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:386"
           },
           {
@@ -70343,7 +72190,7 @@
             "recruitId": "rank:389"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:390"
           },
           {
@@ -70351,7 +72198,7 @@
             "recruitId": "rank:391"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:392"
           },
           {
@@ -70367,7 +72214,7 @@
             "recruitId": "rank:395"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:396"
           },
           {
@@ -70387,15 +72234,15 @@
             "recruitId": "rank:400"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:401"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:402"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:403"
           },
           {
@@ -70407,7 +72254,7 @@
             "recruitId": "rank:405"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:406"
           },
           {
@@ -70415,7 +72262,7 @@
             "recruitId": "rank:407"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:408"
           },
           {
@@ -70423,7 +72270,7 @@
             "recruitId": "rank:409"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:410"
           },
           {
@@ -70471,7 +72318,7 @@
             "recruitId": "rank:421"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Arkansas",
               "logoId": "6",
@@ -70493,11 +72340,11 @@
             "recruitId": "rank:425"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:426"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:427"
           },
           {
@@ -70525,11 +72372,11 @@
             "recruitId": "rank:433"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:434"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:435"
           },
           {
@@ -70565,12 +72412,18 @@
             "recruitId": "rank:443"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:444"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:445"
+            "stage": 4,
+            "school": {
+              "name": "Kentucky",
+              "logoId": "49",
+              "gameplayTeamId": "1149"
+            },
+            "recruitId": "rank:445",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -70613,7 +72466,7 @@
             "recruitId": "rank:455"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Stanford",
               "logoId": "97",
@@ -70627,8 +72480,14 @@
             "recruitId": "rank:457"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:458"
+            "stage": 4,
+            "school": {
+              "name": "Missouri",
+              "logoId": "65",
+              "gameplayTeamId": "1165"
+            },
+            "recruitId": "rank:458",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -70651,11 +72510,11 @@
             "recruitId": "rank:463"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:464"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:465"
           },
           {
@@ -70663,11 +72522,11 @@
             "recruitId": "rank:466"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:467"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:468"
           },
           {
@@ -70683,7 +72542,7 @@
             "recruitId": "rank:471"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:472"
           },
           {
@@ -70735,7 +72594,7 @@
             "recruitId": "rank:484"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:485"
           },
           {
@@ -70767,7 +72626,7 @@
             "recruitId": "rank:492"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:493"
           },
           {
@@ -70807,7 +72666,7 @@
             "recruitId": "rank:502"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:503"
           },
           {
@@ -70823,7 +72682,7 @@
             "recruitId": "rank:506"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "NC State",
               "logoId": "67",
@@ -70837,8 +72696,14 @@
             "recruitId": "rank:508"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:509"
+            "stage": 4,
+            "school": {
+              "name": "Penn State",
+              "logoId": "85",
+              "gameplayTeamId": "1185"
+            },
+            "recruitId": "rank:509",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -70865,11 +72730,11 @@
             "recruitId": "rank:515"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:516"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:517"
           },
           {
@@ -70933,7 +72798,7 @@
             "recruitId": "rank:532"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:533"
           },
           {
@@ -70957,7 +72822,7 @@
             "recruitId": "rank:538"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:539"
           },
           {
@@ -71005,8 +72870,14 @@
             "recruitId": "rank:550"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:551"
+            "stage": 4,
+            "school": {
+              "name": "Oregon",
+              "logoId": "83",
+              "gameplayTeamId": "1183"
+            },
+            "recruitId": "rank:551",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -71021,7 +72892,7 @@
             "recruitId": "rank:554"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:555"
           },
           {
@@ -71037,8 +72908,14 @@
             "recruitId": "rank:558"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:559"
+            "stage": 4,
+            "school": {
+              "name": "Clemson",
+              "logoId": "21",
+              "gameplayTeamId": "1121"
+            },
+            "recruitId": "rank:559",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -71085,7 +72962,7 @@
             "recruitId": "rank:570"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:571"
           },
           {
@@ -71133,8 +73010,14 @@
             "recruitId": "rank:582"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:583"
+            "stage": 4,
+            "school": {
+              "name": "Missouri",
+              "logoId": "65",
+              "gameplayTeamId": "1165"
+            },
+            "recruitId": "rank:583",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -71145,7 +73028,7 @@
             "recruitId": "rank:585"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:586"
           },
           {
@@ -71213,7 +73096,7 @@
             "recruitId": "rank:602"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:603"
           },
           {
@@ -71229,11 +73112,11 @@
             "recruitId": "rank:606"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:607"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:608"
           },
           {
@@ -71249,7 +73132,7 @@
             "recruitId": "rank:611"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:612"
           },
           {
@@ -71257,8 +73140,14 @@
             "recruitId": "rank:613"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:614"
+            "stage": 4,
+            "school": {
+              "name": "Boise State",
+              "logoId": "12",
+              "gameplayTeamId": "1112"
+            },
+            "recruitId": "rank:614",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -71269,11 +73158,11 @@
             "recruitId": "rank:616"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:617"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:618"
           },
           {
@@ -71285,7 +73174,7 @@
             "recruitId": "rank:620"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Auburn",
               "logoId": "9",
@@ -71299,7 +73188,7 @@
             "recruitId": "rank:622"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:623"
           },
           {
@@ -71347,7 +73236,7 @@
             "recruitId": "rank:634"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:635"
           },
           {
@@ -71355,15 +73244,15 @@
             "recruitId": "rank:636"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:637"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:638"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:639"
           },
           {
@@ -71435,11 +73324,11 @@
             "recruitId": "rank:656"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:657"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:658"
           },
           {
@@ -71523,8 +73412,14 @@
             "recruitId": "rank:678"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:679"
+            "stage": 4,
+            "school": {
+              "name": "NC State",
+              "logoId": "67",
+              "gameplayTeamId": "1167"
+            },
+            "recruitId": "rank:679",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -71539,7 +73434,7 @@
             "recruitId": "rank:682"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:683"
           },
           {
@@ -71555,7 +73450,7 @@
             "recruitId": "rank:686"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:687"
           },
           {
@@ -71583,11 +73478,11 @@
             "recruitId": "rank:693"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:694"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:695"
           },
           {
@@ -71603,7 +73498,7 @@
             "recruitId": "rank:698"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:699"
           },
           {
@@ -71659,7 +73554,7 @@
             "recruitId": "rank:712"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:713"
           },
           {
@@ -71675,11 +73570,11 @@
             "recruitId": "rank:716"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:717"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:718"
           },
           {
@@ -71687,7 +73582,7 @@
             "recruitId": "rank:719"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:720"
           },
           {
@@ -71695,11 +73590,11 @@
             "recruitId": "rank:721"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:722"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:723"
           },
           {
@@ -71727,8 +73622,14 @@
             "recruitId": "rank:729"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:730"
+            "stage": 4,
+            "school": {
+              "name": "Auburn",
+              "logoId": "9",
+              "gameplayTeamId": "1109"
+            },
+            "recruitId": "rank:730",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -71739,15 +73640,15 @@
             "recruitId": "rank:732"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:733"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:734"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:735"
           },
           {
@@ -71759,7 +73660,7 @@
             "recruitId": "rank:737"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Northwestern",
               "logoId": "75",
@@ -71769,15 +73670,21 @@
             "committedSince": "2026 Wk 4"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:739"
+            "stage": 4,
+            "school": {
+              "name": "Navy",
+              "logoId": "66",
+              "gameplayTeamId": "1166"
+            },
+            "recruitId": "rank:739",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
             "recruitId": "rank:740"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:741"
           },
           {
@@ -71795,11 +73702,11 @@
             "recruitId": "rank:743"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:744"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:745"
           },
           {
@@ -71819,15 +73726,21 @@
             "recruitId": "rank:749"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:750"
+            "stage": 4,
+            "school": {
+              "name": "South Carolina",
+              "logoId": "95",
+              "gameplayTeamId": "1195"
+            },
+            "recruitId": "rank:750",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
             "recruitId": "rank:751"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:752"
           },
           {
@@ -71835,7 +73748,7 @@
             "recruitId": "rank:753"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:754"
           },
           {
@@ -71843,15 +73756,15 @@
             "recruitId": "rank:755"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:756"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:757"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:758"
           },
           {
@@ -71859,7 +73772,7 @@
             "recruitId": "rank:759"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:760"
           },
           {
@@ -71867,7 +73780,7 @@
             "recruitId": "rank:761"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Auburn",
               "logoId": "9",
@@ -71893,7 +73806,7 @@
             "recruitId": "rank:766"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:767"
           },
           {
@@ -71953,7 +73866,7 @@
             "recruitId": "rank:781"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:782"
           },
           {
@@ -71965,15 +73878,21 @@
             "recruitId": "rank:784"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:785"
+            "stage": 4,
+            "school": {
+              "name": "Kansas State",
+              "logoId": "47",
+              "gameplayTeamId": "1147"
+            },
+            "recruitId": "rank:785",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:786"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:787"
           },
           {
@@ -72001,7 +73920,7 @@
             "recruitId": "rank:793"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:794"
           },
           {
@@ -72045,7 +73964,7 @@
             "recruitId": "rank:804"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:805"
           },
           {
@@ -72053,7 +73972,7 @@
             "recruitId": "rank:806"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:807"
           },
           {
@@ -72065,8 +73984,14 @@
             "recruitId": "rank:809"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:810"
+            "stage": 5,
+            "school": {
+              "name": "Washington St.",
+              "logoId": "127",
+              "gameplayTeamId": "1227"
+            },
+            "recruitId": "rank:810",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -72101,7 +74026,7 @@
             "recruitId": "rank:818"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:819"
           },
           {
@@ -72113,15 +74038,21 @@
             "recruitId": "rank:821"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:822"
+            "stage": 4,
+            "school": {
+              "name": "Miami",
+              "logoId": "58",
+              "gameplayTeamId": "1158"
+            },
+            "recruitId": "rank:822",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
             "recruitId": "rank:823"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:824"
           },
           {
@@ -72129,7 +74060,7 @@
             "recruitId": "rank:825"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:826"
           },
           {
@@ -72193,7 +74124,7 @@
             "recruitId": "rank:841"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Mississippi St",
               "logoId": "64",
@@ -72219,7 +74150,7 @@
             "recruitId": "rank:846"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:847"
           },
           {
@@ -72231,7 +74162,7 @@
             "recruitId": "rank:849"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:850"
           },
           {
@@ -72243,7 +74174,7 @@
             "recruitId": "rank:852"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Baylor",
               "logoId": "11",
@@ -72281,7 +74212,7 @@
             "recruitId": "rank:860"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:861"
           },
           {
@@ -72293,7 +74224,7 @@
             "recruitId": "rank:863"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:864"
           },
           {
@@ -72305,7 +74236,7 @@
             "recruitId": "rank:866"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:867"
           },
           {
@@ -72317,7 +74248,7 @@
             "recruitId": "rank:869"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:870"
           },
           {
@@ -72333,7 +74264,7 @@
             "recruitId": "rank:873"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:874"
           },
           {
@@ -72349,7 +74280,7 @@
             "recruitId": "rank:877"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Baylor",
               "logoId": "11",
@@ -72359,15 +74290,15 @@
             "committedSince": "2026 Wk 4"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:879"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:880"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:881"
           },
           {
@@ -72391,7 +74322,7 @@
             "recruitId": "rank:886"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:887"
           },
           {
@@ -72403,8 +74334,14 @@
             "recruitId": "rank:889"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:890"
+            "stage": 4,
+            "school": {
+              "name": "Maryland",
+              "logoId": "56",
+              "gameplayTeamId": "1156"
+            },
+            "recruitId": "rank:890",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -72427,8 +74364,14 @@
             "recruitId": "rank:895"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:896"
+            "stage": 4,
+            "school": {
+              "name": "Utah State",
+              "logoId": "119",
+              "gameplayTeamId": "1219"
+            },
+            "recruitId": "rank:896",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -72439,7 +74382,7 @@
             "recruitId": "rank:898"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:899"
           },
           {
@@ -72451,7 +74394,7 @@
             "recruitId": "rank:901"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:902"
           },
           {
@@ -72459,8 +74402,14 @@
             "recruitId": "rank:903"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:904"
+            "stage": 4,
+            "school": {
+              "name": "TCU",
+              "logoId": "99",
+              "gameplayTeamId": "1199"
+            },
+            "recruitId": "rank:904",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -72487,12 +74436,24 @@
             "recruitId": "rank:910"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:911"
+            "stage": 4,
+            "school": {
+              "name": "Auburn",
+              "logoId": "9",
+              "gameplayTeamId": "1109"
+            },
+            "recruitId": "rank:911",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:912"
+            "stage": 4,
+            "school": {
+              "name": "Colorado",
+              "logoId": "23",
+              "gameplayTeamId": "1123"
+            },
+            "recruitId": "rank:912",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -72503,7 +74464,7 @@
             "recruitId": "rank:914"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:915"
           },
           {
@@ -72519,8 +74480,14 @@
             "recruitId": "rank:918"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:919"
+            "stage": 4,
+            "school": {
+              "name": "Oregon",
+              "logoId": "83",
+              "gameplayTeamId": "1183"
+            },
+            "recruitId": "rank:919",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -72555,7 +74522,7 @@
             "recruitId": "rank:927"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:928"
           },
           {
@@ -72567,11 +74534,11 @@
             "recruitId": "rank:930"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:931"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:932"
           },
           {
@@ -72623,7 +74590,7 @@
             "recruitId": "rank:944"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:945"
           },
           {
@@ -72631,7 +74598,7 @@
             "recruitId": "rank:946"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:947"
           },
           {
@@ -72639,7 +74606,7 @@
             "recruitId": "rank:948"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Auburn",
               "logoId": "9",
@@ -72649,7 +74616,7 @@
             "committedSince": "2026 Wk 4"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:950"
           },
           {
@@ -72661,11 +74628,11 @@
             "recruitId": "rank:952"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:953"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:954"
           },
           {
@@ -72673,7 +74640,7 @@
             "recruitId": "rank:955"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:956"
           },
           {
@@ -72685,11 +74652,11 @@
             "recruitId": "rank:958"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:959"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:960"
           },
           {
@@ -72701,11 +74668,17 @@
             "recruitId": "rank:962"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:963"
+            "stage": 4,
+            "school": {
+              "name": "West Virginia",
+              "logoId": "128",
+              "gameplayTeamId": "1228"
+            },
+            "recruitId": "rank:963",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:964"
           },
           {
@@ -72745,7 +74718,7 @@
             "recruitId": "rank:973"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:974"
           },
           {
@@ -72753,7 +74726,7 @@
             "recruitId": "rank:975"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:976"
           },
           {
@@ -72765,8 +74738,14 @@
             "recruitId": "rank:978"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:979"
+            "stage": 4,
+            "school": {
+              "name": "Missouri",
+              "logoId": "65",
+              "gameplayTeamId": "1165"
+            },
+            "recruitId": "rank:979",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -72777,7 +74756,7 @@
             "recruitId": "rank:981"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:982"
           },
           {
@@ -72793,11 +74772,11 @@
             "recruitId": "rank:985"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:986"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:987"
           },
           {
@@ -72805,15 +74784,15 @@
             "recruitId": "rank:988"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:989"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:990"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:991"
           },
           {
@@ -72825,7 +74804,7 @@
             "recruitId": "rank:993"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:994"
           },
           {
@@ -72837,7 +74816,7 @@
             "recruitId": "rank:996"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:997"
           },
           {
@@ -72849,7 +74828,7 @@
             "recruitId": "rank:999"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1000"
           },
           {
@@ -72865,7 +74844,7 @@
             "recruitId": "rank:1003"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1004"
           },
           {
@@ -72881,11 +74860,11 @@
             "recruitId": "rank:1007"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1008"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1009"
           },
           {
@@ -72893,7 +74872,7 @@
             "recruitId": "rank:1010"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1011"
           },
           {
@@ -72909,7 +74888,7 @@
             "recruitId": "rank:1014"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1015"
           },
           {
@@ -72921,7 +74900,7 @@
             "recruitId": "rank:1017"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1018"
           },
           {
@@ -72929,7 +74908,7 @@
             "recruitId": "rank:1019"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1020"
           },
           {
@@ -72949,11 +74928,11 @@
             "recruitId": "rank:1024"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1025"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1026"
           },
           {
@@ -72989,7 +74968,7 @@
             "recruitId": "rank:1034"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1035"
           },
           {
@@ -73001,7 +74980,7 @@
             "recruitId": "rank:1037"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1038"
           },
           {
@@ -73021,7 +75000,7 @@
             "recruitId": "rank:1042"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1043"
           },
           {
@@ -73045,15 +75024,15 @@
             "recruitId": "rank:1048"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1049"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1050"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1051"
           },
           {
@@ -73061,7 +75040,7 @@
             "recruitId": "rank:1052"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1053"
           },
           {
@@ -73081,11 +75060,17 @@
             "recruitId": "rank:1057"
           },
           {
-            "stage": 3,
-            "recruitId": "rank:1058"
+            "stage": 5,
+            "school": {
+              "name": "Cincinnati",
+              "logoId": "20",
+              "gameplayTeamId": "1120"
+            },
+            "recruitId": "rank:1058",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1059"
           },
           {
@@ -73125,7 +75110,7 @@
             "recruitId": "rank:1068"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1069"
           },
           {
@@ -73173,7 +75158,7 @@
             "recruitId": "rank:1080"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1081"
           },
           {
@@ -73185,19 +75170,19 @@
             "recruitId": "rank:1083"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1084"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1085"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1086"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1087"
           },
           {
@@ -73221,11 +75206,11 @@
             "recruitId": "rank:1092"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1093"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Penn State",
               "logoId": "85",
@@ -73247,7 +75232,7 @@
             "recruitId": "rank:1097"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1098"
           },
           {
@@ -73263,11 +75248,11 @@
             "recruitId": "rank:1101"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1102"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1103"
           },
           {
@@ -73275,8 +75260,14 @@
             "recruitId": "rank:1104"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1105"
+            "stage": 4,
+            "school": {
+              "name": "Arkansas",
+              "logoId": "6",
+              "gameplayTeamId": "1106"
+            },
+            "recruitId": "rank:1105",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -73287,7 +75278,7 @@
             "recruitId": "rank:1107"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1108"
           },
           {
@@ -73299,7 +75290,7 @@
             "recruitId": "rank:1110"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1111"
           },
           {
@@ -73311,15 +75302,15 @@
             "recruitId": "rank:1113"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1114"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1115"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1116"
           },
           {
@@ -73327,7 +75318,7 @@
             "recruitId": "rank:1117"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1118"
           },
           {
@@ -73335,7 +75326,7 @@
             "recruitId": "rank:1119"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1120"
           },
           {
@@ -73355,7 +75346,7 @@
             "recruitId": "rank:1124"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1125"
           },
           {
@@ -73379,11 +75370,11 @@
             "recruitId": "rank:1130"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1131"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1132"
           },
           {
@@ -73391,15 +75382,21 @@
             "recruitId": "rank:1133"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1134"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1135"
+            "stage": 4,
+            "school": {
+              "name": "Duke",
+              "logoId": "26",
+              "gameplayTeamId": "1126"
+            },
+            "recruitId": "rank:1135",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1136"
           },
           {
@@ -73407,20 +75404,32 @@
             "recruitId": "rank:1137"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:1138"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1139"
+            "stage": 4,
+            "school": {
+              "name": "California",
+              "logoId": "17",
+              "gameplayTeamId": "1117"
+            },
+            "recruitId": "rank:1139",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1140"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1141"
+            "stage": 4,
+            "school": {
+              "name": "Oklahoma",
+              "logoId": "79",
+              "gameplayTeamId": "1179"
+            },
+            "recruitId": "rank:1141",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -73431,11 +75440,17 @@
             "recruitId": "rank:1143"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1144"
+            "stage": 4,
+            "school": {
+              "name": "LSU",
+              "logoId": "54",
+              "gameplayTeamId": "1154"
+            },
+            "recruitId": "rank:1144",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1145"
           },
           {
@@ -73459,7 +75474,7 @@
             "recruitId": "rank:1150"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1151"
           },
           {
@@ -73471,7 +75486,7 @@
             "recruitId": "rank:1153"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1154"
           },
           {
@@ -73483,11 +75498,11 @@
             "recruitId": "rank:1156"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1157"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1158"
           },
           {
@@ -73507,7 +75522,7 @@
             "recruitId": "rank:1162"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1163"
           },
           {
@@ -73515,7 +75530,7 @@
             "recruitId": "rank:1164"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1165"
           },
           {
@@ -73523,11 +75538,11 @@
             "recruitId": "rank:1166"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1167"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1168"
           },
           {
@@ -73535,11 +75550,11 @@
             "recruitId": "rank:1169"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1170"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1171"
           },
           {
@@ -73571,7 +75586,7 @@
             "recruitId": "rank:1178"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "James Madison",
               "logoId": "45",
@@ -73585,7 +75600,7 @@
             "recruitId": "rank:1180"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1181"
           },
           {
@@ -73613,15 +75628,15 @@
             "recruitId": "rank:1187"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1188"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1189"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1190"
           },
           {
@@ -73637,7 +75652,7 @@
             "recruitId": "rank:1193"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1194"
           },
           {
@@ -73645,8 +75660,14 @@
             "recruitId": "rank:1195"
           },
           {
-            "stage": 3,
-            "recruitId": "rank:1196"
+            "stage": 5,
+            "school": {
+              "name": "Kansas State",
+              "logoId": "47",
+              "gameplayTeamId": "1147"
+            },
+            "recruitId": "rank:1196",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -73657,8 +75678,14 @@
             "recruitId": "rank:1198"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1199"
+            "stage": 4,
+            "school": {
+              "name": "Arizona State",
+              "logoId": "5",
+              "gameplayTeamId": "1105"
+            },
+            "recruitId": "rank:1199",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -73685,12 +75712,18 @@
             "recruitId": "rank:1205"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1206"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:1207"
+            "stage": 4,
+            "school": {
+              "name": "Florida",
+              "logoId": "30",
+              "gameplayTeamId": "1130"
+            },
+            "recruitId": "rank:1207",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -73701,7 +75734,7 @@
             "recruitId": "rank:1209"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1210"
           },
           {
@@ -73713,7 +75746,7 @@
             "recruitId": "rank:1212"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1213"
           },
           {
@@ -73729,7 +75762,7 @@
             "recruitId": "rank:1216"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1217"
           },
           {
@@ -73741,7 +75774,7 @@
             "recruitId": "rank:1219"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1220"
           },
           {
@@ -73753,11 +75786,11 @@
             "recruitId": "rank:1222"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:1223"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Oklahoma State",
               "logoId": "80",
@@ -73783,7 +75816,7 @@
             "recruitId": "rank:1228"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1229"
           },
           {
@@ -73807,8 +75840,14 @@
             "recruitId": "rank:1234"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1235"
+            "stage": 4,
+            "school": {
+              "name": "Georgia",
+              "logoId": "34",
+              "gameplayTeamId": "1134"
+            },
+            "recruitId": "rank:1235",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -73819,7 +75858,7 @@
             "recruitId": "rank:1237"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1238"
           },
           {
@@ -73835,7 +75874,7 @@
             "recruitId": "rank:1241"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1242"
           },
           {
@@ -73871,7 +75910,7 @@
             "recruitId": "rank:1250"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1251"
           },
           {
@@ -73883,7 +75922,7 @@
             "recruitId": "rank:1253"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1254"
           },
           {
@@ -73903,12 +75942,18 @@
             "recruitId": "rank:1258"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1259"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1260"
+            "stage": 4,
+            "school": {
+              "name": "Colorado",
+              "logoId": "23",
+              "gameplayTeamId": "1123"
+            },
+            "recruitId": "rank:1260",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -73923,7 +75968,7 @@
             "recruitId": "rank:1263"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1264"
           },
           {
@@ -73931,7 +75976,7 @@
             "recruitId": "rank:1265"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1266"
           },
           {
@@ -73939,7 +75984,7 @@
             "recruitId": "rank:1267"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1268"
           },
           {
@@ -73951,7 +75996,7 @@
             "recruitId": "rank:1270"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1271"
           },
           {
@@ -73963,7 +76008,7 @@
             "recruitId": "rank:1273"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1274"
           },
           {
@@ -73971,8 +76016,14 @@
             "recruitId": "rank:1275"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1276"
+            "stage": 4,
+            "school": {
+              "name": "Colorado",
+              "logoId": "23",
+              "gameplayTeamId": "1123"
+            },
+            "recruitId": "rank:1276",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -73987,15 +76038,15 @@
             "recruitId": "rank:1279"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1280"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1281"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1282"
           },
           {
@@ -74019,7 +76070,7 @@
             "recruitId": "rank:1287"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1288"
           },
           {
@@ -74051,7 +76102,7 @@
             "recruitId": "rank:1295"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1296"
           },
           {
@@ -74063,7 +76114,7 @@
             "recruitId": "rank:1298"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1299"
           },
           {
@@ -74079,8 +76130,14 @@
             "recruitId": "rank:1302"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1303"
+            "stage": 4,
+            "school": {
+              "name": "Syracuse",
+              "logoId": "98",
+              "gameplayTeamId": "1198"
+            },
+            "recruitId": "rank:1303",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -74099,7 +76156,7 @@
             "recruitId": "rank:1307"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1308"
           },
           {
@@ -74111,12 +76168,18 @@
             "recruitId": "rank:1310"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1311"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1312"
+            "stage": 4,
+            "school": {
+              "name": "Texas Tech",
+              "logoId": "105",
+              "gameplayTeamId": "1205"
+            },
+            "recruitId": "rank:1312",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -74127,7 +76190,7 @@
             "recruitId": "rank:1314"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1315"
           },
           {
@@ -74167,16 +76230,22 @@
             "recruitId": "rank:1324"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1325"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1326"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:1327"
+            "stage": 4,
+            "school": {
+              "name": "Auburn",
+              "logoId": "9",
+              "gameplayTeamId": "1109"
+            },
+            "recruitId": "rank:1327",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -74187,7 +76256,7 @@
             "recruitId": "rank:1329"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1330"
           },
           {
@@ -74227,7 +76296,7 @@
             "recruitId": "rank:1339"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1340"
           },
           {
@@ -74235,7 +76304,7 @@
             "recruitId": "rank:1341"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1342"
           },
           {
@@ -74251,7 +76320,7 @@
             "recruitId": "rank:1345"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1346"
           },
           {
@@ -74323,7 +76392,7 @@
             "recruitId": "rank:1363"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1364"
           },
           {
@@ -74331,7 +76400,7 @@
             "recruitId": "rank:1365"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1366"
           },
           {
@@ -74359,7 +76428,7 @@
             "recruitId": "rank:1372"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1373"
           },
           {
@@ -74463,7 +76532,7 @@
             "recruitId": "rank:1398"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1399"
           },
           {
@@ -74479,7 +76548,7 @@
             "recruitId": "rank:1402"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1403"
           },
           {
@@ -74511,7 +76580,7 @@
             "recruitId": "rank:1410"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1411"
           },
           {
@@ -74539,11 +76608,11 @@
             "recruitId": "rank:1417"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1418"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1419"
           },
           {
@@ -74563,7 +76632,7 @@
             "recruitId": "rank:1423"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1424"
           },
           {
@@ -74579,7 +76648,7 @@
             "recruitId": "rank:1427"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1428"
           },
           {
@@ -74599,7 +76668,7 @@
             "recruitId": "rank:1432"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1433"
           },
           {
@@ -74623,7 +76692,7 @@
             "recruitId": "rank:1438"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1439"
           },
           {
@@ -74631,8 +76700,14 @@
             "recruitId": "rank:1440"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1441"
+            "stage": 4,
+            "school": {
+              "name": "Louisiana",
+              "logoId": "51",
+              "gameplayTeamId": "1151"
+            },
+            "recruitId": "rank:1441",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -74667,7 +76742,7 @@
             "recruitId": "rank:1449"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1450"
           },
           {
@@ -74687,7 +76762,7 @@
             "recruitId": "rank:1454"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1455"
           },
           {
@@ -74711,8 +76786,14 @@
             "recruitId": "rank:1460"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1461"
+            "stage": 4,
+            "school": {
+              "name": "Ga Southern",
+              "logoId": "35",
+              "gameplayTeamId": "1135"
+            },
+            "recruitId": "rank:1461",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -74731,7 +76812,7 @@
             "recruitId": "rank:1465"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1466"
           },
           {
@@ -74739,7 +76820,7 @@
             "recruitId": "rank:1467"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1468"
           },
           {
@@ -74751,7 +76832,7 @@
             "recruitId": "rank:1470"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1471"
           },
           {
@@ -74779,7 +76860,7 @@
             "recruitId": "rank:1477"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1478"
           },
           {
@@ -74795,7 +76876,7 @@
             "recruitId": "rank:1481"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1482"
           },
           {
@@ -74815,7 +76896,7 @@
             "recruitId": "rank:1486"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1487"
           },
           {
@@ -74847,11 +76928,11 @@
             "recruitId": "rank:1494"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1495"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1496"
           },
           {
@@ -74887,8 +76968,14 @@
             "recruitId": "rank:1504"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1505"
+            "stage": 4,
+            "school": {
+              "name": "UNLV",
+              "logoId": "115",
+              "gameplayTeamId": "1215"
+            },
+            "recruitId": "rank:1505",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -74951,8 +77038,14 @@
             "recruitId": "rank:1520"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1521"
+            "stage": 4,
+            "school": {
+              "name": "App St.",
+              "logoId": "3",
+              "gameplayTeamId": "1103"
+            },
+            "recruitId": "rank:1521",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -74975,11 +77068,11 @@
             "recruitId": "rank:1526"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1527"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1528"
           },
           {
@@ -75011,7 +77104,7 @@
             "recruitId": "rank:1535"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1536"
           },
           {
@@ -75023,7 +77116,7 @@
             "recruitId": "rank:1538"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1539"
           },
           {
@@ -75043,7 +77136,7 @@
             "recruitId": "rank:1543"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1544"
           },
           {
@@ -75091,7 +77184,7 @@
             "recruitId": "rank:1555"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1556"
           },
           {
@@ -75131,7 +77224,7 @@
             "recruitId": "rank:1565"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1566"
           },
           {
@@ -75139,7 +77232,7 @@
             "recruitId": "rank:1567"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1568"
           },
           {
@@ -75147,11 +77240,11 @@
             "recruitId": "rank:1569"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1570"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1571"
           },
           {
@@ -75195,7 +77288,7 @@
             "recruitId": "rank:1581"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1582"
           },
           {
@@ -75215,7 +77308,7 @@
             "recruitId": "rank:1586"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1587"
           },
           {
@@ -75255,7 +77348,7 @@
             "recruitId": "rank:1596"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1597"
           },
           {
@@ -75311,8 +77404,14 @@
             "recruitId": "rank:1610"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1611"
+            "stage": 4,
+            "school": {
+              "name": "Ga Southern",
+              "logoId": "35",
+              "gameplayTeamId": "1135"
+            },
+            "recruitId": "rank:1611",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -75335,7 +77434,7 @@
             "recruitId": "rank:1616"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1617"
           },
           {
@@ -75347,11 +77446,11 @@
             "recruitId": "rank:1619"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1620"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1621"
           },
           {
@@ -75375,11 +77474,11 @@
             "recruitId": "rank:1626"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1627"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1628"
           },
           {
@@ -75399,7 +77498,7 @@
             "recruitId": "rank:1632"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1633"
           },
           {
@@ -75407,11 +77506,11 @@
             "recruitId": "rank:1634"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1635"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1636"
           },
           {
@@ -75435,7 +77534,7 @@
             "recruitId": "rank:1641"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1642"
           },
           {
@@ -75443,8 +77542,14 @@
             "recruitId": "rank:1643"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1644"
+            "stage": 4,
+            "school": {
+              "name": "W. Michigan",
+              "logoId": "130",
+              "gameplayTeamId": "1230"
+            },
+            "recruitId": "rank:1644",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -75495,7 +77600,7 @@
             "recruitId": "rank:1656"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1657"
           },
           {
@@ -75507,7 +77612,7 @@
             "recruitId": "rank:1659"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1660"
           },
           {
@@ -75515,7 +77620,7 @@
             "recruitId": "rank:1661"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1662"
           },
           {
@@ -75523,11 +77628,11 @@
             "recruitId": "rank:1663"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1664"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1665"
           },
           {
@@ -75535,7 +77640,7 @@
             "recruitId": "rank:1666"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1667"
           },
           {
@@ -75543,11 +77648,11 @@
             "recruitId": "rank:1668"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1669"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1670"
           },
           {
@@ -75559,7 +77664,7 @@
             "recruitId": "rank:1672"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1673"
           },
           {
@@ -75635,7 +77740,7 @@
             "recruitId": "rank:1691"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1692"
           },
           {
@@ -75675,7 +77780,7 @@
             "recruitId": "rank:1701"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1702"
           },
           {
@@ -75711,8 +77816,14 @@
             "recruitId": "rank:1710"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1711"
+            "stage": 4,
+            "school": {
+              "name": "Miami (OH)",
+              "logoId": "59",
+              "gameplayTeamId": "1159"
+            },
+            "recruitId": "rank:1711",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -75735,7 +77846,7 @@
             "recruitId": "rank:1716"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1717"
           },
           {
@@ -75779,7 +77890,7 @@
             "recruitId": "rank:1727"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1728"
           },
           {
@@ -75819,7 +77930,7 @@
             "recruitId": "rank:1737"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1738"
           },
           {
@@ -75827,15 +77938,15 @@
             "recruitId": "rank:1739"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1740"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1741"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1742"
           },
           {
@@ -75863,7 +77974,7 @@
             "recruitId": "rank:1748"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1749"
           },
           {
@@ -75883,7 +77994,7 @@
             "recruitId": "rank:1753"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1754"
           },
           {
@@ -75895,7 +78006,7 @@
             "recruitId": "rank:1756"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1757"
           },
           {
@@ -75975,7 +78086,7 @@
             "recruitId": "rank:1776"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1777"
           },
           {
@@ -76039,11 +78150,11 @@
             "recruitId": "rank:1792"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1793"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1794"
           },
           {
@@ -76075,7 +78186,7 @@
             "recruitId": "rank:1801"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1802"
           },
           {
@@ -76083,7 +78194,7 @@
             "recruitId": "rank:1803"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1804"
           },
           {
@@ -76095,7 +78206,7 @@
             "recruitId": "rank:1806"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1807"
           },
           {
@@ -76123,7 +78234,7 @@
             "recruitId": "rank:1813"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1814"
           },
           {
@@ -76175,7 +78286,7 @@
             "recruitId": "rank:1826"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1827"
           },
           {
@@ -76183,7 +78294,7 @@
             "recruitId": "rank:1828"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1829"
           },
           {
@@ -76195,7 +78306,7 @@
             "recruitId": "rank:1831"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1832"
           },
           {
@@ -76239,7 +78350,7 @@
             "recruitId": "rank:1842"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1843"
           },
           {
@@ -76255,7 +78366,7 @@
             "recruitId": "rank:1846"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1847"
           },
           {
@@ -76263,11 +78374,11 @@
             "recruitId": "rank:1848"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1849"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1850"
           },
           {
@@ -76299,8 +78410,14 @@
             "recruitId": "rank:1857"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:1858"
+            "stage": 4,
+            "school": {
+              "name": "Hawai'i",
+              "logoId": "38",
+              "gameplayTeamId": "1138"
+            },
+            "recruitId": "rank:1858",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -76323,7 +78440,7 @@
             "recruitId": "rank:1863"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1864"
           },
           {
@@ -76343,15 +78460,21 @@
             "recruitId": "rank:1868"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1869"
+            "stage": 4,
+            "school": {
+              "name": "Louisiana Tech",
+              "logoId": "52",
+              "gameplayTeamId": "1152"
+            },
+            "recruitId": "rank:1869",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
             "recruitId": "rank:1870"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1871"
           },
           {
@@ -76391,7 +78514,7 @@
             "recruitId": "rank:1880"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1881"
           },
           {
@@ -76419,7 +78542,7 @@
             "recruitId": "rank:1887"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1888"
           },
           {
@@ -76431,11 +78554,11 @@
             "recruitId": "rank:1890"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1891"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1892"
           },
           {
@@ -76503,7 +78626,7 @@
             "recruitId": "rank:1908"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1909"
           },
           {
@@ -76527,7 +78650,7 @@
             "recruitId": "rank:1914"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1915"
           },
           {
@@ -76539,7 +78662,7 @@
             "recruitId": "rank:1917"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1918"
           },
           {
@@ -76547,8 +78670,14 @@
             "recruitId": "rank:1919"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:1920"
+            "stage": 4,
+            "school": {
+              "name": "Fresno State",
+              "logoId": "33",
+              "gameplayTeamId": "1133"
+            },
+            "recruitId": "rank:1920",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -76571,7 +78700,7 @@
             "recruitId": "rank:1925"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1926"
           },
           {
@@ -76591,7 +78720,7 @@
             "recruitId": "rank:1930"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1931"
           },
           {
@@ -76623,11 +78752,11 @@
             "recruitId": "rank:1938"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1939"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1940"
           },
           {
@@ -76667,7 +78796,7 @@
             "recruitId": "rank:1949"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:1950"
           },
           {
@@ -76707,7 +78836,7 @@
             "recruitId": "rank:1959"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1960"
           },
           {
@@ -76731,7 +78860,7 @@
             "recruitId": "rank:1965"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1966"
           },
           {
@@ -76739,7 +78868,7 @@
             "recruitId": "rank:1967"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1968"
           },
           {
@@ -76747,7 +78876,7 @@
             "recruitId": "rank:1969"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1970"
           },
           {
@@ -76795,7 +78924,7 @@
             "recruitId": "rank:1981"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1982"
           },
           {
@@ -76863,7 +78992,7 @@
             "recruitId": "rank:1998"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:1999"
           },
           {
@@ -76951,12 +79080,18 @@
             "recruitId": "rank:2020"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2021"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2022"
+            "stage": 4,
+            "school": {
+              "name": "Nevada",
+              "logoId": "69",
+              "gameplayTeamId": "1169"
+            },
+            "recruitId": "rank:2022",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -76967,7 +79102,7 @@
             "recruitId": "rank:2024"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2025"
           },
           {
@@ -77007,7 +79142,7 @@
             "recruitId": "rank:2034"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2035"
           },
           {
@@ -77015,7 +79150,7 @@
             "recruitId": "rank:2036"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2037"
           },
           {
@@ -77051,11 +79186,11 @@
             "recruitId": "rank:2045"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2046"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2047"
           },
           {
@@ -77071,8 +79206,14 @@
             "recruitId": "rank:2050"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2051"
+            "stage": 5,
+            "school": {
+              "name": "W. Michigan",
+              "logoId": "130",
+              "gameplayTeamId": "1230"
+            },
+            "recruitId": "rank:2051",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -77099,7 +79240,7 @@
             "recruitId": "rank:2057"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2058"
           },
           {
@@ -77107,7 +79248,7 @@
             "recruitId": "rank:2059"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2060"
           },
           {
@@ -77167,7 +79308,7 @@
             "recruitId": "rank:2074"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2075"
           },
           {
@@ -77215,7 +79356,7 @@
             "recruitId": "rank:2086"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2087"
           },
           {
@@ -77235,11 +79376,11 @@
             "recruitId": "rank:2091"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2092"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2093"
           },
           {
@@ -77251,7 +79392,7 @@
             "recruitId": "rank:2095"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2096"
           },
           {
@@ -77267,8 +79408,14 @@
             "recruitId": "rank:2099"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:2100"
+            "stage": 4,
+            "school": {
+              "name": "UNLV",
+              "logoId": "115",
+              "gameplayTeamId": "1215"
+            },
+            "recruitId": "rank:2100",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -77283,7 +79430,7 @@
             "recruitId": "rank:2103"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2104"
           },
           {
@@ -77311,7 +79458,7 @@
             "recruitId": "rank:2110"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2111"
           },
           {
@@ -77339,7 +79486,7 @@
             "recruitId": "rank:2117"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Northwestern",
               "logoId": "75",
@@ -77349,7 +79496,7 @@
             "committedSince": "2026 Wk 4"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2119"
           },
           {
@@ -77357,8 +79504,14 @@
             "recruitId": "rank:2120"
           },
           {
-            "stage": 1,
-            "recruitId": "rank:2121"
+            "stage": 4,
+            "school": {
+              "name": "North Carolina",
+              "logoId": "72",
+              "gameplayTeamId": "1172"
+            },
+            "recruitId": "rank:2121",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -77393,7 +79546,7 @@
             "recruitId": "rank:2129"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2130"
           },
           {
@@ -77409,7 +79562,7 @@
             "recruitId": "rank:2133"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2134"
           },
           {
@@ -77437,7 +79590,7 @@
             "recruitId": "rank:2140"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2141"
           },
           {
@@ -77485,7 +79638,7 @@
             "recruitId": "rank:2152"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2153"
           },
           {
@@ -77505,7 +79658,7 @@
             "recruitId": "rank:2157"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2158"
           },
           {
@@ -77517,11 +79670,11 @@
             "recruitId": "rank:2160"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2161"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2162"
           },
           {
@@ -77581,7 +79734,7 @@
             "recruitId": "rank:2176"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2177"
           },
           {
@@ -77613,7 +79766,7 @@
             "recruitId": "rank:2184"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2185"
           },
           {
@@ -77685,7 +79838,7 @@
             "recruitId": "rank:2202"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2203"
           },
           {
@@ -77705,11 +79858,11 @@
             "recruitId": "rank:2207"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2208"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2209"
           },
           {
@@ -77741,7 +79894,7 @@
             "recruitId": "rank:2216"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2217"
           },
           {
@@ -77845,7 +79998,7 @@
             "recruitId": "rank:2242"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2243"
           },
           {
@@ -77869,7 +80022,7 @@
             "recruitId": "rank:2248"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2249"
           },
           {
@@ -77885,8 +80038,14 @@
             "recruitId": "rank:2252"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2253"
+            "stage": 4,
+            "school": {
+              "name": "Maryland",
+              "logoId": "56",
+              "gameplayTeamId": "1156"
+            },
+            "recruitId": "rank:2253",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -77913,15 +80072,15 @@
             "recruitId": "rank:2259"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2260"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2261"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Rice",
               "logoId": "88",
@@ -77931,11 +80090,17 @@
             "committedSince": "2026 Wk 4"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2263"
+            "stage": 4,
+            "school": {
+              "name": "UNLV",
+              "logoId": "115",
+              "gameplayTeamId": "1215"
+            },
+            "recruitId": "rank:2263",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2264"
           },
           {
@@ -77967,7 +80132,7 @@
             "recruitId": "rank:2271"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2272"
           },
           {
@@ -77999,7 +80164,7 @@
             "recruitId": "rank:2279"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2280"
           },
           {
@@ -78031,11 +80196,11 @@
             "recruitId": "rank:2287"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2288"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2289"
           },
           {
@@ -78043,7 +80208,7 @@
             "recruitId": "rank:2290"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2291"
           },
           {
@@ -78079,7 +80244,7 @@
             "recruitId": "rank:2299"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2300"
           },
           {
@@ -78091,7 +80256,7 @@
             "recruitId": "rank:2302"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2303"
           },
           {
@@ -78151,11 +80316,11 @@
             "recruitId": "rank:2317"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2318"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2319"
           },
           {
@@ -78223,11 +80388,11 @@
             "recruitId": "rank:2335"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2336"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2337"
           },
           {
@@ -78259,7 +80424,7 @@
             "recruitId": "rank:2344"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2345"
           },
           {
@@ -78271,7 +80436,7 @@
             "recruitId": "rank:2347"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2348"
           },
           {
@@ -78279,7 +80444,7 @@
             "recruitId": "rank:2349"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2350"
           },
           {
@@ -78287,11 +80452,11 @@
             "recruitId": "rank:2351"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2352"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2353"
           },
           {
@@ -78339,7 +80504,7 @@
             "recruitId": "rank:2364"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2365"
           },
           {
@@ -78351,8 +80516,14 @@
             "recruitId": "rank:2367"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2368"
+            "stage": 5,
+            "school": {
+              "name": "North Texas",
+              "logoId": "73",
+              "gameplayTeamId": "1173"
+            },
+            "recruitId": "rank:2368",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -78375,8 +80546,14 @@
             "recruitId": "rank:2373"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2374"
+            "stage": 4,
+            "school": {
+              "name": "Stanford",
+              "logoId": "97",
+              "gameplayTeamId": "1197"
+            },
+            "recruitId": "rank:2374",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -78395,11 +80572,11 @@
             "recruitId": "rank:2378"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2379"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2380"
           },
           {
@@ -78415,7 +80592,7 @@
             "recruitId": "rank:2383"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2384"
           },
           {
@@ -78447,7 +80624,7 @@
             "recruitId": "rank:2391"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2392"
           },
           {
@@ -78491,8 +80668,14 @@
             "recruitId": "rank:2402"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2403"
+            "stage": 4,
+            "school": {
+              "name": "Tulane",
+              "logoId": "108",
+              "gameplayTeamId": "1208"
+            },
+            "recruitId": "rank:2403",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -78503,7 +80686,7 @@
             "recruitId": "rank:2405"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2406"
           },
           {
@@ -78527,7 +80710,7 @@
             "recruitId": "rank:2411"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2412"
           },
           {
@@ -78547,7 +80730,7 @@
             "recruitId": "rank:2416"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2417"
           },
           {
@@ -78587,7 +80770,7 @@
             "recruitId": "rank:2426"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2427"
           },
           {
@@ -78599,7 +80782,7 @@
             "recruitId": "rank:2429"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2430"
           },
           {
@@ -78643,7 +80826,7 @@
             "recruitId": "rank:2440"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2441"
           },
           {
@@ -78651,7 +80834,7 @@
             "recruitId": "rank:2442"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2443"
           },
           {
@@ -78659,8 +80842,14 @@
             "recruitId": "rank:2444"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2445"
+            "stage": 4,
+            "school": {
+              "name": "James Madison",
+              "logoId": "45",
+              "gameplayTeamId": "1145"
+            },
+            "recruitId": "rank:2445",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -78691,7 +80880,7 @@
             "recruitId": "rank:2452"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2453"
           },
           {
@@ -78739,7 +80928,7 @@
             "recruitId": "rank:2464"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2465"
           },
           {
@@ -78779,7 +80968,7 @@
             "recruitId": "rank:2474"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2475"
           },
           {
@@ -78807,7 +80996,7 @@
             "recruitId": "rank:2481"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2482"
           },
           {
@@ -78827,11 +81016,17 @@
             "recruitId": "rank:2486"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2487"
+            "stage": 4,
+            "school": {
+              "name": "FLA Atlantic",
+              "logoId": "31",
+              "gameplayTeamId": "1131"
+            },
+            "recruitId": "rank:2487",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2488"
           },
           {
@@ -78847,7 +81042,7 @@
             "recruitId": "rank:2491"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2492"
           },
           {
@@ -78879,8 +81074,14 @@
             "recruitId": "rank:2499"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2500"
+            "stage": 4,
+            "school": {
+              "name": "Texas Tech",
+              "logoId": "105",
+              "gameplayTeamId": "1205"
+            },
+            "recruitId": "rank:2500",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -78891,7 +81092,7 @@
             "recruitId": "rank:2502"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2503"
           },
           {
@@ -78935,7 +81136,7 @@
             "recruitId": "rank:2513"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2514"
           },
           {
@@ -78943,8 +81144,14 @@
             "recruitId": "rank:2515"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2516"
+            "stage": 4,
+            "school": {
+              "name": "Tulane",
+              "logoId": "108",
+              "gameplayTeamId": "1208"
+            },
+            "recruitId": "rank:2516",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -79003,7 +81210,7 @@
             "recruitId": "rank:2530"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2531"
           },
           {
@@ -79011,15 +81218,15 @@
             "recruitId": "rank:2532"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2533"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2534"
           },
           {
-            "stage": 2,
+            "stage": 3,
             "recruitId": "rank:2535"
           },
           {
@@ -79035,7 +81242,7 @@
             "recruitId": "rank:2538"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2539"
           },
           {
@@ -79059,7 +81266,7 @@
             "recruitId": "rank:2544"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2545"
           },
           {
@@ -79115,7 +81322,7 @@
             "recruitId": "rank:2558"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2559"
           },
           {
@@ -79139,11 +81346,11 @@
             "recruitId": "rank:2564"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2565"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2566"
           },
           {
@@ -79231,7 +81438,7 @@
             "recruitId": "rank:2587"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2588"
           },
           {
@@ -79239,7 +81446,7 @@
             "recruitId": "rank:2589"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2590"
           },
           {
@@ -79259,11 +81466,11 @@
             "recruitId": "rank:2594"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2595"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2596"
           },
           {
@@ -79299,7 +81506,7 @@
             "recruitId": "rank:2604"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2605"
           },
           {
@@ -79311,7 +81518,7 @@
             "recruitId": "rank:2607"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2608"
           },
           {
@@ -79335,7 +81542,7 @@
             "recruitId": "rank:2613"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2614"
           },
           {
@@ -79383,7 +81590,7 @@
             "recruitId": "rank:2625"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2626"
           },
           {
@@ -79395,7 +81602,7 @@
             "recruitId": "rank:2628"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2629"
           },
           {
@@ -79407,7 +81614,7 @@
             "recruitId": "rank:2631"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2632"
           },
           {
@@ -79415,7 +81622,7 @@
             "recruitId": "rank:2633"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2634"
           },
           {
@@ -79435,7 +81642,7 @@
             "recruitId": "rank:2638"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2639"
           },
           {
@@ -79447,7 +81654,7 @@
             "recruitId": "rank:2641"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2642"
           },
           {
@@ -79463,7 +81670,7 @@
             "recruitId": "rank:2645"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2646"
           },
           {
@@ -79475,7 +81682,7 @@
             "recruitId": "rank:2648"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2649"
           },
           {
@@ -79487,7 +81694,7 @@
             "recruitId": "rank:2651"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2652"
           },
           {
@@ -79499,8 +81706,14 @@
             "recruitId": "rank:2654"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2655"
+            "stage": 4,
+            "school": {
+              "name": "Delaware",
+              "logoId": "134",
+              "gameplayTeamId": "1234"
+            },
+            "recruitId": "rank:2655",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -79539,11 +81752,11 @@
             "recruitId": "rank:2664"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2665"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2666"
           },
           {
@@ -79571,7 +81784,7 @@
             "recruitId": "rank:2672"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2673"
           },
           {
@@ -79583,7 +81796,7 @@
             "recruitId": "rank:2675"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2676"
           },
           {
@@ -79599,7 +81812,7 @@
             "recruitId": "rank:2679"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2680"
           },
           {
@@ -79615,7 +81828,7 @@
             "recruitId": "rank:2683"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2684"
           },
           {
@@ -79623,7 +81836,7 @@
             "recruitId": "rank:2685"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2686"
           },
           {
@@ -79647,7 +81860,7 @@
             "recruitId": "rank:2691"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2692"
           },
           {
@@ -79675,7 +81888,7 @@
             "recruitId": "rank:2698"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2699"
           },
           {
@@ -79699,11 +81912,11 @@
             "recruitId": "rank:2704"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2705"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2706"
           },
           {
@@ -79719,7 +81932,7 @@
             "recruitId": "rank:2709"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2710"
           },
           {
@@ -79731,11 +81944,11 @@
             "recruitId": "rank:2712"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2713"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2714"
           },
           {
@@ -79743,7 +81956,7 @@
             "recruitId": "rank:2715"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2716"
           },
           {
@@ -79779,7 +81992,7 @@
             "recruitId": "rank:2724"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2725"
           },
           {
@@ -79787,7 +82000,7 @@
             "recruitId": "rank:2726"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2727"
           },
           {
@@ -79795,7 +82008,7 @@
             "recruitId": "rank:2728"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2729"
           },
           {
@@ -79807,7 +82020,7 @@
             "recruitId": "rank:2731"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2732"
           },
           {
@@ -79835,7 +82048,7 @@
             "recruitId": "rank:2738"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2739"
           },
           {
@@ -79915,7 +82128,7 @@
             "recruitId": "rank:2758"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2759"
           },
           {
@@ -79939,7 +82152,7 @@
             "recruitId": "rank:2764"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2765"
           },
           {
@@ -79951,7 +82164,7 @@
             "recruitId": "rank:2767"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2768"
           },
           {
@@ -79975,11 +82188,17 @@
             "recruitId": "rank:2773"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2774"
+            "stage": 4,
+            "school": {
+              "name": "Fresno State",
+              "logoId": "33",
+              "gameplayTeamId": "1133"
+            },
+            "recruitId": "rank:2774",
+            "committedSince": "2026 Wk 5"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2775"
           },
           {
@@ -79995,11 +82214,11 @@
             "recruitId": "rank:2778"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2779"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2780"
           },
           {
@@ -80027,7 +82246,7 @@
             "recruitId": "rank:2786"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2787"
           },
           {
@@ -80035,7 +82254,7 @@
             "recruitId": "rank:2788"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2789"
           },
           {
@@ -80047,7 +82266,7 @@
             "recruitId": "rank:2791"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2792"
           },
           {
@@ -80071,7 +82290,7 @@
             "recruitId": "rank:2797"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2798"
           },
           {
@@ -80131,7 +82350,7 @@
             "recruitId": "rank:2812"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2813"
           },
           {
@@ -80147,12 +82366,18 @@
             "recruitId": "rank:2816"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2817"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2818"
+            "stage": 4,
+            "school": {
+              "name": "W. Michigan",
+              "logoId": "130",
+              "gameplayTeamId": "1230"
+            },
+            "recruitId": "rank:2818",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -80167,7 +82392,7 @@
             "recruitId": "rank:2821"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2822"
           },
           {
@@ -80183,16 +82408,22 @@
             "recruitId": "rank:2825"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2826"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2827"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2828"
+            "stage": 4,
+            "school": {
+              "name": "Kansas State",
+              "logoId": "47",
+              "gameplayTeamId": "1147"
+            },
+            "recruitId": "rank:2828",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -80215,7 +82446,7 @@
             "recruitId": "rank:2833"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2834"
           },
           {
@@ -80239,7 +82470,7 @@
             "recruitId": "rank:2839"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2840"
           },
           {
@@ -80279,7 +82510,7 @@
             "recruitId": "rank:2849"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2850"
           },
           {
@@ -80307,15 +82538,21 @@
             "recruitId": "rank:2856"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2857"
+            "stage": 4,
+            "school": {
+              "name": "Navy",
+              "logoId": "66",
+              "gameplayTeamId": "1166"
+            },
+            "recruitId": "rank:2857",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
             "recruitId": "rank:2858"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2859"
           },
           {
@@ -80335,7 +82572,7 @@
             "recruitId": "rank:2863"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2864"
           },
           {
@@ -80343,7 +82580,7 @@
             "recruitId": "rank:2865"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2866"
           },
           {
@@ -80415,7 +82652,7 @@
             "recruitId": "rank:2883"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2884"
           },
           {
@@ -80423,7 +82660,7 @@
             "recruitId": "rank:2885"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2886"
           },
           {
@@ -80435,8 +82672,14 @@
             "recruitId": "rank:2888"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2889"
+            "stage": 4,
+            "school": {
+              "name": "Cincinnati",
+              "logoId": "20",
+              "gameplayTeamId": "1120"
+            },
+            "recruitId": "rank:2889",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -80447,7 +82690,7 @@
             "recruitId": "rank:2891"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2892"
           },
           {
@@ -80503,7 +82746,7 @@
             "recruitId": "rank:2905"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2906"
           },
           {
@@ -80511,7 +82754,7 @@
             "recruitId": "rank:2907"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2908"
           },
           {
@@ -80519,7 +82762,7 @@
             "recruitId": "rank:2909"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2910"
           },
           {
@@ -80531,7 +82774,7 @@
             "recruitId": "rank:2912"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2913"
           },
           {
@@ -80587,7 +82830,7 @@
             "recruitId": "rank:2926"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2927"
           },
           {
@@ -80627,7 +82870,7 @@
             "recruitId": "rank:2936"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2937"
           },
           {
@@ -80651,7 +82894,7 @@
             "recruitId": "rank:2942"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2943"
           },
           {
@@ -80679,11 +82922,11 @@
             "recruitId": "rank:2949"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2950"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2951"
           },
           {
@@ -80711,11 +82954,11 @@
             "recruitId": "rank:2957"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:2958"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2959"
           },
           {
@@ -80735,11 +82978,11 @@
             "recruitId": "rank:2963"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2964"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2965"
           },
           {
@@ -80763,8 +83006,14 @@
             "recruitId": "rank:2970"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:2971"
+            "stage": 4,
+            "school": {
+              "name": "W. Michigan",
+              "logoId": "130",
+              "gameplayTeamId": "1230"
+            },
+            "recruitId": "rank:2971",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -80815,7 +83064,7 @@
             "recruitId": "rank:2983"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2984"
           },
           {
@@ -80839,7 +83088,7 @@
             "recruitId": "rank:2989"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2990"
           },
           {
@@ -80847,11 +83096,11 @@
             "recruitId": "rank:2991"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2992"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2993"
           },
           {
@@ -80859,7 +83108,7 @@
             "recruitId": "rank:2994"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "Rice",
               "logoId": "88",
@@ -80873,7 +83122,7 @@
             "recruitId": "rank:2996"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:2997"
           },
           {
@@ -80889,7 +83138,7 @@
             "recruitId": "rank:3000"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3001"
           },
           {
@@ -80901,15 +83150,21 @@
             "recruitId": "rank:3003"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:3004"
+            "stage": 4,
+            "school": {
+              "name": "UTSA",
+              "logoId": "121",
+              "gameplayTeamId": "1221"
+            },
+            "recruitId": "rank:3004",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
             "recruitId": "rank:3005"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3006"
           },
           {
@@ -80917,7 +83172,7 @@
             "recruitId": "rank:3007"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3008"
           },
           {
@@ -80925,7 +83180,7 @@
             "recruitId": "rank:3009"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3010"
           },
           {
@@ -80993,7 +83248,7 @@
             "recruitId": "rank:3026"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3027"
           },
           {
@@ -81041,7 +83296,7 @@
             "recruitId": "rank:3038"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3039"
           },
           {
@@ -81053,7 +83308,7 @@
             "recruitId": "rank:3041"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3042"
           },
           {
@@ -81085,7 +83340,7 @@
             "recruitId": "rank:3049"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3050"
           },
           {
@@ -81101,11 +83356,11 @@
             "recruitId": "rank:3053"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3054"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3055"
           },
           {
@@ -81133,8 +83388,14 @@
             "recruitId": "rank:3061"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:3062"
+            "stage": 4,
+            "school": {
+              "name": "Marshall",
+              "logoId": "55",
+              "gameplayTeamId": "1155"
+            },
+            "recruitId": "rank:3062",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -81221,7 +83482,7 @@
             "recruitId": "rank:3083"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3084"
           },
           {
@@ -81233,8 +83494,14 @@
             "recruitId": "rank:3086"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:3087"
+            "stage": 4,
+            "school": {
+              "name": "Miami (OH)",
+              "logoId": "59",
+              "gameplayTeamId": "1159"
+            },
+            "recruitId": "rank:3087",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -81265,7 +83532,7 @@
             "recruitId": "rank:3094"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3095"
           },
           {
@@ -81297,7 +83564,7 @@
             "recruitId": "rank:3102"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3103"
           },
           {
@@ -81305,7 +83572,7 @@
             "recruitId": "rank:3104"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3105"
           },
           {
@@ -81321,7 +83588,7 @@
             "recruitId": "rank:3108"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3109"
           },
           {
@@ -81333,7 +83600,7 @@
             "recruitId": "rank:3111"
           },
           {
-            "stage": 4,
+            "stage": 5,
             "school": {
               "name": "App St.",
               "logoId": "3",
@@ -81363,8 +83630,14 @@
             "recruitId": "rank:3117"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:3118"
+            "stage": 4,
+            "school": {
+              "name": "Old Dominion",
+              "logoId": "81",
+              "gameplayTeamId": "1181"
+            },
+            "recruitId": "rank:3118",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 1,
@@ -81379,8 +83652,14 @@
             "recruitId": "rank:3121"
           },
           {
-            "stage": 2,
-            "recruitId": "rank:3122"
+            "stage": 4,
+            "school": {
+              "name": "Ga Southern",
+              "logoId": "35",
+              "gameplayTeamId": "1135"
+            },
+            "recruitId": "rank:3122",
+            "committedSince": "2026 Wk 5"
           },
           {
             "stage": 0,
@@ -81407,7 +83686,7 @@
             "recruitId": "rank:3128"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3129"
           },
           {
@@ -81487,7 +83766,7 @@
             "recruitId": "rank:3148"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3149"
           },
           {
@@ -82327,7 +84606,7 @@
             "recruitId": "rank:3358"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3359"
           },
           {
@@ -82895,7 +85174,7 @@
             "recruitId": "rank:3500"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3501"
           },
           {
@@ -83123,7 +85402,7 @@
             "recruitId": "rank:3557"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3558"
           },
           {
@@ -83343,7 +85622,7 @@
             "recruitId": "rank:3612"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3613"
           },
           {
@@ -83475,7 +85754,7 @@
             "recruitId": "rank:3645"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3646"
           },
           {
@@ -83563,7 +85842,7 @@
             "recruitId": "rank:3667"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3668"
           },
           {
@@ -83715,11 +85994,11 @@
             "recruitId": "rank:3705"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3706"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3707"
           },
           {
@@ -83755,7 +86034,7 @@
             "recruitId": "rank:3715"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3716"
           },
           {
@@ -83911,7 +86190,7 @@
             "recruitId": "rank:3754"
           },
           {
-            "stage": 1,
+            "stage": 2,
             "recruitId": "rank:3755"
           },
           {
@@ -83923,7 +86202,7 @@
             "recruitId": "rank:3757"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3758"
           },
           {
@@ -84259,7 +86538,7 @@
             "recruitId": "rank:3841"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:3842"
           },
           {
@@ -84935,7 +87214,7 @@
             "recruitId": "rank:4010"
           },
           {
-            "stage": 0,
+            "stage": 1,
             "recruitId": "rank:4011"
           },
           {
